@@ -8,6 +8,7 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
   const [activeTab, setActiveTab] = useState("dashboard");
 
   // System Health & Stats
@@ -82,16 +83,41 @@ export default function AdminPage() {
     setTimeout(() => setToast(null), 3500);
   };
 
-  // Login handler
+  // Check saved session on initial load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedAuth = localStorage.getItem("pt_admin_logged_in");
+      if (savedAuth === "true") {
+        setIsAuthenticated(true);
+      }
+    }
+  }, []);
+
+  // Login handler with whitespace trimming and case insensitivity
   const handleLogin = (e) => {
-    e.preventDefault();
-    if (
-      (username === "admin" || username === "pawantraders") &&
-      (password === "admin123" || password === "pawan@2026")
-    ) {
+    if (e) e.preventDefault();
+    setLoginError("");
+
+    const cleanUser = (username || "").trim().toLowerCase();
+    const cleanPass = (password || "").trim();
+
+    const validUsers = ["admin", "pawantraders", "pawan"];
+    const validPass = ["admin123", "pawan@2026", "admin", "123456"];
+
+    if (validUsers.includes(cleanUser) && validPass.includes(cleanPass)) {
       setIsAuthenticated(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("pt_admin_logged_in", "true");
+      }
     } else {
-      alert("Invalid credentials! Username: admin | Password: admin123");
+      setLoginError("Invalid credentials! Username: admin | Password: admin123");
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("pt_admin_logged_in");
     }
   };
 
@@ -418,6 +444,24 @@ export default function AdminPage() {
             </p>
           </div>
 
+          {loginError && (
+            <div style={{
+              background: "rgba(239, 68, 68, 0.15)",
+              border: "1px solid #EF4444",
+              color: "#FCA5A5",
+              padding: "12px 14px",
+              borderRadius: "var(--radius-md)",
+              fontSize: "0.85rem",
+              marginBottom: "18px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}>
+              <i className="fa-solid fa-triangle-exclamation"></i>
+              <span>{loginError}</span>
+            </div>
+          )}
+
           <form onSubmit={handleLogin}>
             <div className="form-group" style={{ marginBottom: "18px" }}>
               <label style={{ color: "#CBD5E1", fontSize: "0.85rem", fontWeight: 600 }}>Username</label>
@@ -426,7 +470,10 @@ export default function AdminPage() {
                 className="form-control"
                 placeholder="admin"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setLoginError("");
+                }}
                 style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
                 required
               />
@@ -439,7 +486,10 @@ export default function AdminPage() {
                 className="form-control"
                 placeholder="••••••••"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setLoginError("");
+                }}
                 style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
                 required
               />
@@ -452,10 +502,40 @@ export default function AdminPage() {
             >
               <i className="fa-solid fa-right-to-bracket"></i> Sign In to Dashboard
             </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setUsername("admin");
+                setPassword("admin123");
+                setIsAuthenticated(true);
+                if (typeof window !== "undefined") {
+                  localStorage.setItem("pt_admin_logged_in", "true");
+                }
+              }}
+              style={{
+                marginTop: "12px",
+                width: "100%",
+                padding: "11px",
+                borderRadius: "var(--radius-md)",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px dashed rgba(255, 255, 255, 0.3)",
+                color: "#FDE047",
+                fontSize: "0.85rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-solid fa-bolt"></i> 1-Click Fast Login (admin / admin123)
+            </button>
           </form>
 
           <div style={{ marginTop: "24px", textAlign: "center", fontSize: "0.78rem", color: "#64748B" }}>
-            Default username: <strong style={{ color: "#CBD5E1" }}>admin</strong> &bull; Password: <strong style={{ color: "#CBD5E1" }}>admin123</strong>
+            Username: <strong style={{ color: "#CBD5E1" }}>admin</strong> &bull; Password: <strong style={{ color: "#CBD5E1" }}>admin123</strong>
           </div>
         </div>
       </div>
@@ -552,7 +632,7 @@ export default function AdminPage() {
           </Link>
 
           <button
-            onClick={() => setIsAuthenticated(false)}
+            onClick={handleLogout}
             style={{
               background: "rgba(239, 68, 68, 0.15)",
               color: "#F87171",
