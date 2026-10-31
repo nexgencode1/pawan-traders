@@ -56,15 +56,15 @@ npm start
 Create `.env.local` in project root:
 ```env
 # MongoDB Connection
-MONGODB_URI=mongodb://localhost:27017/pawan-traders
+MONGODB_URI=
 
 # Cloudinary Storage
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 
-# Admin Password
-ADMIN_PASSWORD=pawan@2026
+# Admin Master Password
+ADMIN_PASSWORD=
 ```
 
 ---
@@ -72,8 +72,8 @@ ADMIN_PASSWORD=pawan@2026
 ## 🔐 Admin Panel Access
 
 - **URL:** [http://localhost:3000/admin](http://localhost:3000/admin)
-- **Username:** `admin` (or `pawantraders`)
-- **Password:** `pawan@2026` (or `admin123`)
+- **Username:** `admin`
+- **Password:** `admin123` (or configured via `ADMIN_PASSWORD` in `.env.local`)
 
 ### Admin Capabilities:
 - **Hero Slider Manager:** Upload slide images (Cloudinary), enter optional single text (if empty, highlights image & buttons cleanly), configure Button 1 (Text + Link) and Button 2 (Text + Link).

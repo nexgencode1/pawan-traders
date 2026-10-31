@@ -87,11 +87,11 @@ export default function AdminPage() {
     e.preventDefault();
     if (
       (username === "admin" || username === "pawantraders") &&
-      (password === "pawan@2026" || password === "admin123")
+      (password === "admin123" || password === "pawan@2026")
     ) {
       setIsAuthenticated(true);
     } else {
-      alert("Invalid credentials! Username: admin | Password: pawan@2026");
+      alert("Invalid credentials! Username: admin | Password: admin123");
     }
   };
 
@@ -455,7 +455,7 @@ export default function AdminPage() {
           </form>
 
           <div style={{ marginTop: "24px", textAlign: "center", fontSize: "0.78rem", color: "#64748B" }}>
-            Default username: <strong style={{ color: "#CBD5E1" }}>admin</strong> &bull; Password: <strong style={{ color: "#CBD5E1" }}>pawan@2026</strong>
+            Default username: <strong style={{ color: "#CBD5E1" }}>admin</strong> &bull; Password: <strong style={{ color: "#CBD5E1" }}>admin123</strong>
           </div>
         </div>
       </div>
