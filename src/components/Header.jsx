@@ -43,11 +43,6 @@ export default function Header({ onOpenEnquiry }) {
                 <i className="fa-solid fa-phone"></i> {settings.callingNumber}
               </a>
             </div>
-            <div>
-              <Link href="/admin" style={{ color: "#94A3B8", fontSize: "0.78rem" }} title="Staff Portal">
-                <i className="fa-solid fa-lock"></i> Admin
-              </Link>
-            </div>
           </div>
         </div>
       </div>
