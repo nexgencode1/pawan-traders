@@ -100,6 +100,7 @@ export default function Footer() {
             <Link href="/about" style={{ color: "#94A3B8" }}>About</Link>
             <Link href="/products" style={{ color: "#94A3B8" }}>Products</Link>
             <Link href="/solar" style={{ color: "#94A3B8" }}>Solar</Link>
+            <Link href="/gallery" style={{ color: "#94A3B8" }}>Gallery</Link>
             <Link href="/admin" style={{ color: "#FBBF24" }}>Admin Panel</Link>
           </div>
         </div>

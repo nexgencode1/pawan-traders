@@ -6,6 +6,7 @@ import { INITIAL_DATA, buildWhatsAppUrl } from "@/data/pawanData";
 import ProductCard from "@/components/ProductCard";
 import SolarCalculator from "@/components/SolarCalculator";
 import QuickEnquiryModal from "@/components/QuickEnquiryModal";
+import HeroSlider from "@/components/HeroSlider";
 
 export default function HomePage() {
   const { settings, categories, brands, products, branches } = INITIAL_DATA;
@@ -26,102 +27,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ==================== HERO SECTION ==================== */}
-      <section style={{
-        position: "relative",
-        background: "linear-gradient(135deg, #091E42 0%, #0F2D6B 50%, #1D4ED8 100%)",
-        color: "#FFFFFF",
-        paddingTop: "60px",
-        paddingBottom: "90px",
-        overflow: "hidden"
-      }}>
-        <div className="container" style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "40px",
-          alignItems: "center"
-        }}>
-          <div>
-            <div className="section-badge" style={{ background: "rgba(255,255,255,0.12)", color: "#FDE047", border: "1px solid rgba(255,255,255,0.2)" }}>
-              <i className="fa-solid fa-award"></i> 100% AUTHORIZED BATTERY &amp; SOLAR HUB
-            </div>
-            <h1 style={{ fontSize: "clamp(2.2rem, 4vw, 3.4rem)", fontWeight: 800, lineHeight: 1.15, color: "#FFFFFF", marginBottom: "20px" }}>
-              Reliable Power &amp; <span style={{ color: "#F59E0B" }}>Solar Energy</span> for Prayagraj &amp; Kaushambi
-            </h1>
-            <p style={{ fontSize: "1.1rem", color: "#E2E8F0", marginBottom: "32px", lineHeight: 1.7, maxWidth: "580px" }}>
-              Complete range of Automotive Batteries, Vion Lithium Storage, Tall Tubular Inverters, Dry UPS Batteries and Rooftop Solar Plants. Serving Puramufti, Charwa and nearby regions with official warranty &amp; same-day delivery.
-            </p>
-
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "40px" }}>
-              <Link href="/products" className="btn btn-solar btn-lg">
-                <i className="fa-solid fa-layer-group"></i> Explore Catalogue
-              </Link>
-              <Link href="/solar" className="btn btn-white btn-lg">
-                <i className="fa-solid fa-solar-panel"></i> Solar Calculator
-              </Link>
-              <a href={`tel:+91${settings.callingNumber}`} className="btn btn-outline btn-lg" style={{ color: "#FFFFFF", borderColor: "rgba(255,255,255,0.4)" }}>
-                <i className="fa-solid fa-phone"></i> Call {settings.callingNumber}
-              </a>
-            </div>
-
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "24px",
-              paddingTop: "24px",
-              borderTop: "1px solid rgba(255, 255, 255, 0.15)",
-              flexWrap: "wrap"
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", color: "#F59E0B" }}>
-                  <i className="fa-solid fa-certificate"></i>
-                </div>
-                <div>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#F1F5F9", display: "block" }}>100% Genuine Brands</span>
-                  <span style={{ fontSize: "0.75rem", color: "#94A3B8" }}>Amaron, Exide, Luminous</span>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", color: "#F59E0B" }}>
-                  <i className="fa-solid fa-truck-fast"></i>
-                </div>
-                <div>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#F1F5F9", display: "block" }}>Same-Day Delivery</span>
-                  <span style={{ fontSize: "0.75rem", color: "#94A3B8" }}>Free Fitting &amp; Testing</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Visual Card */}
-          <div style={{
-            background: "rgba(255, 255, 255, 0.05)",
-            border: "1px solid rgba(255, 255, 255, 0.15)",
-            borderRadius: "var(--radius-xl)",
-            padding: "24px",
-            backdropFilter: "blur(16px)"
-          }}>
-            <div style={{ borderRadius: "var(--radius-lg)", overflow: "hidden", background: "#020617", height: "300px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <img src="/assets/images/products/solar-panel.svg" alt="Solar & Battery Solutions" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginTop: "18px" }}>
-              <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: "var(--radius-md)", padding: "12px", textAlign: "center" }}>
-                <span style={{ fontSize: "1.3rem", fontWeight: 800, color: "#F59E0B", display: "block" }}>15+</span>
-                <span style={{ fontSize: "0.75rem", color: "#CBD5E1" }}>Years Experience</span>
-              </div>
-              <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: "var(--radius-md)", padding: "12px", textAlign: "center" }}>
-                <span style={{ fontSize: "1.3rem", fontWeight: 800, color: "#F59E0B", display: "block" }}>10K+</span>
-                <span style={{ fontSize: "0.75rem", color: "#CBD5E1" }}>Happy Customers</span>
-              </div>
-              <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: "var(--radius-md)", padding: "12px", textAlign: "center" }}>
-                <span style={{ fontSize: "1.3rem", fontWeight: 800, color: "#F59E0B", display: "block" }}>2</span>
-                <span style={{ fontSize: "0.75rem", color: "#CBD5E1" }}>Prime Branches</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ==================== HERO SECTION SLIDER ==================== */}
+      <HeroSlider />
 
       {/* ==================== QUICK SEARCH / FINDER ==================== */}
       <section style={{ position: "relative", marginTop: "-45px", zIndex: 10 }}>
@@ -311,6 +218,59 @@ export default function HomePage() {
 
               {/* Calculator */}
               <SolarCalculator />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== PHOTO & INSTALLATION GALLERY HIGHLIGHT ==================== */}
+      <section className="section-padding" style={{ background: "#F1F5F9" }}>
+        <div className="container">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "20px", marginBottom: "40px" }}>
+            <div>
+              <span className="section-badge"><i className="fa-solid fa-camera"></i> Live Work Showcase</span>
+              <h2 className="section-title" style={{ marginBottom: "8px" }}>Recent <span>Installations &amp; Gallery</span></h2>
+              <p className="section-subtitle">Real photos of solar rooftops, lithium storage, inverter banks, and Puramufti &amp; Charwa shops.</p>
+            </div>
+            <div>
+              <Link href="/gallery" className="btn btn-primary">
+                <i className="fa-solid fa-images"></i> View Full Gallery
+              </Link>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+            <div className="hover-card" style={{ background: "#FFFFFF", borderRadius: "var(--radius-lg)", overflow: "hidden", border: "1px solid #E2E8F0" }}>
+              <div style={{ height: "200px", background: "#0F172A", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <img src="/assets/images/categories/solar.svg" alt="Rooftop Solar Plant" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#F59E0B", textTransform: "uppercase" }}>Solar Installation</span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>10kW Rooftop On-Grid Solar Plant</h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>PM Surya Ghar verified installation in Prayagraj region.</p>
+              </div>
+            </div>
+
+            <div className="hover-card" style={{ background: "#FFFFFF", borderRadius: "var(--radius-lg)", overflow: "hidden", border: "1px solid #E2E8F0" }}>
+              <div style={{ height: "200px", background: "#0F172A", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <img src="/assets/images/categories/lithium.svg" alt="Vion Lithium Storage" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase" }}>Lithium Storage</span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>Vion LiFePO4 Inverter Battery Setup</h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>Wall mounted smart lithium system for uninterrupted backup.</p>
+              </div>
+            </div>
+
+            <div className="hover-card" style={{ background: "#FFFFFF", borderRadius: "var(--radius-lg)", overflow: "hidden", border: "1px solid #E2E8F0" }}>
+              <div style={{ height: "200px", background: "#0F172A", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <img src="/assets/images/categories/automotive.svg" alt="Puramufti Showroom" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#1D4ED8", textTransform: "uppercase" }}>Branches</span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>Puramufti Main Branch Showroom</h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>GT Road Puramufti inventory of Amaron &amp; Exide batteries.</p>
+              </div>
             </div>
           </div>
         </div>

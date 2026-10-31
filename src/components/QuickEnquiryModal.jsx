@@ -15,17 +15,39 @@ export default function QuickEnquiryModal({ isOpen, onClose, preselectedProduct 
   });
   const [submitted, setSubmitted] = useState(false);
 
+  const [submitting, setSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.mobile.trim()) {
       alert("Please provide your name and 10-digit mobile number.");
       return;
     }
 
+    setSubmitting(true);
     const branch = INITIAL_DATA.branches.find((b) => b.id === formData.branchId);
     const cat = INITIAL_DATA.categories.find((c) => c.id === formData.category);
+
+    try {
+      // POST to backend API to save enquiry in MongoDB
+      await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.mobile,
+          email: formData.email,
+          branch: branch ? branch.name : "Main Branch - Puramufti",
+          category: cat ? cat.name : "General Enquiry",
+          batteryOrSolarReq: formData.product || preselectedProduct?.name || "General Query",
+          message: formData.message || "Enquiry from quick modal",
+        }),
+      });
+    } catch (err) {
+      console.warn("Could not save to API:", err);
+    }
 
     const waMsg = `*NEW WEBSITE ENQUIRY - PAWAN TRADERS*\n\n` +
       `• *Customer Name:* ${formData.name}\n` +
@@ -37,6 +59,7 @@ export default function QuickEnquiryModal({ isOpen, onClose, preselectedProduct 
       `• *Message:* ${formData.message || 'Looking for best price & warranty details'}`;
 
     setSubmitted(true);
+    setSubmitting(false);
     setTimeout(() => {
       window.open(buildWhatsAppUrl(waMsg), "_blank");
       onClose();

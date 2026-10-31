@@ -1,1 +1,55 @@
-node_modules
+# Dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Next.js Build Output
+/.next/
+/out/
+
+# Environment Variables
+.env*.local
+.env
+.env.production
+.env.development
+.env.test
+!.env.example
+
+# Debug & Execution Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Next.js telemetry / bundle analysis
+.next/cache
+*.tsbuildinfo
+next-env.d.ts
+
+# IDEs & Code Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Vercel Deployment
+.vercel

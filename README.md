@@ -44,9 +44,28 @@ npm start
 - `/brands` &mdash; **Brands Directory:** All 14 authorized brands with taglines and product counts.
 - `/brands/[slug]` &mdash; **Brand Showcase:** Filtered products for specific brands (e.g. `/brands/amaron`, `/brands/exide`, `/brands/vion`).
 - `/solar` &mdash; **Solar Solutions & Subsidy:** On-Grid, Off-Grid, Hybrid guides, PM Surya Ghar Yojana subsidy estimates, and Rooftop Solar Calculator.
+- `/gallery` &mdash; **Product & Project Gallery:** Live photo showroom of solar installations, lithium setups, showrooms, and customer deliveries with category filters & lightbox modal.
 - `/branches` &mdash; **Our Branches:** Main Branch (Puramufti, Prayagraj – 212208) & Second Branch (Charwa Town, Kaushambi – 212203) with Google Maps embeds and direct calling buttons.
-- `/contact` &mdash; **Contact Us:** Verified directory, enquiry form, and physical branch locations.
-- `/admin` &mdash; **Admin Control Panel:** Master staff portal.
+- `/contact` &mdash; **Contact Us:** Verified directory, enquiry form with direct MongoDB submission & instant WhatsApp handoff.
+- `/admin` &mdash; **Admin Control Panel:** Master staff portal with Cloudinary photo uploads, Hero Slider manager, Product CRUD, Gallery manager, and Contact lead management.
+
+---
+
+## ☁️ Cloudinary & MongoDB Setup
+
+Create `.env.local` in project root:
+```env
+# MongoDB Connection
+MONGODB_URI=mongodb://localhost:27017/pawan-traders
+
+# Cloudinary Storage
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Admin Password
+ADMIN_PASSWORD=pawan@2026
+```
 
 ---
 
@@ -57,7 +76,11 @@ npm start
 - **Password:** `pawan@2026` (or `admin123`)
 
 ### Admin Capabilities:
-- **Dashboard:** Real-time metrics for products, categories, brands, and customer enquiries.
+- **Hero Slider Manager:** Upload slide images (Cloudinary), enter optional single text (if empty, highlights image & buttons cleanly), configure Button 1 (Text + Link) and Button 2 (Text + Link).
+- **Product Management:** Add/Edit/Delete products with direct Cloudinary photo upload, specs (Ah, Voltage, Warranty, Price tag), category & brand selectors.
+- **Gallery Manager:** Upload showroom & installation photos to Cloudinary, assign category tags, and delete photos.
+- **Contact Submissions:** View incoming customer leads from Contact form and Homepage popup, update lead status (New, Contacted, In Progress, Closed), 1-click WhatsApp customer reply, and export to CSV.
+- **Dashboard & Health:** Live indicators for MongoDB and Cloudinary connection status.
 - **Product Management:** Add new models, edit specs (Ah, Voltage, Warranty), update images, toggle featured/publish status.
 - **Enquiry Management:** View all customer leads, update follow-up status (`New`, `In Progress`, `Contacted`, `Closed`), 1-click WhatsApp customer reply, and **Export records to CSV**.
 - **Branch Management:** Update addresses, phone numbers, and Google Maps embed links for Puramufti and Charwa branches.

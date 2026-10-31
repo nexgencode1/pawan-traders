@@ -15,16 +15,38 @@ export default function ContactPage() {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.mobile.trim()) {
       alert("Please provide name and 10-digit mobile number.");
       return;
     }
 
+    setSubmitting(true);
     const branch = branches.find((b) => b.id === formData.branchId);
     const cat = categories.find((c) => c.id === formData.category);
+
+    try {
+      await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.mobile,
+          email: formData.email,
+          branch: branch ? branch.name : "Main Branch - Puramufti",
+          category: cat ? cat.name : "General Enquiry",
+          batteryOrSolarReq: formData.product || "General Query",
+          message: formData.message || "Submitted via contact page",
+        }),
+      });
+      setSuccessMessage("Thank you! Your enquiry has been received and saved. Redirecting to WhatsApp...");
+    } catch (err) {
+      console.warn("Could not save to API:", err);
+    }
 
     const waText = `*NEW WEBSITE ENQUIRY - PAWAN TRADERS*\n\n` +
       `• *Customer Name:* ${formData.name}\n` +
@@ -36,10 +58,11 @@ export default function ContactPage() {
       `• *Message:* ${formData.message || 'Looking for pricing and availability'}`;
 
     setSubmitted(true);
+    setSubmitting(false);
     setTimeout(() => {
       window.open(buildWhatsAppUrl(waText), "_blank");
       setSubmitted(false);
-    }, 600);
+    }, 1200);
   };
 
   return (

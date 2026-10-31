@@ -16,6 +16,7 @@ export default function Header({ onOpenEnquiry }) {
     { label: "Product Catalogue", href: "/products" },
     { label: "Brands", href: "/brands" },
     { label: "Solar Solutions", href: "/solar" },
+    { label: "Gallery", href: "/gallery" },
     { label: "Our Branches", href: "/branches" },
     { label: "Contact Us", href: "/contact" },
   ];
