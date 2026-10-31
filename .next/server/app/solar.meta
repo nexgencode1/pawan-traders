@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solar/layout,_N_T_/solar/page,_N_T_/solar"
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/cbb8b2d3667539ef7408c04e220049fa67be52e5e08bf74d6f22a6163d0500f7/$/solar",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/solar/page"
+    },
+    "isFallback": false
+  }
+}

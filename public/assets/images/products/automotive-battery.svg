@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="abBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2D3748"/>
+      <stop offset="60%" stop-color="#1A202C"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="abGreenTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="50%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="abGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="50%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <radialGradient id="abTermGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="abShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-opacity="0.35" flood-color="#000"/>
+    </filter>
+  </defs>
+
+  <!-- Background subtle glow -->
+  <rect width="600" height="450" rx="16" fill="#F8FAFC"/>
+  <circle cx="300" cy="225" r="180" fill="#E2E8F0" opacity="0.4"/>
+  <circle cx="480" cy="140" r="110" fill="#DEF7EC" opacity="0.6"/>
+
+  <!-- Battery Main Group -->
+  <g transform="translate(90, 85)" filter="url(#abShadow)">
+    <!-- Battery Base -->
+    <rect x="20" y="100" width="380" height="210" rx="8" fill="url(#abBody)"/>
+    
+    <!-- Structural Vertical Ribs / Strength Grooves -->
+    <g fill="#242E3D" opacity="0.8">
+      <rect x="40" y="120" width="8" height="170" rx="2"/>
+      <rect x="60" y="120" width="8" height="170" rx="2"/>
+      <rect x="350" y="120" width="8" height="170" rx="2"/>
+      <rect x="370" y="120" width="8" height="170" rx="2"/>
+      <!-- Bottom Ledge / Car Hold-down base -->
+      <rect x="10" y="295" width="400" height="20" rx="4" fill="#0F172A"/>
+    </g>
+
+    <!-- Heavy-Duty Cover / Top Lid -->
+    <rect x="15" y="60" width="390" height="48" rx="6" fill="url(#abGreenTop)"/>
+    <rect x="15" y="100" width="390" height="6" fill="#047857"/>
+
+    <!-- Carry Handle (Folded Down) -->
+    <path d="M 60 70 C 60 40, 360 40, 360 70" fill="none" stroke="#0F172A" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 60 70 C 60 42, 360 42, 360 70" fill="none" stroke="#374151" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Brass Terminals & Protective Caps -->
+    <!-- Positive (+) Terminal (Red) -->
+    <rect x="65" y="32" width="32" height="30" rx="4" fill="#CBD5E1"/>
+    <rect x="71" y="20" width="20" height="15" rx="3" fill="#DC2626"/>
+    <circle cx="81" cy="22" r="5" fill="#EF4444"/>
+    <text x="81" y="52" font-family="Arial, sans-serif" font-size="16" font-weight="900" fill="#DC2626" text-anchor="middle">+</text>
+
+    <!-- Negative (-) Terminal (Blue/Dark) -->
+    <rect x="325" y="32" width="32" height="30" rx="4" fill="#CBD5E1"/>
+    <rect x="331" y="20" width="20" height="15" rx="3" fill="#1E293B"/>
+    <circle cx="341" cy="22" r="5" fill="#3B82F6"/>
+    <text x="341" y="52" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#1E293B" text-anchor="middle">&minus;</text>
+
+    <!-- Magic Eye / State-of-Charge Hydrometer Indicator -->
+    <circle cx="160" cy="78" r="14" fill="#0F172A"/>
+    <circle cx="160" cy="78" r="10" fill="#10B981" stroke="#34D399" stroke-width="2"/>
+    <circle cx="157" cy="75" r="3" fill="#FFFFFF"/>
+    <text x="180" y="82" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#ECFDF5">OK (GREEN)</text>
+
+    <!-- 6 Cell Vent Plugs -->
+    <g fill="#047857" stroke="#065F46" stroke-width="1.5">
+      <circle cx="210" cy="78" r="7"/>
+      <circle cx="235" cy="78" r="7"/>
+      <circle cx="260" cy="78" r="7"/>
+      <circle cx="285" cy="78" r="7"/>
+    </g>
+
+    <!-- High-Impact Front Metallic Label -->
+    <rect x="85" y="130" width="250" height="145" rx="8" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Gold / Yellow Accent Banner -->
+    <rect x="85" y="130" width="250" height="36" rx="6" fill="url(#abGold)"/>
+    <text x="210" y="154" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#0F172A" text-anchor="middle" letter-spacing="1">
+      PAWAN PRO CRANK
+    </text>
+
+    <!-- Model & Specs -->
+    <text x="210" y="186" font-family="'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900" fill="#F8FAFC" text-anchor="middle">
+      12V &bull; 65Ah &bull; 600 CCA
+    </text>
+    
+    <text x="210" y="210" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" text-anchor="middle" letter-spacing="0.5">
+      ULTRA LOW MAINTENANCE &bull; SILVER ALLOY
+    </text>
+
+    <!-- Badges on Label -->
+    <rect x="105" y="225" width="95" height="32" rx="4" fill="#0F172A" stroke="#22C55E" stroke-width="1"/>
+    <text x="152" y="246" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#4ADE80" text-anchor="middle">
+      72 MONTHS
+    </text>
+
+    <rect x="220" y="225" width="95" height="32" rx="4" fill="#0F172A" stroke="#F59E0B" stroke-width="1"/>
+    <text x="267" y="246" font-family="Arial, sans-serif" font-size="11" font-weight="800" fill="#FBBF24" text-anchor="middle">
+      100% GENUINE
+    </text>
+  </g>
+
+  <!-- Category Tag Badge -->
+  <g transform="translate(40, 395)">
+    <rect width="210" height="34" rx="17" fill="#0F172A"/>
+    <text x="105" y="22" font-family="Arial, sans-serif" font-size="13" font-weight="800" fill="#FBBF24" text-anchor="middle">
+      AUTOMOTIVE BATTERY
+    </text>
+  </g>
+</svg>
+

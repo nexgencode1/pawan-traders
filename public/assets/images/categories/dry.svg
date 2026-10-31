@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dbBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="dbTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <filter id="dbShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-opacity="0.3" flood-color="#0F172A"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="450" rx="16" fill="#F8FAFC"/>
+  <circle cx="300" cy="225" r="180" fill="#E2E8F0" opacity="0.4"/>
+  <circle cx="450" cy="120" r="100" fill="#E0E7FF" opacity="0.4"/>
+
+  <!-- Pair of UPS Batteries (Front & Back Perspective) -->
+  <!-- Background Smaller SMF Battery -->
+  <g transform="translate(320, 100)" opacity="0.85">
+    <rect x="0" y="40" width="180" height="190" rx="6" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <rect x="0" y="25" width="180" height="20" rx="4" fill="#0F172A"/>
+    <!-- Terminal tabs -->
+    <rect x="25" y="10" width="14" height="16" rx="2" fill="#DC2626"/>
+    <rect x="140" y="10" width="14" height="16" rx="2" fill="#0F172A" stroke="#94A3B8" stroke-width="1"/>
+    <!-- Label -->
+    <rect x="20" y="65" width="140" height="100" rx="4" fill="#0F172A"/>
+    <text x="90" y="95" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900" fill="#F59E0B" text-anchor="middle">
+      KONTA SMF
+    </text>
+    <text x="90" y="120" font-family="'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+      12V &bull; 7.2Ah
+    </text>
+  </g>
+
+  <!-- Foreground Main SMF / VRLA UPS Battery -->
+  <g transform="translate(100, 70)" filter="url(#dbShadow)">
+    <!-- Battery Box -->
+    <rect x="0" y="55" width="260" height="255" rx="8" fill="url(#dbBody)"/>
+    
+    <!-- Top Sealed Lid -->
+    <rect x="0" y="40" width="260" height="25" rx="5" fill="url(#dbTop)"/>
+    <rect x="0" y="65" width="260" height="3" fill="#0F172A"/>
+
+    <!-- Quick-Disconnect Faston F2 Spade Terminals -->
+    <!-- Positive (+) Red Terminal -->
+    <g transform="translate(35, 12)">
+      <rect x="0" y="15" width="20" height="15" rx="2" fill="#DC2626"/>
+      <rect x="4" y="0" width="12" height="16" rx="1.5" fill="#E2E8F0"/>
+      <circle cx="10" cy="5" r="2.5" fill="#1E293B"/>
+      <text x="10" y="27" font-family="Arial, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">+</text>
+    </g>
+
+    <!-- Negative (-) Black Terminal -->
+    <g transform="translate(205, 12)">
+      <rect x="0" y="15" width="20" height="15" rx="2" fill="#0F172A" stroke="#475569" stroke-width="1"/>
+      <rect x="4" y="0" width="12" height="16" rx="1.5" fill="#E2E8F0"/>
+      <circle cx="10" cy="5" r="2.5" fill="#1E293B"/>
+      <text x="10" y="27" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">&minus;</text>
+    </g>
+
+    <!-- High-Impact Brand & Specs Vinyl Decal -->
+    <rect x="25" y="90" width="210" height="185" rx="6" fill="#020617" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Yellow / Amber Brand Stripe -->
+    <rect x="25" y="90" width="210" height="36" rx="5" fill="#F59E0B"/>
+    <text x="130" y="115" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#0F172A" text-anchor="middle" letter-spacing="1">
+      SEALED DRY SMF
+    </text>
+
+    <!-- Primary Rating -->
+    <text x="130" y="158" font-family="'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">
+      12V &bull; 26Ah
+    </text>
+
+    <text x="130" y="180" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#94A3B8" text-anchor="middle" letter-spacing="0.5">
+      VALVE REGULATED LEAD-ACID (VRLA)
+    </text>
+
+    <!-- Usage Icons / Badges -->
+    <g transform="translate(40, 195)">
+      <rect x="0" y="0" width="85" height="30" rx="4" fill="#1E293B" stroke="#38BDF8" stroke-width="1"/>
+      <text x="42" y="19" font-family="Arial, sans-serif" font-size="10" font-weight="800" fill="#38BDF8" text-anchor="middle">
+        UPS &bull; BACKUP
+      </text>
+
+      <rect x="95" y="0" width="85" height="30" rx="4" fill="#1E293B" stroke="#10B981" stroke-width="1"/>
+      <text x="137" y="19" font-family="Arial, sans-serif" font-size="10" font-weight="800" fill="#34D399" text-anchor="middle">
+        NO ACID SPILL
+      </text>
+    </g>
+
+    <!-- Footer Note -->
+    <text x="130" y="255" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#CBD5E1" text-anchor="middle">
+      MAINTENANCE FREE &bull; COMPUTER &amp; MEDICAL UPS
+    </text>
+  </g>
+
+  <!-- Category Badge -->
+  <g transform="translate(40, 395)">
+    <rect width="250" height="34" rx="17" fill="#475569"/>
+    <text x="125" y="22" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+      DRY / SMF UPS BATTERIES
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="liBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="60%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="liMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9"/>
+      <stop offset="50%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="liCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <radialGradient id="liScreen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#164E63"/>
+      <stop offset="100%" stop-color="#083344"/>
+    </radialGradient>
+    <filter id="liShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-opacity="0.35" flood-color="#0F172A"/>
+    </filter>
+  </defs>
+
+  <!-- Clean Minimal Tech Backdrop -->
+  <rect width="600" height="450" rx="16" fill="#F8FAFC"/>
+  <circle cx="300" cy="225" r="180" fill="#E0F2FE" opacity="0.3"/>
+  <circle cx="150" cy="120" r="100" fill="#CFFAFE" opacity="0.4"/>
+
+  <!-- Wall-Mounted Modern LiFePO4 Battery Unit -->
+  <g transform="translate(140, 50)" filter="url(#liShadow)">
+    <!-- Main Sleek Chassis (White / Silver Edge) -->
+    <rect x="0" y="0" width="320" height="340" rx="20" fill="url(#liMetal)"/>
+    <rect x="4" y="4" width="312" height="332" rx="18" fill="#FFFFFF"/>
+    
+    <!-- Central Dark Tech Fascia -->
+    <rect x="20" y="24" width="280" height="292" rx="12" fill="url(#liBody)"/>
+
+    <!-- Top Glow Status Bar -->
+    <rect x="40" y="40" width="240" height="4" rx="2" fill="url(#liCyan)"/>
+
+    <!-- Brand Header -->
+    <text x="50" y="72" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#FFFFFF" letter-spacing="2">
+      VION <tspan fill="#38BDF8">LITHIUM</tspan>
+    </text>
+    <text x="50" y="90" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#94A3B8" letter-spacing="1">
+      LiFePO4 ENERGY STORAGE SYSTEM &bull; 48V 100Ah (5.12 kWh)
+    </text>
+
+    <!-- High-End Circular Digital Display -->
+    <circle cx="160" cy="170" r="54" fill="url(#liScreen)" stroke="#0E7490" stroke-width="4"/>
+    <circle cx="160" cy="170" r="48" fill="none" stroke="#22D3EE" stroke-width="3" stroke-dasharray="240 60" stroke-linecap="round"/>
+    
+    <text x="160" y="165" font-family="'Courier New', monospace" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">
+      98<tspan font-size="16">%</tspan>
+    </text>
+    <text x="160" y="185" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#67E8F9" text-anchor="middle">
+      STATE OF CHARGE
+    </text>
+    <text x="160" y="200" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#4ADE80" text-anchor="middle">
+      &bull; 51.2V | 6000 CYCLES
+    </text>
+
+    <!-- Communication Ports & Terminals -->
+    <g transform="translate(40, 245)">
+      <!-- RS485 / CAN Port -->
+      <rect x="0" y="0" width="45" height="24" rx="4" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+      <text x="22" y="16" font-family="Arial, sans-serif" font-size="8.5" font-weight="800" fill="#94A3B8" text-anchor="middle">CAN/RS</text>
+
+      <!-- Power Switch -->
+      <rect x="60" y="0" width="35" height="24" rx="4" fill="#047857"/>
+      <circle cx="77" cy="12" r="5" fill="#34D399"/>
+
+      <!-- Positive Terminal Port (+) -->
+      <rect x="110" y="0" width="55" height="24" rx="4" fill="#7F1D1D" stroke="#EF4444" stroke-width="1.5"/>
+      <text x="137" y="16" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#FCA5A5" text-anchor="middle">+ 48V</text>
+
+      <!-- Negative Terminal Port (-) -->
+      <rect x="180" y="0" width="55" height="24" rx="4" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5"/>
+      <text x="207" y="16" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#BAE6FD" text-anchor="middle">&minus; GND</text>
+    </g>
+
+    <!-- Bottom Specs Ribbon -->
+    <rect x="40" y="285" width="240" height="20" rx="4" fill="#0F172A"/>
+    <text x="160" y="299" font-family="Arial, sans-serif" font-size="9.5" font-weight="800" fill="#FBBF24" text-anchor="middle" letter-spacing="0.5">
+      10 YEARS LIFE &bull; 100% DOD &bull; BMS SMART PROTECTION
+    </text>
+  </g>
+
+  <!-- Category Tag -->
+  <g transform="translate(40, 395)">
+    <rect width="240" height="34" rx="17" fill="#0891B2"/>
+    <text x="120" y="22" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+      SMART LITHIUM SOLAR STORAGE
+    </text>
+  </g>
+</svg>
+

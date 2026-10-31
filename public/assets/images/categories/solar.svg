@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="spSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient id="spFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8"/>
+      <stop offset="50%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#64748B"/>
+    </linearGradient>
+    <linearGradient id="spCell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="40%" stop-color="#0369A1"/>
+      <stop offset="80%" stop-color="#075985"/>
+      <stop offset="100%" stop-color="#0C4A6E"/>
+    </linearGradient>
+    <linearGradient id="spSun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="60%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <filter id="spGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-opacity="0.3" flood-color="#0369A1"/>
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="600" height="450" rx="16" fill="url(#spSky)"/>
+
+  <!-- Sun Rays & Sun in Corner -->
+  <g transform="translate(480, 70)">
+    <circle cx="0" cy="0" r="42" fill="url(#spSun)" filter="url(#spGlow)"/>
+    <!-- Flare Rays -->
+    <path d="M 0 -60 L 0 -48 M 0 60 L 0 48 M -60 0 L -48 0 M 60 0 L 48 0 M -42 -42 L -34 -34 M 42 42 L 34 34 M -42 42 L -34 34 M 42 -42 L 34 -34"
+          stroke="#F59E0B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Main Solar Panel (Isometric Angled View) -->
+  <g transform="translate(60, 40)" filter="url(#spGlow)">
+    <!-- Aluminum Anodized Frame Outer (Thick 3D Edge) -->
+    <polygon points="50,110 390,40 450,290 90,380" fill="#475569"/>
+    <!-- Frame Top/Front -->
+    <polygon points="52,108 388,42 446,286 92,374" fill="url(#spFrame)"/>
+    <!-- Tempered Glass Surface (Deep Mono-PERC Blue) -->
+    <polygon points="62,114 378,54 436,278 102,362" fill="url(#spCell)"/>
+
+    <!-- Solar Cell Grid Lines (Horizontal Busbars) -->
+    <g stroke="#38BDF8" stroke-width="1.2" opacity="0.75">
+      <!-- Angled horizontal grid lines -->
+      <line x1="72" y1="160" x2="390" y2="95"/>
+      <line x1="82" y1="210" x2="402" y2="140"/>
+      <line x1="92" y1="260" x2="414" y2="185"/>
+      <line x1="102" y1="310" x2="426" y2="230"/>
+    </g>
+
+    <!-- Solar Cell Grid Lines (Vertical Interconnect Fingers) -->
+    <g stroke="#E0F2FE" stroke-width="0.7" opacity="0.65">
+      <line x1="120" y1="102" x2="162" y2="348"/>
+      <line x1="175" y1="91"  x2="220" y2="336"/>
+      <line x1="230" y1="80"  x2="278" y2="322"/>
+      <line x1="285" y1="69"  x2="336" y2="308"/>
+      <line x1="340" y1="58"  x2="394" y2="294"/>
+    </g>
+
+    <!-- Glass Reflection Diagonal Sheen -->
+    <polygon points="120,95 240,70 180,340 100,360" fill="#FFFFFF" opacity="0.14"/>
+    <polygon points="260,65 310,55 370,290 320,310" fill="#FFFFFF" opacity="0.10"/>
+  </g>
+
+  <!-- High-Tech Inverter Unit Placed beside Panel -->
+  <g transform="translate(370, 230)">
+    <!-- Inverter Chassis -->
+    <rect x="0" y="0" width="180" height="170" rx="10" fill="#1E293B" stroke="#0284C7" stroke-width="2"/>
+    <!-- Inverter Faceplate -->
+    <rect x="12" y="15" width="156" height="60" rx="6" fill="#0F172A"/>
+    <!-- LCD Display -->
+    <rect x="22" y="24" width="136" height="42" rx="4" fill="#0369A1"/>
+    <text x="32" y="42" font-family="'Courier New', monospace" font-size="12" font-weight="900" fill="#E0F2FE">SOLAR: 5.4 kW</text>
+    <text x="32" y="58" font-family="'Courier New', monospace" font-size="11" font-weight="700" fill="#4ADE80">GRID: SYNCED 99%</text>
+
+    <!-- Status LEDs -->
+    <circle cx="30" cy="95" r="5" fill="#22C55E"/>
+    <text x="42" y="98" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#CBD5E1">NORMAL</text>
+    <circle cx="100" cy="95" r="5" fill="#3B82F6"/>
+    <text x="112" y="98" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#CBD5E1">INVERTER</text>
+
+    <!-- Brand Decal on Inverter -->
+    <rect x="20" y="118" width="140" height="26" rx="4" fill="#0F172A"/>
+    <text x="90" y="135" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#F59E0B" text-anchor="middle">
+      HYBRID SOLAR INVERTER
+    </text>
+  </g>
+
+  <!-- Feature Pill / Badges -->
+  <g transform="translate(30, 395)">
+    <rect width="260" height="34" rx="17" fill="#0369A1"/>
+    <text x="130" y="22" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+      550W+ MONO PERC &bull; 25 YRS WARRANTY
+    </text>
+  </g>
+</svg>
