@@ -171,21 +171,31 @@ export default function AboutPage() {
             >
               <div
                 style={{
-                  width: "clamp(230px, 30vw, 290px)",
-                  height: "clamp(230px, 30vw, 290px)",
-                  borderRadius: "50%",
+                  width: "100%",
+                  maxWidth: "340px",
+                  height: "360px",
+                  borderRadius: "16px",
                   overflow: "hidden",
-                  border: "6px solid var(--primary)",
-                  boxShadow: "0 18px 45px rgba(29, 78, 216, 0.3)",
-                  marginBottom: "26px",
-                  background: "#E2E8F0",
+                  border: "3px solid var(--primary)",
+                  boxShadow: "0 12px 32px rgba(29, 78, 216, 0.22)",
+                  marginBottom: "24px",
+                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "8px",
                   flexShrink: 0,
                 }}
               >
                 <img
                   src="/director.jpeg"
                   alt="Mr. Pawan Kumar Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    borderRadius: "10px",
+                  }}
                 />
               </div>
 

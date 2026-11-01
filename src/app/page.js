@@ -751,19 +751,25 @@ export default function HomePage() {
             >
               <div
                 style={{
-                  width: "170px",
-                  height: "170px",
-                  borderRadius: "50%",
+                  width: "100%",
+                  maxWidth: "280px",
+                  height: "300px",
+                  borderRadius: "14px",
                   margin: "0 auto 20px",
                   overflow: "hidden",
-                  border: "5px solid #1E3A8A",
-                  boxShadow: "0 12px 30px rgba(30,58,138,0.25)",
+                  border: "3px solid #1E3A8A",
+                  boxShadow: "0 10px 25px rgba(30,58,138,0.2)",
+                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "6px",
                 }}
               >
                 <img
                   src="/director.jpeg"
                   alt="Mr. Pawan Kumar Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+                  style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "8px" }}
                 />
               </div>
               <h3
@@ -830,19 +836,25 @@ export default function HomePage() {
             >
               <div
                 style={{
-                  width: "170px",
-                  height: "170px",
-                  borderRadius: "50%",
+                  width: "100%",
+                  maxWidth: "280px",
+                  height: "300px",
+                  borderRadius: "14px",
                   margin: "0 auto 20px",
                   overflow: "hidden",
-                  border: "5px solid #F59E0B",
-                  boxShadow: "0 12px 30px rgba(245,158,11,0.25)",
+                  border: "3px solid #F59E0B",
+                  boxShadow: "0 10px 25px rgba(245,158,11,0.2)",
+                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "6px",
                 }}
               >
                 <img
                   src="/manager.jpeg"
                   alt="Mr. Kartik Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+                  style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "8px" }}
                 />
               </div>
               <h3

@@ -6,10 +6,12 @@ export default function BranchMap({ branch }) {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fallback to standard query-based embed if pb format fails
-  const embedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
-    branch.name + " " + branch.address
-  )}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  // Use the verified Google Maps embed URL from data, fallback to OSM if unavailable
+  const embedUrl =
+    branch.mapEmbedUrl ||
+    (branch.city === "Kaushambi"
+      ? "https://www.openstreetmap.org/export/embed.html?bbox=81.549%2C25.411%2C81.589%2C25.451&layer=mapnik&marker=25.431289%2C81.569421"
+      : "https://www.openstreetmap.org/export/embed.html?bbox=81.685%2C25.456%2C81.725%2C25.496&layer=mapnik&marker=25.476049%2C81.705128");
 
   return (
     <div
@@ -23,13 +25,13 @@ export default function BranchMap({ branch }) {
         border: "1px solid var(--gray-200)",
       }}
     >
-      {/* Visual Map Backdrop / Fallback Card (Shows if Google Maps iframe is loading, blocked, or connection closed) */}
-      {(!isLoading && !hasError) ? null : (
+      {/* If iframe fails or is blocked, render a styled interactive location card */}
+      {hasError ? (
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, #0F2D6B 0%, #1E293B 100%)",
+            background: "linear-gradient(135deg, #091E42 0%, #1E293B 100%)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -42,8 +44,8 @@ export default function BranchMap({ branch }) {
         >
           <div
             style={{
-              width: "44px",
-              height: "44px",
+              width: "42px",
+              height: "42px",
               borderRadius: "50%",
               background: "rgba(245, 158, 11, 0.2)",
               border: "2px solid #F59E0B",
@@ -52,33 +54,30 @@ export default function BranchMap({ branch }) {
               justifyContent: "center",
               marginBottom: "8px",
               color: "#FDE047",
-              fontSize: "1.2rem",
+              fontSize: "1.1rem",
             }}
           >
             <i className="fa-solid fa-location-dot"></i>
           </div>
 
-          <strong style={{ fontSize: "0.95rem", color: "#FFFFFF", marginBottom: "2px" }}>
+          <strong style={{ fontSize: "0.95rem", color: "#FFFFFF", marginBottom: "4px" }}>
             {branch.name}
           </strong>
-          <small style={{ color: "#94A3B8", fontSize: "0.78rem", maxWidth: "260px", marginBottom: "10px" }}>
-            {branch.landmark}
+          <small style={{ color: "#94A3B8", fontSize: "0.78rem", maxWidth: "280px", marginBottom: "12px", lineHeight: 1.4 }}>
+            {branch.landmark || branch.address}
           </small>
 
           <a
-            href={branch.mapDirectionsUrl}
+            href={branch.mapDirectionsUrl || `https://maps.google.com/?q=${encodeURIComponent(branch.address)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-solar btn-sm"
-            style={{ fontSize: "0.78rem", padding: "6px 14px", textDecoration: "none" }}
+            style={{ fontSize: "0.8rem", padding: "6px 14px", textDecoration: "none" }}
           >
             <i className="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
           </a>
         </div>
-      )}
-
-      {/* Google Maps Embed Iframe */}
-      {!hasError && (
+      ) : (
         <iframe
           src={embedUrl}
           title={`${branch.name} Location`}
@@ -86,7 +85,7 @@ export default function BranchMap({ branch }) {
             height: "100%",
             width: "100%",
             border: "none",
-            display: hasError ? "none" : "block",
+            display: "block",
           }}
           loading="lazy"
           onLoad={() => setIsLoading(false)}
@@ -96,4 +95,3 @@ export default function BranchMap({ branch }) {
     </div>
   );
 }
-

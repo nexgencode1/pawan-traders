@@ -117,13 +117,17 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
         >
           <img
             src={slide.imageUrl}
-            alt={slide.title || "Pawan Traders Hero Slide"}
+            alt=""
+            aria-hidden="true"
             style={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
               objectPosition: "center",
               transform: "none",
+            }}
+            onError={(e) => {
+              e.currentTarget.style.opacity = "0";
             }}
           />
           {/* Multi-layer Gradient Overlay for Ultra Readability without blacking out photo */}
