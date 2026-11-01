@@ -31,7 +31,7 @@ export const DEFAULT_HERO_SLIDES = [
   {
     _id: "slide-3",
     imageUrl: "/assets/images/categories/automotive.svg",
-    title: "", // Optional text!
+    title: "Heavy-Duty Automotive & Tubular Batteries with Free Fitting",
     badge: "Same-Day Delivery & Free Fitting",
     button1Text: "Call Puramufti: 9935618513",
     button1Link: "tel:+919935618513",
@@ -132,14 +132,14 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(135deg, rgba(5, 11, 24, 0.88) 0%, rgba(5, 11, 24, 0.65) 55%, rgba(5, 11, 24, 0.45) 100%)",
+              background: "linear-gradient(90deg, rgba(5, 11, 24, 0.85) 0%, rgba(5, 11, 24, 0.60) 50%, rgba(5, 11, 24, 0.35) 100%)",
             }}
           />
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "radial-gradient(circle at 30% 50%, rgba(29, 78, 216, 0.22) 0%, transparent 70%)",
+              background: "radial-gradient(circle at 75% 50%, rgba(29, 78, 216, 0.2) 0%, transparent 65%)",
             }}
           />
         </div>

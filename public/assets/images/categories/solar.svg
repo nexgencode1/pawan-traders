@@ -28,7 +28,7 @@
   <!-- Sky Background -->
   <rect width="600" height="450" rx="16" fill="url(#spSky)"/>
 
-  <!-- Sun Rays & Sun in Corner -->
+  <!-- Sun Rays &amp; Sun in Corner -->
   <g transform="translate(480, 70)">
     <circle cx="0" cy="0" r="42" fill="url(#spSun)" filter="url(#spGlow)"/>
     <!-- Flare Rays -->
@@ -96,7 +96,7 @@
   <g transform="translate(30, 395)">
     <rect width="260" height="34" rx="17" fill="#0369A1"/>
     <text x="130" y="22" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">
-      550W+ MONO PERC &bull; 25 YRS WARRANTY
+      550W+ MONO PERC &#8226; 25 YRS WARRANTY
     </text>
   </g>
 </svg>
