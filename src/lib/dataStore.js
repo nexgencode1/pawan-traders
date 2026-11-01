@@ -3,7 +3,13 @@ import HeroSlide from "@/models/HeroSlide";
 import Product from "@/models/Product";
 import GalleryItem from "@/models/GalleryItem";
 import ContactSubmission from "@/models/ContactSubmission";
+import SiteSetting from "@/models/SiteSetting";
 import { INITIAL_DATA } from "@/data/pawanData";
+
+let memorySettings = {
+  announcementText: "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513 / 9305839018",
+  showAnnouncement: true,
+};
 
 // In-Memory Fallback State (used when MongoDB is not connected)
 let memoryHeroSlides = [
@@ -410,5 +416,53 @@ export async function deleteEnquiry(id) {
   }
   memoryEnquiries = memoryEnquiries.filter((e) => String(e._id) !== String(id));
   return true;
+}
+
+export async function getSettings() {
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      let doc = await SiteSetting.findOne({ key: "general" }).lean();
+      if (!doc) {
+        doc = await SiteSetting.create({
+          key: "general",
+          announcementText: memorySettings.announcementText,
+          showAnnouncement: memorySettings.showAnnouncement,
+        });
+      }
+      return {
+        announcementText: doc.announcementText || memorySettings.announcementText,
+        showAnnouncement: doc.showAnnouncement !== false,
+      };
+    } catch (e) {}
+  }
+  return memorySettings;
+}
+
+export async function updateSettings(data) {
+  if (data.announcementText !== undefined) {
+    memorySettings.announcementText = data.announcementText;
+  }
+  if (data.showAnnouncement !== undefined) {
+    memorySettings.showAnnouncement = Boolean(data.showAnnouncement);
+  }
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      const updated = await SiteSetting.findOneAndUpdate(
+        { key: "general" },
+        {
+          announcementText: memorySettings.announcementText,
+          showAnnouncement: memorySettings.showAnnouncement,
+        },
+        { upsert: true, new: true }
+      ).lean();
+      return {
+        announcementText: updated.announcementText,
+        showAnnouncement: updated.showAnnouncement !== false,
+      };
+    } catch (e) {}
+  }
+  return memorySettings;
 }
 

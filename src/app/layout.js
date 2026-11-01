@@ -2,27 +2,60 @@ import "./globals.css";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 export const metadata = {
-  metadataBase: new URL("https://pawantraders.com"),
-  title: "Pawan Traders | Battery & Solar Solutions | Prayagraj & Kaushambi",
-  description: "Authorized dealer of Amaron, Exide, Luminous, Microtek, Vion Lithium & Solar Panels. Main branch at Puramufti Prayagraj & Second branch at Charwa Kaushambi. Call 9935618513.",
+  metadataBase: new URL("https://pawan-traders-next.onrender.com"),
+  title: "Pawan Traders | Best Battery Shop & Solar Inverter Dealer in Prayagraj (Allahabad)",
+  description:
+    "Pawan Traders is Prayagraj & Allahabad's authorized distributor for Amaron, Exide, Luminous, Microtek batteries, Vion Lithium & PM Surya Ghar Rooftop Solar. Free delivery & fitting in Puramufti, Prayagraj & Charwa, Kaushambi. Call 9935618513.",
   keywords: [
-    "Battery Shop in Puramufti",
-    "Battery Dealer in Prayagraj",
-    "Exide Battery Dealer",
-    "Amaron Battery Dealer",
-    "Inverter Battery Shop",
-    "Solar Panel Dealer in Kaushambi",
-    "Lithium Battery Dealer",
-    "Solar Solutions in Prayagraj"
+    "Battery Shop in Prayagraj",
+    "Battery Dealer in Allahabad",
+    "Best Battery Shop in Puramufti Prayagraj",
+    "Exide Battery Dealer Allahabad Prayagraj",
+    "Amaron Battery Dealer Prayagraj",
+    "Inverter Battery Shop in Allahabad",
+    "Solar Panel Dealer in Prayagraj",
+    "Solar Rooftop PM Surya Ghar Allahabad",
+    "Lithium Battery Dealer Prayagraj",
+    "Car Battery Shop Prayagraj",
+    "Tubular Inverter Battery Kaushambi",
+    "Pawan Traders Puramufti",
+    "Solar EPC Contractor Prayagraj Allahabad",
+    "Battery Health Checkup Prayagraj",
+    "Charwa Battery Dealer Kaushambi",
+    "Luminous Inverter Dealer Prayagraj",
+    "Microtek Solar Inverter Allahabad",
+    "Vion Lithium Battery Distributor UP",
   ],
   openGraph: {
-    title: "Pawan Traders – Battery & Solar Solutions",
-    description: "100% Genuine Car, Inverter & UPS Batteries, Vion Lithium Storage, and Rooftop Solar Solutions in Prayagraj & Kaushambi.",
-    images: ["/assets/images/logo.svg"],
+    title: "Pawan Traders | Official Battery & Rooftop Solar Superstore - Prayagraj / Allahabad",
+    description:
+      "Buy 100% genuine Amaron, Exide, Luminous batteries and PM Surya Ghar rooftop solar systems with direct bank subsidies, free testing, and same-day installation across Prayagraj & Kaushambi.",
+    images: [
+      {
+        url: "/assets/images/categories/solar.svg",
+        width: 1200,
+        height: 630,
+        alt: "Pawan Traders Rooftop Solar & Battery Installation Prayagraj Allahabad",
+      },
+    ],
     type: "website",
+    locale: "en_IN",
+    siteName: "Pawan Traders Battery & Solar Hub",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pawan Traders | Battery & Solar Energy Solutions Prayagraj",
+    description:
+      "Authorized Amaron, Exide, Luminous & Rooftop Solar contractor in Puramufti Prayagraj & Charwa Kaushambi.",
+    images: ["/assets/images/categories/solar.svg"],
   },
   icons: {
-    icon: "/assets/images/favicon.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/favicon.png",
   },
 };
 
@@ -30,10 +63,11 @@ export default function RootLayout({ children }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HomeGoodsStore",
-    "name": "Pawan Traders",
-    "image": "https://pawantraders.com/assets/images/logo.svg",
+    "name": "Pawan Traders - Battery & Solar Energy Solutions",
+    "image": "https://pawan-traders-next.onrender.com/assets/images/logo.png",
     "telephone": "+919935618513",
     "priceRange": "₹₹",
+    "areaServed": ["Prayagraj", "Allahabad", "Puramufti", "Kaushambi", "Charwa"],
     "address": [
       {
         "@type": "PostalAddress",
@@ -41,7 +75,7 @@ export default function RootLayout({ children }) {
         "addressLocality": "Prayagraj",
         "addressRegion": "Uttar Pradesh",
         "postalCode": "212208",
-        "addressCountry": "IN"
+        "addressCountry": "IN",
       },
       {
         "@type": "PostalAddress",
@@ -49,19 +83,22 @@ export default function RootLayout({ children }) {
         "addressLocality": "Kaushambi",
         "addressRegion": "Uttar Pradesh",
         "postalCode": "212203",
-        "addressCountry": "IN"
-      }
+        "addressCountry": "IN",
+      },
     ],
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 25.476049,
-      "longitude": 81.705128
-    }
+      "longitude": 81.705128,
+    },
   };
 
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -73,4 +110,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

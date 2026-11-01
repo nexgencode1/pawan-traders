@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { INITIAL_DATA } from "@/data/pawanData";
@@ -9,6 +9,30 @@ export default function Header({ onOpenEnquiry }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { settings } = INITIAL_DATA;
+
+  // Running Announcement Settings
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [announcementText, setAnnouncementText] = useState(
+    settings.announcement || "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513"
+  );
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const res = await fetch("/api/settings");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.settings) {
+            setShowAnnouncement(data.settings.showAnnouncement !== false);
+            if (data.settings.announcementText) {
+              setAnnouncementText(data.settings.announcementText);
+            }
+          }
+        }
+      } catch (err) {}
+    }
+    fetchSettings();
+  }, []);
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -21,9 +45,67 @@ export default function Header({ onOpenEnquiry }) {
     { label: "Contact Us", href: "/contact" },
   ];
 
+  const handleEnquiryClick = () => {
+    if (onOpenEnquiry) {
+      onOpenEnquiry("");
+    } else if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("open-quick-enquiry"));
+    }
+  };
+
   return (
     <>
-      {/* Main Navigation Header - Clean & Sticky without cluttered top bar */}
+      {/* Continuous Running Marquee Ticker Banner (Controlled via Admin) */}
+      {showAnnouncement && (
+        <div
+          style={{
+            background: "linear-gradient(90deg, #091E42 0%, #0F2D6B 50%, #091E42 100%)",
+            color: "#FFFFFF",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            borderBottom: "1px solid rgba(245, 158, 11, 0.35)",
+            position: "relative",
+            zIndex: 1001,
+            height: "36px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <div className="marquee-track" style={{ display: "inline-flex", alignItems: "center" }}>
+            <div className="marquee-content" style={{ display: "inline-flex", alignItems: "center", gap: "30px", paddingRight: "30px" }}>
+              <span style={{ color: "#FDE047", fontWeight: 700, fontSize: "0.82rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-bolt" style={{ color: "#F59E0B" }}></i> {announcementText}
+              </span>
+              <span style={{ color: "#38BDF8", fontSize: "0.82rem", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-phone"></i> Puramufti: 9935618513 &bull; Charwa: 9305839018
+              </span>
+              <span style={{ color: "#FDE047", fontWeight: 700, fontSize: "0.82rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-solar-panel" style={{ color: "#F59E0B" }}></i> PM Surya Ghar Direct Bank Subsidy Assistance Up to ₹78,000
+              </span>
+              <span style={{ color: "#A7F3D0", fontSize: "0.82rem", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-certificate"></i> 100% Original Brand Guarantee &bull; Free In-Store Battery Health Testing
+              </span>
+            </div>
+            {/* Duplicate for seamless infinite loop */}
+            <div className="marquee-content" aria-hidden="true" style={{ display: "inline-flex", alignItems: "center", gap: "30px", paddingRight: "30px" }}>
+              <span style={{ color: "#FDE047", fontWeight: 700, fontSize: "0.82rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-bolt" style={{ color: "#F59E0B" }}></i> {announcementText}
+              </span>
+              <span style={{ color: "#38BDF8", fontSize: "0.82rem", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-phone"></i> Puramufti: 9935618513 &bull; Charwa: 9305839018
+              </span>
+              <span style={{ color: "#FDE047", fontWeight: 700, fontSize: "0.82rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-solar-panel" style={{ color: "#F59E0B" }}></i> PM Surya Ghar Direct Bank Subsidy Assistance Up to ₹78,000
+              </span>
+              <span style={{ color: "#A7F3D0", fontSize: "0.82rem", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fa-solid fa-certificate"></i> 100% Original Brand Guarantee &bull; Free In-Store Battery Health Testing
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Navigation Header - Clean & Sticky */}
       <header
         style={{
           position: "sticky",
@@ -58,18 +140,21 @@ export default function Header({ onOpenEnquiry }) {
             title="Pawan Traders"
           >
             <img
-              src="/assets/images/logo.svg"
+              src="/assets/images/logo.png"
               alt="Pawan Traders"
               style={{
-                height: "44px",
+                height: "50px",
                 width: "auto",
-                maxWidth: "200px",
+                maxWidth: "220px",
                 objectFit: "contain",
               }}
               onError={(e) => {
-                e.currentTarget.style.display = "none";
-                const fallback = e.currentTarget.parentElement.querySelector(".logo-fallback-render");
-                if (fallback) fallback.style.display = "flex";
+                e.currentTarget.src = "/assets/images/logo.svg";
+                e.currentTarget.onerror = () => {
+                  e.currentTarget.style.display = "none";
+                  const fallback = e.currentTarget.parentElement.querySelector(".logo-fallback-render");
+                  if (fallback) fallback.style.display = "flex";
+                };
               }}
             />
             {/* Fallback Vector Emblem */}
@@ -156,13 +241,14 @@ export default function Header({ onOpenEnquiry }) {
           {/* Header Action Buttons */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
             <button
-              onClick={() => onOpenEnquiry && onOpenEnquiry("")}
+              onClick={handleEnquiryClick}
               className="btn btn-primary btn-sm header-enquiry-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
                 whiteSpace: "nowrap",
+                cursor: "pointer",
               }}
             >
               <i className="fa-solid fa-paper-plane"></i>
@@ -244,7 +330,7 @@ export default function Header({ onOpenEnquiry }) {
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  if (onOpenEnquiry) onOpenEnquiry("");
+                  handleEnquiryClick();
                 }}
                 className="btn btn-primary"
                 style={{ width: "100%", justifyContent: "center" }}
@@ -276,6 +362,21 @@ export default function Header({ onOpenEnquiry }) {
       </header>
 
       <style jsx>{`
+        @keyframes marqueeLoop {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .marquee-track {
+          display: inline-flex;
+          animation: marqueeLoop 28s linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
         @media (max-width: 1080px) {
           .desktop-nav {
             display: none !important;

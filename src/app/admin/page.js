@@ -30,6 +30,14 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
 
+  // Running Marquee Banner Settings
+  const [siteSettings, setSiteSettings] = useState({
+    announcementText: "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513",
+    showAnnouncement: true,
+  });
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   // Modals
   const [showSlideModal, setShowSlideModal] = useState(false);
   const [slideFormData, setSlideFormData] = useState({
@@ -184,10 +192,42 @@ export default function AdminPage() {
       const enqRes = await fetch("/api/enquiries");
       const enqData = await enqRes.json();
       if (enqData.success) setEnquiries(enqData.enquiries || []);
+
+      // 6. Marquee Ticker Settings
+      try {
+        const setRes = await fetch("/api/settings");
+        const setData = await setRes.json();
+        if (setData.success && setData.settings) {
+          setSiteSettings(setData.settings);
+        }
+      } catch (e) {}
     } catch (err) {
       console.error("Failed to load admin data:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSaveSettings = async (e) => {
+    if (e) e.preventDefault();
+    setSavingSettings(true);
+    try {
+      const res = await fetch("/api/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(siteSettings),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showToastMsg("Running marquee banner updated successfully!");
+        setSiteSettings(data.settings);
+      } else {
+        alert("Failed to update settings: " + data.error);
+      }
+    } catch (err) {
+      alert("Error saving settings: " + err.message);
+    } finally {
+      setSavingSettings(false);
     }
   };
 
@@ -549,7 +589,7 @@ export default function AdminPage() {
 
   // ================= MAIN AUTHENTICATED ADMIN PANEL =================
   return (
-    <div style={{ minHeight: "100vh", background: "#0B132B", color: "#F8FAFC" }}>
+    <div style={{ minHeight: "100vh", background: "#0B132B", color: "#F8FAFC", display: "flex" }}>
       {/* Toast Notification */}
       {toast && (
         <div style={{
@@ -571,141 +611,203 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* Top Admin Bar */}
-      <div style={{
-        background: "#080F21",
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
-        padding: "16px 28px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "16px",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-          <img src="/assets/images/logo.svg" alt="Pawan Traders" style={{ height: "36px", filter: "brightness(0) invert(1)" }} />
-          <span style={{
-            background: "rgba(245, 158, 11, 0.2)",
-            color: "#FDE047",
-            padding: "4px 10px",
-            borderRadius: "var(--radius-full)",
-            fontSize: "0.75rem",
-            fontWeight: 700,
-            letterSpacing: "0.05em"
-          }}>
-            FULL-STACK MASTER PANEL
-          </span>
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          {/* MongoDB Status Badge */}
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            background: stats.isMongoConnected ? "rgba(16, 185, 129, 0.15)" : "rgba(245, 158, 11, 0.15)",
-            border: `1px solid ${stats.isMongoConnected ? "#10B981" : "#F59E0B"}`,
-            color: stats.isMongoConnected ? "#34D399" : "#FDE047",
-            padding: "5px 12px",
-            borderRadius: "var(--radius-full)",
-            fontSize: "0.75rem",
-            fontWeight: 700,
-          }} title="MongoDB Atlas or Local Connection">
-            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: stats.isMongoConnected ? "#10B981" : "#F59E0B", display: "inline-block" }}></span>
-            MongoDB: {stats.isMongoConnected ? "Connected" : "Memory / Local"}
-          </div>
-
-          {/* Cloudinary Status Badge */}
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            background: stats.isCloudinaryConfigured ? "rgba(59, 130, 246, 0.15)" : "rgba(148, 163, 184, 0.15)",
-            border: `1px solid ${stats.isCloudinaryConfigured ? "#3B82F6" : "#64748B"}`,
-            color: stats.isCloudinaryConfigured ? "#60A5FA" : "#CBD5E1",
-            padding: "5px 12px",
-            borderRadius: "var(--radius-full)",
-            fontSize: "0.75rem",
-            fontWeight: 700,
-          }} title="Cloudinary Image Storage">
-            <i className="fa-solid fa-cloud-arrow-up"></i>
-            Cloudinary: {stats.isCloudinaryConfigured ? "Active" : "Ready (.env.local)"}
-          </div>
-
-          <Link href="/" target="_blank" style={{ color: "#94A3B8", fontSize: "0.85rem", fontWeight: 600 }}>
-            <i className="fa-solid fa-arrow-up-right-from-square"></i> View Website
-          </Link>
-
-          <button
-            onClick={handleLogout}
-            style={{
-              background: "rgba(239, 68, 68, 0.15)",
-              color: "#F87171",
-              border: "1px solid rgba(239, 68, 68, 0.3)",
-              padding: "6px 14px",
-              borderRadius: "var(--radius-md)",
-              cursor: "pointer",
-              fontSize: "0.85rem",
-              fontWeight: 700,
-            }}
-          >
-            <i className="fa-solid fa-power-off"></i> Logout
-          </button>
-        </div>
-      </div>
-
-      {/* Main Admin Content Layout */}
-      <div className="container" style={{ padding: "30px 20px" }}>
-        {/* Navigation Tabs */}
-        <div style={{
+      {/* LEFT SIDEBAR NAVIGATION */}
+      <aside
+        style={{
+          width: "275px",
+          background: "#080F21",
+          borderRight: "1px solid rgba(255, 255, 255, 0.08)",
           display: "flex",
-          gap: "8px",
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
-          paddingBottom: "16px",
-          marginBottom: "28px",
-          flexWrap: "wrap",
-        }}>
-          {[
-            { id: "dashboard", label: "Dashboard", icon: "fa-chart-pie" },
-            { id: "slider", label: "Hero Slider", icon: "fa-sliders", count: slides.length },
-            { id: "products", label: "Products Catalog", icon: "fa-boxes-stacked", count: products.length },
-            { id: "gallery", label: "Product Gallery", icon: "fa-images", count: galleryItems.length },
-            { id: "enquiries", label: "Contact Submissions", icon: "fa-envelope-open-text", count: enquiries.filter(e => e.status === "New").length, highlight: true },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flexShrink: 0,
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          overflowY: "auto",
+          padding: "24px 18px",
+          zIndex: 100,
+        }}
+      >
+        <div>
+          {/* Logo & Portal Branding */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "26px", paddingBottom: "18px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+            <img
+              src="/assets/images/logo.png"
+              alt="Pawan Traders"
+              style={{ height: "40px", objectFit: "contain" }}
+              onError={(e) => {
+                e.currentTarget.src = "/assets/images/logo.svg";
+                e.currentTarget.style.filter = "brightness(0) invert(1)";
+              }}
+            />
+            <div>
+              <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#FFFFFF", lineHeight: 1.1 }}>PAWAN TRADERS</div>
+              <small style={{ color: "#F59E0B", fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.05em", textTransform: "uppercase" }}>Master Admin Panel</small>
+            </div>
+          </div>
+
+          {/* Navigation Menu Links */}
+          <nav style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <div style={{ fontSize: "0.7rem", fontWeight: 800, color: "#64748B", textTransform: "uppercase", letterSpacing: "0.08em", padding: "6px 12px 10px" }}>
+              Admin Navigation
+            </div>
+            {[
+              { id: "dashboard", label: "Dashboard", icon: "fa-chart-pie" },
+              { id: "settings", label: "Marquee Banner", icon: "fa-bullhorn", badgeText: siteSettings.showAnnouncement ? "ON" : "OFF", badgeColor: siteSettings.showAnnouncement ? "#10B981" : "#64748B" },
+              { id: "slider", label: "Hero Slider", icon: "fa-sliders", count: slides.length },
+              { id: "products", label: "Products Catalog", icon: "fa-boxes-stacked", count: products.length },
+              { id: "gallery", label: "Showcase Gallery", icon: "fa-images", count: galleryItems.length },
+              { id: "enquiries", label: "Contact Enquiries", icon: "fa-envelope-open-text", count: enquiries.filter(e => e.status === "New").length, highlight: true },
+            ].map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "12px 14px",
+                    borderRadius: "var(--radius-md)",
+                    border: "none",
+                    cursor: "pointer",
+                    fontWeight: 700,
+                    fontSize: "0.88rem",
+                    transition: "all 0.2s ease",
+                    background: isActive ? "linear-gradient(135deg, #1D4ED8 0%, #0F2D6B 100%)" : "transparent",
+                    color: isActive ? "#FFFFFF" : "#94A3B8",
+                    textAlign: "left",
+                    width: "100%",
+                  }}
+                >
+                  <span style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <i className={`fa-solid ${item.icon}`} style={{ width: "18px", textAlign: "center", color: isActive ? "#FDE047" : "#64748B" }}></i>
+                    {item.label}
+                  </span>
+                  {item.badgeText && (
+                    <span style={{ background: item.badgeColor, color: "#FFFFFF", padding: "2px 8px", borderRadius: "999px", fontSize: "0.7rem", fontWeight: 800 }}>
+                      {item.badgeText}
+                    </span>
+                  )}
+                  {item.count !== undefined && item.count > 0 && (
+                    <span style={{
+                      background: item.highlight ? "#EF4444" : "rgba(255,255,255,0.15)",
+                      color: "#FFFFFF",
+                      padding: "2px 8px",
+                      borderRadius: "999px",
+                      fontSize: "0.72rem",
+                      fontWeight: 800,
+                    }}>
+                      {item.count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Sidebar Footer: System Status & User Actions */}
+        <div style={{ paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", flexDirection: "column", gap: "12px" }}>
+          {/* Status Badges */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px", background: "rgba(255,255,255,0.03)", padding: "10px", borderRadius: "8px" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.75rem" }}>
+              <span style={{ color: "#94A3B8" }}><i className="fa-solid fa-database" style={{ color: stats.isMongoConnected ? "#10B981" : "#F59E0B" }}></i> MongoDB</span>
+              <strong style={{ color: stats.isMongoConnected ? "#34D399" : "#FDE047" }}>{stats.isMongoConnected ? "Connected" : "Memory Fallback"}</strong>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.75rem" }}>
+              <span style={{ color: "#94A3B8" }}><i className="fa-solid fa-cloud-arrow-up" style={{ color: stats.isCloudinaryConfigured ? "#38BDF8" : "#94A3B8" }}></i> Cloudinary</span>
+              <strong style={{ color: stats.isCloudinaryConfigured ? "#38BDF8" : "#CBD5E1" }}>{stats.isCloudinaryConfigured ? "Active" : "Ready in .env"}</strong>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+            <Link
+              href="/"
+              target="_blank"
               style={{
-                display: "inline-flex",
+                display: "flex",
                 alignItems: "center",
-                gap: "10px",
-                padding: "10px 18px",
-                borderRadius: "var(--radius-md)",
-                border: "none",
-                cursor: "pointer",
+                justifyContent: "center",
+                gap: "6px",
+                background: "rgba(255,255,255,0.06)",
+                color: "#CBD5E1",
+                padding: "8px",
+                borderRadius: "6px",
+                fontSize: "0.78rem",
                 fontWeight: 700,
-                fontSize: "0.9rem",
-                transition: "var(--transition)",
-                background: activeTab === tab.id ? "#1D4ED8" : "rgba(255, 255, 255, 0.05)",
-                color: activeTab === tab.id ? "#FFFFFF" : "#94A3B8",
+                textDecoration: "none",
               }}
             >
-              <i className={`fa-solid ${tab.icon}`}></i> {tab.label}
-              {tab.count !== undefined && (
-                <span style={{
-                  background: tab.highlight ? "#EF4444" : "rgba(255,255,255,0.2)",
-                  color: "#FFFFFF",
-                  padding: "2px 8px",
-                  borderRadius: "var(--radius-full)",
-                  fontSize: "0.75rem",
-                }}>
-                  {tab.count}
-                </span>
-              )}
+              <i className="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+            </Link>
+            <button
+              onClick={handleLogout}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "6px",
+                background: "rgba(239, 68, 68, 0.15)",
+                color: "#F87171",
+                border: "1px solid rgba(239, 68, 68, 0.3)",
+                padding: "8px",
+                borderRadius: "6px",
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
+            >
+              <i className="fa-solid fa-power-off"></i> Logout
             </button>
-          ))}
+          </div>
         </div>
+      </aside>
 
+      {/* MAIN WORKSPACE CONTENT */}
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        {/* Workspace Top Bar */}
+        <header style={{
+          background: "#080F21",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          padding: "16px 28px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "14px",
+        }}>
+          <div>
+            <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#FFFFFF", marginBottom: "2px" }}>
+              {activeTab === "dashboard" && "Dashboard Overview & Live Metrics"}
+              {activeTab === "settings" && "Running Marquee Ticker Banner Control"}
+              {activeTab === "slider" && "Hero Section Slider Management"}
+              {activeTab === "products" && "Product Catalog & Pricing Management"}
+              {activeTab === "gallery" && "Real Installation & Showcase Gallery"}
+              {activeTab === "enquiries" && "Customer Contact & Quotation Leads"}
+            </h2>
+            <small style={{ color: "#64748B" }}>Pawan Traders Admin Panel &bull; Puramufti Prayagraj &amp; Charwa Kaushambi</small>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <button
+              onClick={refreshAllData}
+              disabled={loading}
+              className="btn btn-outline btn-sm"
+              style={{ color: "#CBD5E1", borderColor: "#475569" }}
+            >
+              <i className={`fa-solid fa-arrows-rotate ${loading ? "fa-spin" : ""}`}></i> Refresh Data
+            </button>
+            <span style={{ background: "rgba(16, 185, 129, 0.15)", color: "#34D399", padding: "4px 10px", borderRadius: "999px", fontSize: "0.75rem", fontWeight: 800 }}>
+              ● Live Session Active
+            </span>
+          </div>
+        </header>
+
+        {/* Content Body Container */}
+        <div style={{ padding: "28px", flex: 1 }}>
         {/* ================= TAB 1: DASHBOARD OVERVIEW ================= */}
         {activeTab === "dashboard" && (
           <div>
@@ -853,6 +955,137 @@ CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret`}
               </pre>
             </div>
+          </div>
+        )}
+
+        {/* ================= TAB: RUNNING MARQUEE BANNER ================= */}
+        {activeTab === "settings" && (
+          <div style={{ background: "#1E293B", borderRadius: "var(--radius-xl)", padding: "32px", border: "1px solid rgba(255,255,255,0.1)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginBottom: "24px" }}>
+              <div>
+                <span style={{ color: "#F59E0B", fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase" }}>
+                  <i className="fa-solid fa-bullhorn"></i> Live Website Marquee Ticker
+                </span>
+                <h3 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#FFFFFF", marginTop: "4px" }}>
+                  Running Announcement Banner Settings
+                </h3>
+                <p style={{ color: "#94A3B8", fontSize: "0.9rem", marginTop: "4px" }}>
+                  This text runs continuously across the top of the website right above the main navigation bar.
+                </p>
+              </div>
+
+              {/* Show / Hide Toggle Button */}
+              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <span style={{ fontSize: "0.9rem", fontWeight: 700, color: siteSettings.showAnnouncement ? "#34D399" : "#F87171" }}>
+                  {siteSettings.showAnnouncement ? "● Banner Visible (ON)" : "○ Banner Hidden (OFF)"}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSiteSettings(prev => ({ ...prev, showAnnouncement: !prev.showAnnouncement }))}
+                  style={{
+                    background: siteSettings.showAnnouncement ? "#10B981" : "#475569",
+                    color: "#FFFFFF",
+                    border: "none",
+                    padding: "8px 18px",
+                    borderRadius: "999px",
+                    fontWeight: 800,
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease"
+                  }}
+                >
+                  <i className={`fa-solid ${siteSettings.showAnnouncement ? "fa-toggle-on" : "fa-toggle-off"}`}></i> Toggle {siteSettings.showAnnouncement ? "OFF" : "ON"}
+                </button>
+              </div>
+            </div>
+
+            {/* Live Ticker Preview */}
+            <div style={{ marginBottom: "24px" }}>
+              <label style={{ color: "#CBD5E1", fontSize: "0.85rem", fontWeight: 700, display: "block", marginBottom: "8px" }}>
+                Live Website Ticker Preview:
+              </label>
+              <div style={{
+                background: "linear-gradient(90deg, #091E42 0%, #0F2D6B 50%, #091E42 100%)",
+                borderRadius: "8px",
+                padding: "12px 20px",
+                border: "1px solid rgba(245, 158, 11, 0.35)",
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                overflow: "hidden"
+              }}>
+                <span style={{ background: "#F59E0B", color: "#0F172A", padding: "2px 8px", borderRadius: "4px", fontSize: "0.75rem", fontWeight: 800 }}>LIVE</span>
+                <span style={{ color: "#FDE047", fontWeight: 700, fontSize: "0.9rem" }}>
+                  {siteSettings.announcementText || "No text specified"}
+                </span>
+              </div>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSaveSettings}>
+              <div className="form-group" style={{ marginBottom: "20px" }}>
+                <label style={{ color: "#CBD5E1", fontSize: "0.88rem", fontWeight: 700, display: "block", marginBottom: "8px" }}>
+                  Edit Continuous Running Marquee Text:
+                </label>
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  value={siteSettings.announcementText}
+                  onChange={(e) => setSiteSettings(prev => ({ ...prev, announcementText: e.target.value }))}
+                  placeholder="Enter the running marquee text for special festive offers, solar discounts, contact details..."
+                  style={{
+                    background: "#0F172A",
+                    border: "1px solid #334155",
+                    color: "#FFFFFF",
+                    fontSize: "0.95rem",
+                    lineHeight: 1.6
+                  }}
+                  required
+                ></textarea>
+              </div>
+
+              {/* Quick Preset Buttons */}
+              <div style={{ marginBottom: "24px" }}>
+                <span style={{ fontSize: "0.82rem", color: "#94A3B8", fontWeight: 600, display: "block", marginBottom: "8px" }}>
+                  Click to insert quick templates:
+                </span>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                  <button
+                    type="button"
+                    className="btn btn-outline btn-sm"
+                    style={{ fontSize: "0.78rem", color: "#CBD5E1", borderColor: "#475569" }}
+                    onClick={() => setSiteSettings(prev => ({ ...prev, announcementText: "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513 / 9305839018" }))}
+                  >
+                    Festive 10% Off
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline btn-sm"
+                    style={{ fontSize: "0.78rem", color: "#CBD5E1", borderColor: "#475569" }}
+                    onClick={() => setSiteSettings(prev => ({ ...prev, announcementText: "☀️ PM Surya Ghar Muft Bijli Yojana: Get up to ₹78,000 Direct Bank Subsidy! Free Rooftop Site Survey in Prayagraj & Kaushambi. Call 9935618513" }))}
+                  >
+                    PM Surya Ghar Subsidy
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline btn-sm"
+                    style={{ fontSize: "0.78rem", color: "#CBD5E1", borderColor: "#475569" }}
+                    onClick={() => setSiteSettings(prev => ({ ...prev, announcementText: "🔋 100% Genuine Amaron & Exide Batteries with Free Installation & Instant Warranty Exchange at Puramufti & Charwa!" }))}
+                  >
+                    Free Installation & Exchange
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={savingSettings}
+                className="btn btn-solar btn-lg"
+                style={{ padding: "12px 28px", fontWeight: 800 }}
+              >
+                <i className="fa-solid fa-floppy-disk"></i> {savingSettings ? "Saving Settings..." : "Save & Update Live Website"}
+              </button>
+            </form>
           </div>
         )}
 
@@ -1312,6 +1545,7 @@ CLOUDINARY_API_SECRET=your_api_secret`}
             </div>
           </div>
         )}
+        </div>
       </div>
 
       {/* ================= MODAL: ADD / EDIT HERO SLIDE ================= */}
