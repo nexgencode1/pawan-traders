@@ -123,8 +123,7 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
               height: "100%",
               objectFit: "cover",
               objectPosition: "center",
-              transform: idx === currentIndex ? "scale(1.02)" : "scale(1.08)",
-              transition: "transform 7s ease-out",
+              transform: "none",
             }}
           />
           {/* Multi-layer Gradient Overlay for Ultra Readability without blacking out photo */}

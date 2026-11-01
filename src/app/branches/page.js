@@ -1,4 +1,5 @@
 import { INITIAL_DATA } from "@/data/pawanData";
+import BranchMap from "@/components/BranchMap";
 
 export const metadata = {
   title: "Our Branches | Pawan Traders - Prayagraj & Kaushambi",
@@ -77,12 +78,7 @@ export default function BranchesPage() {
                     <div style={{ fontSize: "0.9rem", color: "var(--gray-700)" }}>{b.hours}</div>
                   </div>
 
-                  <iframe
-                    src={b.mapEmbedUrl}
-                    style={{ height: "200px", width: "100%", border: "none", borderRadius: "var(--radius-md)" }}
-                    allowFullScreen=""
-                    loading="lazy"
-                  ></iframe>
+                  <BranchMap branch={b} />
 
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "10px" }}>
                     <a href={`tel:+91${b.phone}`} className="btn btn-call btn-sm">
