@@ -184,9 +184,11 @@ export async function getHeroSlides(activeOnly = true) {
   const db = await connectToDatabase();
   if (db) {
     try {
-      await seedDatabaseIfEmpty();
       const filter = activeOnly ? { active: true } : {};
-      return await HeroSlide.find(filter).sort({ order: 1, createdAt: -1 }).lean();
+      const dbSlides = await HeroSlide.find(filter).sort({ order: 1, createdAt: -1 }).lean();
+      if (dbSlides && dbSlides.length > 0) {
+        return dbSlides;
+      }
     } catch (e) {
       console.warn("Error fetching hero slides from Mongo, falling back to memory:", e.message);
     }
@@ -246,8 +248,10 @@ export async function getProducts(filter = {}) {
   const db = await connectToDatabase();
   if (db) {
     try {
-      await seedDatabaseIfEmpty();
-      return await Product.find(filter).sort({ order: 1, createdAt: -1 }).lean();
+      const dbProds = await Product.find(filter).sort({ order: 1, createdAt: -1 }).lean();
+      if (dbProds && dbProds.length > 0) {
+        return dbProds;
+      }
     } catch (e) {
       console.warn("Error fetching products from Mongo:", e.message);
     }
@@ -305,9 +309,11 @@ export async function getGalleryItems(category = null) {
   const db = await connectToDatabase();
   if (db) {
     try {
-      await seedDatabaseIfEmpty();
       const query = category && category !== "all" ? { category } : {};
-      return await GalleryItem.find(query).sort({ order: 1, createdAt: -1 }).lean();
+      const dbItems = await GalleryItem.find(query).sort({ order: 1, createdAt: -1 }).lean();
+      if (dbItems && dbItems.length > 0) {
+        return dbItems;
+      }
     } catch (e) {}
   }
   if (category && category !== "all") {

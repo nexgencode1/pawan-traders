@@ -3,26 +3,66 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-export default function HeroSlider({ initialSlides = [] }) {
-  const [slides, setSlides] = useState(initialSlides);
+export const DEFAULT_HERO_SLIDES = [
+  {
+    _id: "slide-1",
+    imageUrl: "/assets/images/categories/solar.svg",
+    title: "Official Battery & Solar Energy Superstore for Prayagraj & Kaushambi",
+    badge: "100% Authorized Hub",
+    button1Text: "Explore Products",
+    button1Link: "/products",
+    button2Text: "Solar Subsidy Calculator",
+    button2Link: "/solar",
+    order: 1,
+    active: true,
+  },
+  {
+    _id: "slide-2",
+    imageUrl: "/assets/images/categories/lithium.svg",
+    title: "Advanced LiFePO4 Lithium Storage & Tall Tubular Inverter Setups",
+    badge: "Vion Lithium Authorized",
+    button1Text: "View Lithium Range",
+    button1Link: "/products",
+    button2Text: "Get WhatsApp Quote",
+    button2Link: "https://wa.me/918299362360?text=Hello%20Pawan%20Traders,%20I%20need%20a%20quote%20for%20Lithium%20Inverter.",
+    order: 2,
+    active: true,
+  },
+  {
+    _id: "slide-3",
+    imageUrl: "/assets/images/categories/automotive.svg",
+    title: "", // Optional text!
+    badge: "Same-Day Delivery & Free Fitting",
+    button1Text: "Call Puramufti: 9935618513",
+    button1Link: "tel:+919935618513",
+    button2Text: "Call Charwa: 9305839018",
+    button2Link: "tel:+919305839018",
+    order: 3,
+    active: true,
+  },
+];
+
+export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
+  const [slides, setSlides] = useState(
+    initialSlides && initialSlides.length > 0 ? initialSlides : DEFAULT_HERO_SLIDES
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [loading, setLoading] = useState(initialSlides.length === 0);
   const timerRef = useRef(null);
 
-  // Load slides from API if not provided or to keep updated
+  // Background fetch to load custom slides from DB if available
   useEffect(() => {
     async function loadSlides() {
       try {
         const res = await fetch("/api/hero-slides");
-        const data = await res.json();
-        if (data.success && data.slides?.length > 0) {
-          setSlides(data.slides);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.slides && data.slides.length > 0) {
+            setSlides(data.slides);
+          }
         }
       } catch (err) {
-        console.warn("Could not fetch slides from API, using defaults:", err);
-      } finally {
-        setLoading(false);
+        // Fallback safely preserved
       }
     }
     loadSlides();
@@ -47,25 +87,7 @@ export default function HeroSlider({ initialSlides = [] }) {
     setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  if (loading || slides.length === 0) {
-    return (
-      <div style={{
-        minHeight: "480px",
-        background: "linear-gradient(135deg, #091E42 0%, #0F2D6B 100%)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#94A3B8"
-      }}>
-        <div style={{ textAlign: "center" }}>
-          <i className="fa-solid fa-circle-notch fa-spin fa-2x" style={{ color: "#F59E0B", marginBottom: "12px" }}></i>
-          <p>Loading Hero Showcase...</p>
-        </div>
-      </div>
-    );
-  }
-
-  const currentSlide = slides[currentIndex];
+  const currentSlide = slides[currentIndex] || slides[0] || DEFAULT_HERO_SLIDES[0];
 
   return (
     <section
@@ -73,7 +95,7 @@ export default function HeroSlider({ initialSlides = [] }) {
       onMouseLeave={() => setIsPaused(false)}
       style={{
         position: "relative",
-        minHeight: "560px",
+        minHeight: "clamp(460px, 62vh, 600px)",
         overflow: "hidden",
         backgroundColor: "#050B18",
         color: "#FFFFFF",
@@ -105,19 +127,19 @@ export default function HeroSlider({ initialSlides = [] }) {
               transition: "transform 7s ease-out",
             }}
           />
-          {/* Multi-layer Gradient Overlay for Ultra Readability */}
+          {/* Multi-layer Gradient Overlay for Ultra Readability without blacking out photo */}
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(90deg, rgba(5, 11, 24, 0.95) 0%, rgba(5, 11, 24, 0.82) 45%, rgba(5, 11, 24, 0.4) 100%)",
+              background: "linear-gradient(135deg, rgba(5, 11, 24, 0.88) 0%, rgba(5, 11, 24, 0.65) 55%, rgba(5, 11, 24, 0.45) 100%)",
             }}
           />
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "radial-gradient(circle at 20% 50%, rgba(29, 78, 216, 0.25) 0%, transparent 60%)",
+              background: "radial-gradient(circle at 30% 50%, rgba(29, 78, 216, 0.22) 0%, transparent 70%)",
             }}
           />
         </div>
@@ -129,12 +151,12 @@ export default function HeroSlider({ initialSlides = [] }) {
         style={{
           position: "relative",
           zIndex: 10,
-          minHeight: "560px",
+          minHeight: "clamp(460px, 62vh, 600px)",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          paddingTop: "70px",
-          paddingBottom: "80px",
+          paddingTop: "40px",
+          paddingBottom: "50px",
         }}
       >
         <div style={{ maxWidth: "780px" }}>
@@ -147,14 +169,14 @@ export default function HeroSlider({ initialSlides = [] }) {
                 gap: "8px",
                 padding: "6px 14px",
                 borderRadius: "var(--radius-full)",
-                background: "rgba(245, 158, 11, 0.15)",
-                border: "1px solid rgba(245, 158, 11, 0.4)",
+                background: "rgba(245, 158, 11, 0.18)",
+                border: "1px solid rgba(245, 158, 11, 0.45)",
                 color: "#FDE047",
-                fontSize: "0.82rem",
+                fontSize: "0.8rem",
                 fontWeight: 700,
                 letterSpacing: "0.05em",
                 textTransform: "uppercase",
-                marginBottom: "20px",
+                marginBottom: "16px",
                 backdropFilter: "blur(8px)",
                 boxShadow: "0 4px 14px rgba(245, 158, 11, 0.15)",
               }}
@@ -167,11 +189,11 @@ export default function HeroSlider({ initialSlides = [] }) {
           {currentSlide.title && currentSlide.title.trim() !== "" ? (
             <h1
               style={{
-                fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
+                fontSize: "clamp(1.75rem, 4.5vw, 3.2rem)",
                 fontWeight: 900,
-                lineHeight: 1.15,
+                lineHeight: 1.18,
                 color: "#FFFFFF",
-                marginBottom: "28px",
+                marginBottom: "24px",
                 letterSpacing: "-0.02em",
                 textShadow: "0 4px 18px rgba(0, 0, 0, 0.6)",
               }}
@@ -185,10 +207,10 @@ export default function HeroSlider({ initialSlides = [] }) {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "16px",
+              gap: "14px",
               flexWrap: "wrap",
-              marginTop: currentSlide.title ? "0px" : "20px",
-              marginBottom: "36px",
+              marginTop: currentSlide.title ? "0px" : "14px",
+              marginBottom: "32px",
             }}
           >
             {/* Button 1 */}
@@ -199,12 +221,12 @@ export default function HeroSlider({ initialSlides = [] }) {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "10px",
-                  padding: "14px 28px",
+                  padding: "13px 26px",
                   borderRadius: "var(--radius-md)",
                   background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
                   color: "#0F172A",
                   fontWeight: 800,
-                  fontSize: "1rem",
+                  fontSize: "0.95rem",
                   boxShadow: "0 8px 24px rgba(245, 158, 11, 0.35)",
                   transition: "var(--transition)",
                   border: "none",
@@ -226,12 +248,12 @@ export default function HeroSlider({ initialSlides = [] }) {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "10px",
-                  padding: "14px 28px",
+                  padding: "13px 26px",
                   borderRadius: "var(--radius-md)",
                   background: "rgba(255, 255, 255, 0.12)",
                   color: "#FFFFFF",
                   fontWeight: 700,
-                  fontSize: "1rem",
+                  fontSize: "0.95rem",
                   border: "1px solid rgba(255, 255, 255, 0.25)",
                   backdropFilter: "blur(12px)",
                   transition: "var(--transition)",
@@ -254,8 +276,8 @@ export default function HeroSlider({ initialSlides = [] }) {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "28px",
-              paddingTop: "24px",
+              gap: "24px",
+              paddingTop: "20px",
               borderTop: "1px solid rgba(255, 255, 255, 0.12)",
               flexWrap: "wrap",
             }}
@@ -263,46 +285,48 @@ export default function HeroSlider({ initialSlides = [] }) {
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <div
                 style={{
-                  width: "36px",
-                  height: "36px",
+                  width: "34px",
+                  height: "34px",
                   borderRadius: "50%",
                   background: "rgba(245, 158, 11, 0.18)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   color: "#F59E0B",
+                  fontSize: "0.85rem"
                 }}
               >
                 <i className="fa-solid fa-shield-check"></i>
               </div>
               <div>
-                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#FFFFFF", display: "block" }}>
+                <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "#FFFFFF", display: "block" }}>
                   100% Original Brand Warranty
                 </span>
-                <span style={{ fontSize: "0.75rem", color: "#94A3B8" }}>Amaron, Exide, Vion &amp; Luminous</span>
+                <span style={{ fontSize: "0.72rem", color: "#94A3B8" }}>Amaron, Exide, Vion &amp; Luminous</span>
               </div>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <div
                 style={{
-                  width: "36px",
-                  height: "36px",
+                  width: "34px",
+                  height: "34px",
                   borderRadius: "50%",
                   background: "rgba(16, 185, 129, 0.18)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   color: "#10B981",
+                  fontSize: "0.85rem"
                 }}
               >
                 <i className="fa-solid fa-location-dot"></i>
               </div>
               <div>
-                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#FFFFFF", display: "block" }}>
+                <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "#FFFFFF", display: "block" }}>
                   2 Major Regional Branches
                 </span>
-                <span style={{ fontSize: "0.75rem", color: "#94A3B8" }}>Puramufti (Prayagraj) &amp; Charwa (Kaushambi)</span>
+                <span style={{ fontSize: "0.72rem", color: "#94A3B8" }}>Puramufti (Prayagraj) &amp; Charwa (Kaushambi)</span>
               </div>
             </div>
           </div>
@@ -318,17 +342,17 @@ export default function HeroSlider({ initialSlides = [] }) {
             aria-label="Previous slide"
             style={{
               position: "absolute",
-              left: "20px",
+              left: "12px",
               top: "50%",
               transform: "translateY(-50%)",
               zIndex: 20,
-              width: "48px",
-              height: "48px",
+              width: "40px",
+              height: "40px",
               borderRadius: "50%",
               background: "rgba(15, 23, 42, 0.65)",
               border: "1px solid rgba(255, 255, 255, 0.2)",
               color: "#FFFFFF",
-              fontSize: "1.1rem",
+              fontSize: "1rem",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -346,17 +370,17 @@ export default function HeroSlider({ initialSlides = [] }) {
             aria-label="Next slide"
             style={{
               position: "absolute",
-              right: "20px",
+              right: "12px",
               top: "50%",
               transform: "translateY(-50%)",
               zIndex: 20,
-              width: "48px",
-              height: "48px",
+              width: "40px",
+              height: "40px",
               borderRadius: "50%",
               background: "rgba(15, 23, 42, 0.65)",
               border: "1px solid rgba(255, 255, 255, 0.2)",
               color: "#FFFFFF",
-              fontSize: "1.1rem",
+              fontSize: "1rem",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -372,14 +396,14 @@ export default function HeroSlider({ initialSlides = [] }) {
           <div
             style={{
               position: "absolute",
-              bottom: "24px",
+              bottom: "16px",
               left: "0",
               right: "0",
               zIndex: 20,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "10px",
+              gap: "8px",
             }}
           >
             {slides.map((_, idx) => (
@@ -388,8 +412,8 @@ export default function HeroSlider({ initialSlides = [] }) {
                 onClick={() => setCurrentIndex(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
                 style={{
-                  width: idx === currentIndex ? "32px" : "10px",
-                  height: "10px",
+                  width: idx === currentIndex ? "28px" : "8px",
+                  height: "8px",
                   borderRadius: "var(--radius-full)",
                   background: idx === currentIndex ? "#F59E0B" : "rgba(255, 255, 255, 0.35)",
                   border: "none",
@@ -401,8 +425,8 @@ export default function HeroSlider({ initialSlides = [] }) {
             ))}
             <span
               style={{
-                marginLeft: "12px",
-                fontSize: "0.8rem",
+                marginLeft: "10px",
+                fontSize: "0.75rem",
                 fontWeight: 700,
                 color: "#94A3B8",
                 letterSpacing: "0.05em",
@@ -416,4 +440,3 @@ export default function HeroSlider({ initialSlides = [] }) {
     </section>
   );
 }
-

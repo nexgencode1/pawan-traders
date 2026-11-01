@@ -78,17 +78,20 @@ export default function AboutPage() {
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "18px", marginBottom: "14px" }}>
                   <div style={{
-                    width: "60px",
-                    height: "60px",
+                    width: "72px",
+                    height: "72px",
                     borderRadius: "50%",
-                    background: "#EFF6FF",
-                    color: "var(--primary)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.6rem"
+                    overflow: "hidden",
+                    border: "3px solid var(--primary)",
+                    boxShadow: "0 4px 14px rgba(29, 78, 216, 0.25)",
+                    flexShrink: 0,
+                    background: "#E2E8F0"
                   }}>
-                    <i className="fa-solid fa-user-tie"></i>
+                    <img
+                      src="/director.jpeg"
+                      alt="Mr. Pawan Kumar Kushwaha"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
                   </div>
                   <div>
                     <h3 style={{ fontSize: "1.3rem", fontWeight: 800, marginBottom: "2px" }}>Mr. Pawan Kumar Kushwaha</h3>
@@ -112,17 +115,20 @@ export default function AboutPage() {
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "18px", marginBottom: "14px" }}>
                   <div style={{
-                    width: "60px",
-                    height: "60px",
+                    width: "72px",
+                    height: "72px",
                     borderRadius: "50%",
-                    background: "#FEF3C7",
-                    color: "var(--solar-hover)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.6rem"
+                    overflow: "hidden",
+                    border: "3px solid var(--solar)",
+                    boxShadow: "0 4px 14px rgba(245, 158, 11, 0.25)",
+                    flexShrink: 0,
+                    background: "#FEF3C7"
                   }}>
-                    <i className="fa-solid fa-id-badge"></i>
+                    <img
+                      src="/manager.jpeg"
+                      alt="Mr. Kartik Kushwaha"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
                   </div>
                   <div>
                     <h3 style={{ fontSize: "1.3rem", fontWeight: 800, marginBottom: "2px" }}>Mr. Kartik Kushwaha</h3>

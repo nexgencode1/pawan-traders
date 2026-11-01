@@ -53,6 +53,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -61,6 +63,8 @@ body {
   background-color: #FAFAFC;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -617,59 +621,134 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Floating Actions */
-.floating-actions {
+/* ================= REAL CIRCULAR FLOATING ACTIONS ================= */
+.float-round-btn {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 999;
-}
-
-.float-btn {
+  z-index: 9999;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  border-radius: var(--radius-full);
+  justify-content: center;
   color: #FFFFFF;
-  font-weight: 800;
-  font-size: 0.95rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  transition: var(--transition);
+  text-decoration: none;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  user-select: none;
 }
 
-.float-btn.whatsapp {
-  background: #25D366;
+.float-round-btn:hover {
+  transform: scale(1.12) translateY(-4px);
+  color: #FFFFFF;
 }
 
-.float-btn.whatsapp:hover {
-  background: #1EBE5D;
-  transform: scale(1.05) translateY(-2px);
+.float-round-btn.whatsapp {
+  right: 20px;
+  bottom: 24px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
 }
 
-.float-btn.call {
-  background: #0284C7;
+.float-round-btn.whatsapp:hover {
+  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.6);
 }
 
-.float-btn.call:hover {
-  background: #0369A1;
-  transform: scale(1.05) translateY(-2px);
+.float-round-btn.call {
+  left: 20px;
+  bottom: 24px;
+  background: linear-gradient(135deg, #1D4ED8 0%, #0F2D6B 100%);
+  font-size: 1.35rem;
+  box-shadow: 0 10px 25px rgba(29, 78, 216, 0.45);
+}
+
+.float-round-btn.call:hover {
+  box-shadow: 0 14px 30px rgba(29, 78, 216, 0.6);
+}
+
+/* Pulsing animated ripple wave around button */
+.float-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.7;
+  animation: floatRipple 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.float-pulse-ring.green {
+  border: 2px solid #25D366;
+}
+
+.float-pulse-ring.blue {
+  border: 2px solid #3B82F6;
+}
+
+@keyframes floatRipple {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.float-tooltip {
+  position: absolute;
+  background: rgba(15, 23, 42, 0.92);
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.float-round-btn.whatsapp .float-tooltip {
+  right: 68px;
+  bottom: 12px;
+}
+
+.float-round-btn.call .float-tooltip {
+  left: 68px;
+  bottom: 12px;
+}
+
+.float-round-btn:hover .float-tooltip {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (max-width: 576px) {
-  .floating-actions {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    flex-direction: row;
+  .float-round-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
   }
-  .float-btn {
-    flex: 1;
-    justify-content: center;
-    padding: 10px 14px;
-    font-size: 0.85rem;
+  .float-round-btn.call {
+    font-size: 1.2rem;
+    left: 14px;
+    bottom: 16px;
+  }
+  .float-round-btn.whatsapp {
+    right: 14px;
+    bottom: 16px;
+  }
+  .float-tooltip {
+    display: none; /* Hide hover tooltip on touch devices */
   }
 }
 

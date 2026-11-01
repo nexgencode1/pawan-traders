@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/pawan-traders";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 let cached = global.mongoose;
 
@@ -9,6 +9,15 @@ if (!cached) {
 }
 
 export async function connectToDatabase() {
+  // If no MONGODB_URI is provided, or is localhost in production, return null immediately with 0ms delay
+  if (
+    !MONGODB_URI ||
+    !MONGODB_URI.trim() ||
+    (MONGODB_URI.includes("localhost") && process.env.NODE_ENV === "production")
+  ) {
+    return null;
+  }
+
   if (cached.conn) {
     return cached.conn;
   }
@@ -16,7 +25,7 @@ export async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 3000, // Quick timeout if MongoDB is offline
+      serverSelectionTimeoutMS: 2000,
     };
 
     cached.promise = mongoose
@@ -26,7 +35,7 @@ export async function connectToDatabase() {
         return m;
       })
       .catch((err) => {
-        console.warn("⚠️ MongoDB connection error (using in-memory/fallback mode):", err.message);
+        console.warn("⚠️ MongoDB offline, using rich default data store:", err.message);
         cached.promise = null;
         return null;
       });
@@ -45,4 +54,3 @@ export async function connectToDatabase() {
 export function isMongoConnected() {
   return mongoose.connection.readyState === 1;
 }
-

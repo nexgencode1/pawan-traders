@@ -23,31 +23,7 @@ export default function Header({ onOpenEnquiry }) {
 
   return (
     <>
-      {/* Top Announcement & Branch Coordinates Bar */}
-      <div style={{ background: "#0B132B", color: "#CBD5E1", fontSize: "0.825rem", borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
-        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 20px", flexWrap: "wrap", gap: "10px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", fontWeight: 600, color: "#FBBF24" }}>
-            <i className="fa-solid fa-bolt"></i> {settings.announcement}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <i className="fa-solid fa-location-dot" style={{ color: "#F59E0B" }}></i>
-              <span><strong>Main:</strong> Puramufti, Prayagraj</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <i className="fa-solid fa-location-dot" style={{ color: "#F59E0B" }}></i>
-              <span><strong>Branch 2:</strong> Charwa, Kaushambi</span>
-            </div>
-            <div>
-              <a href={`tel:+91${settings.callingNumber}`} style={{ color: "#FDE047", fontWeight: 700 }}>
-                <i className="fa-solid fa-phone"></i> {settings.callingNumber}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation Header */}
+      {/* Main Navigation Header - Clean & Sticky without cluttered top bar */}
       <header style={{
         position: "sticky",
         top: 0,
@@ -56,9 +32,44 @@ export default function Header({ onOpenEnquiry }) {
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid var(--gray-200)",
       }}>
-        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "80px" }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center" }} title="Pawan Traders">
-            <img src="/assets/images/logo.svg" alt="Pawan Traders" style={{ height: "50px", width: "auto" }} />
+        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "72px" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }} title="Pawan Traders">
+            <img
+              src="/assets/images/logo.svg"
+              alt="Pawan Traders"
+              style={{ height: "46px", width: "auto", maxWidth: "210px", objectFit: "contain" }}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+                const fallback = e.currentTarget.parentElement.querySelector(".logo-fallback-render");
+                if (fallback) fallback.style.display = "flex";
+              }}
+            />
+            {/* Fallback Vector Emblem in case SVG file blocked */}
+            <div className="logo-fallback-render" style={{ display: "none", alignItems: "center", gap: "10px" }}>
+              <div style={{
+                width: "42px",
+                height: "42px",
+                borderRadius: "10px",
+                background: "linear-gradient(135deg, #0F2D6B 0%, #1D4ED8 50%, #F59E0B 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#FFFFFF",
+                fontWeight: 900,
+                fontSize: "1.1rem",
+                boxShadow: "0 4px 12px rgba(29, 78, 216, 0.3)"
+              }}>
+                <i className="fa-solid fa-bolt"></i>
+              </div>
+              <div>
+                <div style={{ fontSize: "1.25rem", fontWeight: 900, color: "#0F172A", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
+                  PAWAN <span style={{ color: "#F59E0B" }}>TRADERS</span>
+                </div>
+                <div style={{ fontSize: "0.68rem", fontWeight: 700, color: "#64748B", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                  Battery &amp; Solar Hub
+                </div>
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Nav */}

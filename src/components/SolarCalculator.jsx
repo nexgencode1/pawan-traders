@@ -31,17 +31,20 @@ export default function SolarCalculator() {
     <div style={{
       background: "#FFFFFF",
       borderRadius: "var(--radius-lg)",
-      padding: "30px",
+      padding: "clamp(18px, 4vw, 30px)",
       color: "var(--gray-900)",
-      boxShadow: "var(--shadow-lg)"
+      boxShadow: "var(--shadow-lg)",
+      maxWidth: "100%",
+      boxSizing: "border-box",
+      overflow: "hidden"
     }}>
-      <h3 style={{ fontSize: "1.35rem", fontWeight: 800, marginBottom: "6px" }}>Solar Rooftop Savings Calculator</h3>
+      <h3 style={{ fontSize: "clamp(1.2rem, 3vw, 1.35rem)", fontWeight: 800, marginBottom: "6px" }}>Solar Rooftop Savings Calculator</h3>
       <p style={{ fontSize: "0.85rem", color: "#64748B", marginBottom: "18px" }}>
         Slide to select your average monthly electricity bill:
       </p>
 
       <div style={{ marginBottom: "18px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700, marginBottom: "8px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontWeight: 700, marginBottom: "8px" }}>
           <span>Monthly Bill:</span>
           <span style={{ color: "var(--primary)", fontSize: "1.25rem" }}>₹ {bill.toLocaleString("en-IN")}</span>
         </div>
@@ -65,27 +68,27 @@ export default function SolarCalculator() {
         background: "var(--gray-50)",
         border: "1.5px dashed var(--gray-300)",
         borderRadius: "var(--radius-md)",
-        padding: "20px",
-        marginTop: "20px"
+        padding: "16px",
+        marginTop: "18px"
       }}>
-        <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.9rem" }}>
-          <span>Recommended Solar Plant:</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.88rem" }}>
+          <span>Recommended Plant:</span>
           <strong>{recommendedKw} kW</strong>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.9rem" }}>
-          <span>Solar Panels Needed:</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.88rem" }}>
+          <span>Panels Needed:</span>
           <strong>{panelCount} Panels (550W Mono PERC)</strong>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.9rem" }}>
-          <span>Roof Area Required:</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.88rem" }}>
+          <span>Roof Area:</span>
           <strong>~ {roofArea} sq.ft</strong>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.9rem" }}>
-          <span>Govt Subsidy (Surya Ghar):</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", padding: "8px 0", borderBottom: "1px solid var(--gray-200)", fontSize: "0.88rem" }}>
+          <span>Govt Subsidy:</span>
           <strong style={{ color: "#059669" }}>₹ {subsidy.toLocaleString("en-IN")}</strong>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--eco-dark)" }}>
-          <span>Estimated Annual Savings:</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", padding: "10px 0 4px 0", fontSize: "1.05rem", fontWeight: 800, color: "var(--eco-dark)" }}>
+          <span>Est. Annual Savings:</span>
           <strong>₹ {annualSavings.toLocaleString("en-IN")} / yr</strong>
         </div>
       </div>

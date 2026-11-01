@@ -176,13 +176,13 @@ export default function HomePage() {
           <div style={{
             background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
             borderRadius: "var(--radius-xl)",
-            padding: "48px",
+            padding: "clamp(20px, 4vw, 40px)",
             color: "#FFFFFF",
             boxShadow: "var(--shadow-xl)"
           }}>
             <div style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
               gap: "40px",
               alignItems: "center"
             }}>
@@ -195,7 +195,7 @@ export default function HomePage() {
                   Pawan Traders is your certified rooftop solar EPC contractor in Puramufti, Prayagraj and Charwa, Kaushambi. Complete On-Grid net metering, Off-Grid storage, and Hybrid systems with up to ₹78,000 direct bank subsidy assistance.
                 </p>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "28px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))", gap: "16px", marginBottom: "28px" }}>
                   <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "10px", padding: "14px" }}>
                     <strong style={{ color: "#FBBF24", display: "block", fontSize: "1.1rem", marginBottom: "4px" }}>Tier-1 Mono PERC</strong>
                     <span style={{ fontSize: "0.85rem", color: "#E2E8F0" }}>550W+ High efficiency panels with 25 yrs warranty.</span>
@@ -287,7 +287,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "30px" }}>
             {branches.map((b) => (
               <div key={b.id} style={{
                 background: "#FFFFFF",
@@ -351,6 +351,55 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== LEADERSHIP SECTION ==================== */}
+      <section className="section-padding" style={{ background: "var(--gray-50)" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 40px" }}>
+            <span className="section-badge"><i className="fa-solid fa-users"></i> Dedicated Leadership</span>
+            <h2 className="section-title">Meet Our <span>Founding Leadership</span></h2>
+            <p className="section-subtitle" style={{ margin: "0 auto" }}>
+              Committed to providing authentic batteries, expert technical guidance, and transparent pricing across Prayagraj &amp; Kaushambi.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "30px", maxWidth: "800px", margin: "0 auto" }}>
+            {/* Director */}
+            <div className="hover-card" style={{ background: "#FFFFFF", borderRadius: "var(--radius-xl)", padding: "30px 24px", textAlign: "center", border: "1px solid var(--gray-200)", boxShadow: "var(--shadow-sm)" }}>
+              <div style={{ width: "120px", height: "120px", borderRadius: "50%", margin: "0 auto 18px", overflow: "hidden", border: "4px solid #1E3A8A", boxShadow: "0 8px 20px rgba(30,58,138,0.2)" }}>
+                <img src="/director.jpeg" alt="Mr. Pawan Kumar Kushwaha" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--gray-900)", marginBottom: "4px" }}>Mr. Pawan Kumar Kushwaha</h3>
+              <span style={{ display: "inline-block", background: "rgba(30,58,138,0.1)", color: "#1E3A8A", padding: "4px 12px", borderRadius: "999px", fontSize: "0.8rem", fontWeight: 700, marginBottom: "12px" }}>
+                Director &amp; Founder
+              </span>
+              <p style={{ fontSize: "0.88rem", color: "var(--gray-600)", lineHeight: 1.6, marginBottom: "16px" }}>
+                Leading Pawan Traders with 15+ years of excellence, dedicated to authentic quality and trusted customer relationships.
+              </p>
+              <a href="tel:+919935618513" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--primary)", fontWeight: 700, fontSize: "0.95rem" }}>
+                <i className="fa-solid fa-phone"></i> +91 9935618513
+              </a>
+            </div>
+
+            {/* Manager */}
+            <div className="hover-card" style={{ background: "#FFFFFF", borderRadius: "var(--radius-xl)", padding: "30px 24px", textAlign: "center", border: "1px solid var(--gray-200)", boxShadow: "var(--shadow-sm)" }}>
+              <div style={{ width: "120px", height: "120px", borderRadius: "50%", margin: "0 auto 18px", overflow: "hidden", border: "4px solid #F59E0B", boxShadow: "0 8px 20px rgba(245,158,11,0.2)" }}>
+                <img src="/manager.jpeg" alt="Mr. Kartik Kushwaha" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--gray-900)", marginBottom: "4px" }}>Mr. Kartik Kushwaha</h3>
+              <span style={{ display: "inline-block", background: "rgba(245,158,11,0.1)", color: "#D97706", padding: "4px 12px", borderRadius: "999px", fontSize: "0.8rem", fontWeight: 700, marginBottom: "12px" }}>
+                General Manager &amp; Technical Head
+              </span>
+              <p style={{ fontSize: "0.88rem", color: "var(--gray-600)", lineHeight: 1.6, marginBottom: "16px" }}>
+                Overseeing store operations, solar installations, technical customer support, and seamless same-day service delivery.
+              </p>
+              <a href="tel:+919935618513" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--primary)", fontWeight: 700, fontSize: "0.95rem" }}>
+                <i className="fa-solid fa-phone"></i> +91 9935618513
+              </a>
+            </div>
           </div>
         </div>
       </section>
