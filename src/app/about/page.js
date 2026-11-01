@@ -171,13 +171,13 @@ export default function AboutPage() {
             >
               <div
                 style={{
-                  width: "180px",
-                  height: "180px",
+                  width: "clamp(230px, 30vw, 290px)",
+                  height: "clamp(230px, 30vw, 290px)",
                   borderRadius: "50%",
                   overflow: "hidden",
-                  border: "5px solid var(--primary)",
-                  boxShadow: "0 12px 30px rgba(29, 78, 216, 0.3)",
-                  marginBottom: "22px",
+                  border: "6px solid var(--primary)",
+                  boxShadow: "0 18px 45px rgba(29, 78, 216, 0.3)",
+                  marginBottom: "26px",
                   background: "#E2E8F0",
                   flexShrink: 0,
                 }}
@@ -185,7 +185,7 @@ export default function AboutPage() {
                 <img
                   src="/director.jpeg"
                   alt="Mr. Pawan Kumar Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                 />
               </div>
 
@@ -259,13 +259,13 @@ export default function AboutPage() {
             >
               <div
                 style={{
-                  width: "180px",
-                  height: "180px",
+                  width: "clamp(230px, 30vw, 290px)",
+                  height: "clamp(230px, 30vw, 290px)",
                   borderRadius: "50%",
                   overflow: "hidden",
-                  border: "5px solid var(--solar)",
-                  boxShadow: "0 12px 30px rgba(245, 158, 11, 0.3)",
-                  marginBottom: "22px",
+                  border: "6px solid var(--solar)",
+                  boxShadow: "0 18px 45px rgba(245, 158, 11, 0.3)",
+                  marginBottom: "26px",
                   background: "#FEF3C7",
                   flexShrink: 0,
                 }}
@@ -273,7 +273,7 @@ export default function AboutPage() {
                 <img
                   src="/manager.jpeg"
                   alt="Mr. Kartik Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                 />
               </div>
 

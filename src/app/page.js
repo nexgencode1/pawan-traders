@@ -751,19 +751,19 @@ export default function HomePage() {
             >
               <div
                 style={{
-                  width: "120px",
-                  height: "120px",
+                  width: "170px",
+                  height: "170px",
                   borderRadius: "50%",
-                  margin: "0 auto 18px",
+                  margin: "0 auto 20px",
                   overflow: "hidden",
-                  border: "4px solid #1E3A8A",
-                  boxShadow: "0 8px 20px rgba(30,58,138,0.2)",
+                  border: "5px solid #1E3A8A",
+                  boxShadow: "0 12px 30px rgba(30,58,138,0.25)",
                 }}
               >
                 <img
                   src="/director.jpeg"
                   alt="Mr. Pawan Kumar Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                 />
               </div>
               <h3
@@ -830,19 +830,19 @@ export default function HomePage() {
             >
               <div
                 style={{
-                  width: "120px",
-                  height: "120px",
+                  width: "170px",
+                  height: "170px",
                   borderRadius: "50%",
-                  margin: "0 auto 18px",
+                  margin: "0 auto 20px",
                   overflow: "hidden",
-                  border: "4px solid #F59E0B",
-                  boxShadow: "0 8px 20px rgba(245,158,11,0.2)",
+                  border: "5px solid #F59E0B",
+                  boxShadow: "0 12px 30px rgba(245,158,11,0.25)",
                 }}
               >
                 <img
                   src="/manager.jpeg"
                   alt="Mr. Kartik Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                 />
               </div>
               <h3
