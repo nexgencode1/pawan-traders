@@ -127,13 +127,13 @@ export default function Header({ onOpenEnquiry }) {
             gap: "12px",
           }}
         >
-          {/* Logo with clean fallback */}
+          {/* Logo with Emblem & Brand Name */}
           <Link
             href="/"
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "10px",
+              gap: "12px",
               textDecoration: "none",
               flexShrink: 0,
             }}
@@ -143,65 +143,33 @@ export default function Header({ onOpenEnquiry }) {
               src="/assets/images/logo.png"
               alt="Pawan Traders"
               style={{
-                height: "50px",
+                height: "48px",
                 width: "auto",
-                maxWidth: "220px",
                 objectFit: "contain",
               }}
-              onError={(e) => {
-                e.currentTarget.src = "/assets/images/logo.svg";
-                e.currentTarget.onerror = () => {
-                  e.currentTarget.style.display = "none";
-                  const fallback = e.currentTarget.parentElement.querySelector(".logo-fallback-render");
-                  if (fallback) fallback.style.display = "flex";
-                };
-              }}
             />
-            {/* Fallback Vector Emblem */}
-            <div
-              className="logo-fallback-render"
-              style={{ display: "none", alignItems: "center", gap: "10px" }}
-            >
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <div
                 style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "10px",
-                  background: "linear-gradient(135deg, #0F2D6B 0%, #1D4ED8 50%, #F59E0B 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#FFFFFF",
+                  fontSize: "1.25rem",
                   fontWeight: 900,
-                  fontSize: "1.1rem",
-                  boxShadow: "0 4px 12px rgba(29, 78, 216, 0.3)",
+                  color: "#0F172A",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.01em",
                 }}
               >
-                <i className="fa-solid fa-bolt"></i>
+                PAWAN <span style={{ color: "#F59E0B" }}>TRADERS</span>
               </div>
-              <div>
-                <div
-                  style={{
-                    fontSize: "1.2rem",
-                    fontWeight: 900,
-                    color: "#0F172A",
-                    lineHeight: 1.1,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  PAWAN <span style={{ color: "#F59E0B" }}>TRADERS</span>
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.65rem",
-                    fontWeight: 700,
-                    color: "#64748B",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Battery &amp; Solar Hub
-                </div>
+              <div
+                style={{
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  color: "#64748B",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Battery &amp; Solar Hub
               </div>
             </div>
           </Link>

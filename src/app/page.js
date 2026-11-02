@@ -15,11 +15,6 @@ export default function HomePage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  // Quick Finder State
-  const [finderSearch, setFinderSearch] = useState("");
-  const [finderCategory, setFinderCategory] = useState("");
-  const [finderBrand, setFinderBrand] = useState("");
-
   const handleOpenModal = (prod = null) => {
     setSelectedProduct(prod);
     setModalOpen(true);
@@ -31,87 +26,6 @@ export default function HomePage() {
     <>
       {/* ==================== HERO SECTION SLIDER ==================== */}
       <HeroSlider />
-
-      {/* ==================== QUICK SEARCH / FINDER ==================== */}
-      <section style={{ position: "relative", marginTop: "-45px", zIndex: 10 }}>
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{
-              background: "#FFFFFF",
-              borderRadius: "var(--radius-lg)",
-              padding: "24px",
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.08)",
-              border: "1px solid var(--gray-200)",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "16px",
-              alignItems: "flex-end",
-            }}
-          >
-            <div className="form-group">
-              <label>
-                <i className="fa-solid fa-magnifying-glass"></i> Search Model
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="e.g. 150Ah Tubular, Creta..."
-                value={finderSearch}
-                onChange={(e) => setFinderSearch(e.target.value)}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>
-                <i className="fa-solid fa-list"></i> Category
-              </label>
-              <select
-                className="form-control"
-                value={finderCategory}
-                onChange={(e) => setFinderCategory(e.target.value)}
-              >
-                <option value="">All Categories</option>
-                {categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>
-                <i className="fa-solid fa-shield-halved"></i> Brand
-              </label>
-              <select
-                className="form-control"
-                value={finderBrand}
-                onChange={(e) => setFinderBrand(e.target.value)}
-              >
-                <option value="">All Brands</option>
-                {brands.map((b) => (
-                  <option key={b.id} value={b.id}>
-                    {b.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <Link
-                href={`/products?q=${encodeURIComponent(finderSearch)}&category=${finderCategory}&brand=${finderBrand}`}
-                className="btn btn-primary"
-                style={{ height: "48px", width: "100%" }}
-              >
-                <i className="fa-solid fa-arrow-right"></i> Find Now
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* ==================== 5 CORE CATEGORIES ==================== */}
       <section className="section-padding">

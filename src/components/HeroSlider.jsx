@@ -95,7 +95,8 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
       onMouseLeave={() => setIsPaused(false)}
       style={{
         position: "relative",
-        minHeight: "clamp(460px, 62vh, 600px)",
+        height: "clamp(280px, 44vw, 520px)",
+        minHeight: "260px",
         overflow: "hidden",
         backgroundColor: "#050B18",
         color: "#FFFFFF",
@@ -130,213 +131,10 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
               e.currentTarget.style.opacity = "0";
             }}
           />
-          {/* Multi-layer Gradient Overlay for Ultra Readability without blacking out photo */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(90deg, rgba(5, 11, 24, 0.85) 0%, rgba(5, 11, 24, 0.60) 50%, rgba(5, 11, 24, 0.35) 100%)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "radial-gradient(circle at 75% 50%, rgba(29, 78, 216, 0.2) 0%, transparent 65%)",
-            }}
-          />
         </div>
       ))}
 
-      {/* Slide Content Layer */}
-      <div
-        className="container"
-        style={{
-          position: "relative",
-          zIndex: 10,
-          minHeight: "clamp(460px, 62vh, 600px)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          paddingTop: "40px",
-          paddingBottom: "50px",
-        }}
-      >
-        <div style={{ maxWidth: "780px" }}>
-          {/* Badge (Optional) */}
-          {currentSlide.badge && (
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "6px 14px",
-                borderRadius: "var(--radius-full)",
-                background: "rgba(245, 158, 11, 0.18)",
-                border: "1px solid rgba(245, 158, 11, 0.45)",
-                color: "#FDE047",
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: "16px",
-                backdropFilter: "blur(8px)",
-                boxShadow: "0 4px 14px rgba(245, 158, 11, 0.15)",
-              }}
-            >
-              <i className="fa-solid fa-certificate"></i> {currentSlide.badge}
-            </div>
-          )}
-
-          {/* SINGLE TEXT (OPTIONAL AS REQUESTED) */}
-          {currentSlide.title && currentSlide.title.trim() !== "" ? (
-            <h1
-              style={{
-                fontSize: "clamp(1.75rem, 4.5vw, 3.2rem)",
-                fontWeight: 900,
-                lineHeight: 1.18,
-                color: "#FFFFFF",
-                marginBottom: "24px",
-                letterSpacing: "-0.02em",
-                textShadow: "0 4px 18px rgba(0, 0, 0, 0.6)",
-              }}
-            >
-              {currentSlide.title}
-            </h1>
-          ) : null}
-
-          {/* TWO ACTION BUTTONS (Configurable from Admin) */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "14px",
-              flexWrap: "wrap",
-              marginTop: currentSlide.title ? "0px" : "14px",
-              marginBottom: "32px",
-            }}
-          >
-            {/* Button 1 */}
-            {currentSlide.button1Text && (
-              <a
-                href={currentSlide.button1Link || "/products"}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  padding: "13px 26px",
-                  borderRadius: "var(--radius-md)",
-                  background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-                  color: "#0F172A",
-                  fontWeight: 800,
-                  fontSize: "0.95rem",
-                  boxShadow: "0 8px 24px rgba(245, 158, 11, 0.35)",
-                  transition: "var(--transition)",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-                className="hover-lift"
-              >
-                <i className="fa-solid fa-arrow-right"></i> {currentSlide.button1Text}
-              </a>
-            )}
-
-            {/* Button 2 */}
-            {currentSlide.button2Text && (
-              <a
-                href={currentSlide.button2Link || "https://wa.me/918299362360"}
-                target={currentSlide.button2Link?.startsWith("http") ? "_blank" : "_self"}
-                rel={currentSlide.button2Link?.startsWith("http") ? "noopener noreferrer" : ""}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  padding: "13px 26px",
-                  borderRadius: "var(--radius-md)",
-                  background: "rgba(255, 255, 255, 0.12)",
-                  color: "#FFFFFF",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  border: "1px solid rgba(255, 255, 255, 0.25)",
-                  backdropFilter: "blur(12px)",
-                  transition: "var(--transition)",
-                  cursor: "pointer",
-                }}
-                className="hover-lift"
-              >
-                {currentSlide.button2Link?.includes("wa.me") ? (
-                  <i className="fa-brands fa-whatsapp" style={{ color: "#25D366" }}></i>
-                ) : (
-                  <i className="fa-solid fa-sparkles" style={{ color: "#FDE047" }}></i>
-                )}
-                {currentSlide.button2Text}
-              </a>
-            )}
-          </div>
-
-          {/* Quick Value Pillars */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "24px",
-              paddingTop: "20px",
-              borderTop: "1px solid rgba(255, 255, 255, 0.12)",
-              flexWrap: "wrap",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <div
-                style={{
-                  width: "34px",
-                  height: "34px",
-                  borderRadius: "50%",
-                  background: "rgba(245, 158, 11, 0.18)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#F59E0B",
-                  fontSize: "0.85rem"
-                }}
-              >
-                <i className="fa-solid fa-shield-check"></i>
-              </div>
-              <div>
-                <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "#FFFFFF", display: "block" }}>
-                  100% Original Brand Warranty
-                </span>
-                <span style={{ fontSize: "0.72rem", color: "#94A3B8" }}>Amaron, Exide, Vion &amp; Luminous</span>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <div
-                style={{
-                  width: "34px",
-                  height: "34px",
-                  borderRadius: "50%",
-                  background: "rgba(16, 185, 129, 0.18)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#10B981",
-                  fontSize: "0.85rem"
-                }}
-              >
-                <i className="fa-solid fa-location-dot"></i>
-              </div>
-              <div>
-                <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "#FFFFFF", display: "block" }}>
-                  2 Major Regional Branches
-                </span>
-                <span style={{ fontSize: "0.72rem", color: "#94A3B8" }}>Puramufti (Prayagraj) &amp; Charwa (Kaushambi)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation Controls (Arrows & Slide Counter) */}
+      {/* Navigation Controls (Arrows & Dots Only - No Text / Counter) */}
       {slides.length > 1 && (
         <>
           {/* Prev Arrow */}
@@ -345,15 +143,15 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
             aria-label="Previous slide"
             style={{
               position: "absolute",
-              left: "12px",
+              left: "16px",
               top: "50%",
               transform: "translateY(-50%)",
               zIndex: 20,
-              width: "40px",
-              height: "40px",
+              width: "42px",
+              height: "42px",
               borderRadius: "50%",
               background: "rgba(15, 23, 42, 0.65)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              border: "1px solid rgba(255, 255, 255, 0.25)",
               color: "#FFFFFF",
               fontSize: "1rem",
               display: "flex",
@@ -373,15 +171,15 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
             aria-label="Next slide"
             style={{
               position: "absolute",
-              right: "12px",
+              right: "16px",
               top: "50%",
               transform: "translateY(-50%)",
               zIndex: 20,
-              width: "40px",
-              height: "40px",
+              width: "42px",
+              height: "42px",
               borderRadius: "50%",
               background: "rgba(15, 23, 42, 0.65)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              border: "1px solid rgba(255, 255, 255, 0.25)",
               color: "#FFFFFF",
               fontSize: "1rem",
               display: "flex",
@@ -395,7 +193,7 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
             <i className="fa-solid fa-chevron-right"></i>
           </button>
 
-          {/* Bottom Dots & Slide Indicator */}
+          {/* Bottom Dots Indicator (No 02/03 Text) */}
           <div
             style={{
               position: "absolute",
@@ -418,25 +216,15 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
                   width: idx === currentIndex ? "28px" : "8px",
                   height: "8px",
                   borderRadius: "var(--radius-full)",
-                  background: idx === currentIndex ? "#F59E0B" : "rgba(255, 255, 255, 0.35)",
+                  background: idx === currentIndex ? "#F59E0B" : "rgba(255, 255, 255, 0.45)",
                   border: "none",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
                   padding: 0,
+                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.4)",
                 }}
               />
             ))}
-            <span
-              style={{
-                marginLeft: "10px",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                color: "#94A3B8",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {String(currentIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-            </span>
           </div>
         </>
       )}
