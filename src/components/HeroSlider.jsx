@@ -95,8 +95,8 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
       onMouseLeave={() => setIsPaused(false)}
       style={{
         position: "relative",
-        height: "clamp(280px, 44vw, 520px)",
-        minHeight: "260px",
+        height: "clamp(340px, 48vw, 540px)",
+        minHeight: "300px",
         overflow: "hidden",
         backgroundColor: "#050B18",
         color: "#FFFFFF",
@@ -131,8 +131,102 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
               e.currentTarget.style.opacity = "0";
             }}
           />
+          {/* Subtle light translucent overlay for crisp image clarity with high button contrast */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(180deg, rgba(5, 11, 24, 0.15) 0%, rgba(5, 11, 24, 0.45) 100%)",
+            }}
+          />
         </div>
       ))}
+
+      {/* Action Buttons Layer (Only Buttons - No Text Overlay) */}
+      {(currentSlide.button1Text || currentSlide.button2Text) && (
+        <div
+          className="container"
+          style={{
+            position: "relative",
+            zIndex: 10,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            paddingBottom: "48px",
+            pointerEvents: "none",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "14px",
+              flexWrap: "wrap",
+              pointerEvents: "auto",
+            }}
+          >
+            {/* Button 1 */}
+            {currentSlide.button1Text && (
+              <a
+                href={currentSlide.button1Link || "/products"}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "13px 26px",
+                  borderRadius: "var(--radius-md)",
+                  background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+                  color: "#0F172A",
+                  fontWeight: 800,
+                  fontSize: "0.95rem",
+                  boxShadow: "0 8px 24px rgba(245, 158, 11, 0.35)",
+                  transition: "var(--transition)",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
+                className="hover-lift"
+              >
+                <i className="fa-solid fa-arrow-right"></i> {currentSlide.button1Text}
+              </a>
+            )}
+
+            {/* Button 2 */}
+            {currentSlide.button2Text && (
+              <a
+                href={currentSlide.button2Link || "https://wa.me/918299362360"}
+                target={currentSlide.button2Link?.startsWith("http") ? "_blank" : "_self"}
+                rel={currentSlide.button2Link?.startsWith("http") ? "noopener noreferrer" : ""}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "13px 26px",
+                  borderRadius: "var(--radius-md)",
+                  background: "rgba(15, 23, 42, 0.75)",
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  backdropFilter: "blur(12px)",
+                  boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
+                  transition: "var(--transition)",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
+                className="hover-lift"
+              >
+                {currentSlide.button2Link?.includes("wa.me") ? (
+                  <i className="fa-brands fa-whatsapp" style={{ color: "#25D366", fontSize: "1.1rem" }}></i>
+                ) : (
+                  <i className="fa-solid fa-sparkles" style={{ color: "#FDE047" }}></i>
+                )}
+                {currentSlide.button2Text}
+              </a>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Navigation Controls (Arrows & Dots Only - No Text / Counter) */}
       {slides.length > 1 && (
