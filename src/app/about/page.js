@@ -11,13 +11,13 @@ export default function AboutPage() {
 
   return (
     <div>
-      {/* Header Banner */}
+      {/* 1. Header Banner */}
       <section
         style={{
           background: "linear-gradient(135deg, #091E42, #1D4ED8)",
           color: "#FFFFFF",
           textAlign: "center",
-          padding: "70px 20px",
+          padding: "70px 20px 60px",
         }}
       >
         <div className="container">
@@ -157,88 +157,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Company Story & Mission */}
-      <section className="section-padding" style={{ background: "#FFFFFF" }}>
-        <div className="container">
-          <div
-            style={{
-              maxWidth: "860px",
-              margin: "0 auto 60px",
-              textAlign: "center",
-            }}
-          >
-            <span className="section-badge">
-              <i className="fa-solid fa-clock-rotate-left"></i> 15+ Years Track Record
-            </span>
-            <h2 className="section-title">
-              Committed to <span>Uninterrupted Power</span> for Every Home &amp; Vehicle
-            </h2>
-            <p
-              style={{
-                color: "#475569",
-                fontSize: "1.1rem",
-                lineHeight: 1.8,
-                marginBottom: "20px",
-              }}
-            >
-              Founded with the principle of zero compromise on genuine products, <strong>Pawan Traders</strong> is one of Prayagraj, Allahabad &amp; Kaushambi&apos;s leading energy solution providers. We hold direct authorized dealerships for premier brands including <strong>Amaron, Exide, Luminous, Microtek, Vion Lithium, and UTL Solar</strong>.
-            </p>
-            <p
-              style={{
-                color: "#475569",
-                fontSize: "1.1rem",
-                lineHeight: 1.8,
-                marginBottom: "32px",
-              }}
-            >
-              Our operations span two physical branches with on-site computerized battery testing benches, instant warranty exchange counters, and dedicated solar technical installation teams.
-            </p>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "24px",
-                textAlign: "left",
-              }}
-            >
-              <div
-                style={{
-                  background: "var(--gray-50)",
-                  borderLeft: "5px solid var(--primary)",
-                  padding: "24px",
-                  borderRadius: "var(--radius-md)",
-                }}
-              >
-                <h4 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--primary)", marginBottom: "8px" }}>
-                  <i className="fa-solid fa-bullseye"></i> Our Mission
-                </h4>
-                <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.7 }}>
-                  To provide 100% genuine energy storage and clean rooftop solar at fair, transparent wholesale prices with immediate local warranty and doorstep service.
-                </p>
-              </div>
-
-              <div
-                style={{
-                  background: "var(--gray-50)",
-                  borderLeft: "5px solid var(--solar)",
-                  padding: "24px",
-                  borderRadius: "var(--radius-md)",
-                }}
-              >
-                <h4 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--solar-hover)", marginBottom: "8px" }}>
-                  <i className="fa-solid fa-solar-panel"></i> Our Vision
-                </h4>
-                <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.7 }}>
-                  To power 5,000+ homes and enterprises across Prayagraj, Allahabad, and Kaushambi with high-efficiency PM Surya Ghar solar and next-gen lithium storage.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DEDICATED LARGE EXECUTIVE LEADERSHIP SECTION */}
+      {/* 2. DEDICATED LARGE EXECUTIVE LEADERSHIP SECTION (PLACED UP DIRECTLY BELOW HERO) */}
       <section className="section-padding" style={{ background: "var(--gray-50)", borderTop: "1px solid var(--gray-200)" }}>
         <div className="container" style={{ maxWidth: "1340px" }}>
           <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 50px" }}>
@@ -439,6 +358,87 @@ export default function AboutPage() {
                     <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
                   </a>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Company Story & Mission */}
+      <section className="section-padding" style={{ background: "#FFFFFF", borderTop: "1px solid var(--gray-200)" }}>
+        <div className="container">
+          <div
+            style={{
+              maxWidth: "860px",
+              margin: "0 auto 60px",
+              textAlign: "center",
+            }}
+          >
+            <span className="section-badge">
+              <i className="fa-solid fa-clock-rotate-left"></i> 15+ Years Track Record
+            </span>
+            <h2 className="section-title">
+              Committed to <span>Uninterrupted Power</span> for Every Home &amp; Vehicle
+            </h2>
+            <p
+              style={{
+                color: "#475569",
+                fontSize: "1.1rem",
+                lineHeight: 1.8,
+                marginBottom: "20px",
+              }}
+            >
+              Founded with the principle of zero compromise on genuine products, <strong>Pawan Traders</strong> is one of Prayagraj, Allahabad &amp; Kaushambi&apos;s leading energy solution providers. We hold direct authorized dealerships for premier brands including <strong>Amaron, Exide, Luminous, Microtek, Vion Lithium, and UTL Solar</strong>.
+            </p>
+            <p
+              style={{
+                color: "#475569",
+                fontSize: "1.1rem",
+                lineHeight: 1.8,
+                marginBottom: "32px",
+              }}
+            >
+              Our operations span two physical branches with on-site computerized battery testing benches, instant warranty exchange counters, and dedicated solar technical installation teams.
+            </p>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: "24px",
+                textAlign: "left",
+              }}
+            >
+              <div
+                style={{
+                  background: "var(--gray-50)",
+                  borderLeft: "5px solid var(--primary)",
+                  padding: "24px",
+                  borderRadius: "var(--radius-md)",
+                }}
+              >
+                <h4 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--primary)", marginBottom: "8px" }}>
+                  <i className="fa-solid fa-bullseye"></i> Our Mission
+                </h4>
+                <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.7 }}>
+                  To provide 100% genuine energy storage and clean rooftop solar at fair, transparent wholesale prices with immediate local warranty and doorstep service.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  background: "var(--gray-50)",
+                  borderLeft: "5px solid var(--solar)",
+                  padding: "24px",
+                  borderRadius: "var(--radius-md)",
+                }}
+              >
+                <h4 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--solar-hover)", marginBottom: "8px" }}>
+                  <i className="fa-solid fa-solar-panel"></i> Our Vision
+                </h4>
+                <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.7 }}>
+                  To power 5,000+ homes and enterprises across Prayagraj, Allahabad, and Kaushambi with high-efficiency PM Surya Ghar solar and next-gen lithium storage.
+                </p>
               </div>
             </div>
           </div>

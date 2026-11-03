@@ -205,8 +205,166 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== 5. MEET OUR FOUNDER & LEADERSHIP ==================== */}
+      {/* ==================== 5. VISIT OUR PRIME BRANCHES (MOVED UP FOR FAST CUSTOMER ACCESS) ==================== */}
       <section className="section-padding" style={{ background: "#FFFFFF", borderTop: "1px solid var(--gray-200)" }}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 50px" }}
+          >
+            <span className="section-badge">
+              <i className="fa-solid fa-store"></i> Direct Showrooms
+            </span>
+            <h2 className="section-title">
+              Visit Our <span>Prime Branches</span>
+            </h2>
+            <p className="section-subtitle" style={{ margin: "0 auto" }}>
+              Walk into either of our two convenient branches for free battery health checkups, same-day delivery, and instant warranty claims.
+            </p>
+          </motion.div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+              gap: "30px",
+            }}
+          >
+            {branches.map((b, idx) => (
+              <motion.div
+                key={b.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                style={{
+                  background: "#FFFFFF",
+                  borderRadius: "var(--radius-xl)",
+                  border: "1px solid var(--gray-200)",
+                  overflow: "hidden",
+                  boxShadow: "var(--shadow-md)",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #0F2D6B, #1D4ED8)",
+                    color: "#FFFFFF",
+                    padding: "24px",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-block",
+                      background: "rgba(255,255,255,0.15)",
+                      padding: "4px 12px",
+                      borderRadius: "999px",
+                      fontSize: "0.75rem",
+                      fontWeight: 800,
+                      color: "#FDE047",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {b.isMain ? "★ MAIN HEAD BRANCH" : "★ AUTHORIZED BRANCH"}
+                  </span>
+                  <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "#FFFFFF" }}>
+                    {b.name}
+                  </h3>
+                </div>
+
+                <div
+                  style={{
+                    padding: "24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "16px",
+                    flexGrow: 1,
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: "block",
+                        fontSize: "0.8rem",
+                        color: "#64748B",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Address
+                    </strong>
+                    <div style={{ fontSize: "0.92rem", color: "var(--gray-800)" }}>{b.address}</div>
+                    <small style={{ color: "#64748B" }}>Landmark: {b.landmark}</small>
+                  </div>
+
+                  <div>
+                    <strong
+                      style={{
+                        display: "block",
+                        fontSize: "0.8rem",
+                        color: "#64748B",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Calling Contact
+                    </strong>
+                    <a
+                      href={`tel:+91${b.phone}`}
+                      style={{ color: "var(--primary)", fontWeight: 700, fontSize: "1.05rem" }}
+                    >
+                      +91 {b.phone}
+                    </a>
+                  </div>
+
+                  <div>
+                    <strong
+                      style={{
+                        display: "block",
+                        fontSize: "0.8rem",
+                        color: "#64748B",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Working Hours
+                    </strong>
+                    <div style={{ fontSize: "0.9rem", color: "var(--gray-700)" }}>{b.hours}</div>
+                  </div>
+
+                  {/* Resilient interactive BranchMap */}
+                  <BranchMap branch={b} />
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      gap: "10px",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <a href={`tel:+91${b.phone}`} className="btn btn-call btn-sm">
+                      <i className="fa-solid fa-phone"></i> Call Branch
+                    </a>
+                    <a
+                      href={b.mapDirectionsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-sm"
+                    >
+                      <i className="fa-solid fa-diamond-turn-right"></i> Directions
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 6. MEET OUR FOUNDER & LEADERSHIP ==================== */}
+      <section className="section-padding" style={{ background: "var(--gray-50)", borderTop: "1px solid var(--gray-200)" }}>
         <div className="container" style={{ maxWidth: "1340px" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -422,7 +580,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== 6. PHOTO & INSTALLATION GALLERY HIGHLIGHT (REAL STORE PHOTOS) ==================== */}
+      {/* ==================== 7. PHOTO & INSTALLATION GALLERY HIGHLIGHT (REAL STORE PHOTOS) ==================== */}
       <section className="section-padding" style={{ background: "#F1F5F9" }}>
         <div className="container">
           <div
@@ -553,7 +711,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== 7. SOLAR FEATURETTE & CALCULATOR (RIGHT ABOVE BRANCHES) ==================== */}
+      {/* ==================== 8. SOLAR FEATURETTE & CALCULATOR ==================== */}
       <section className="section-padding" style={{ background: "#FFFFFF" }}>
         <div className="container">
           <motion.div
@@ -631,164 +789,6 @@ export default function HomePage() {
               <SolarCalculator />
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ==================== 8. VISIT OUR PRIME BRANCHES (AT THE VERY BOTTOM) ==================== */}
-      <section className="section-padding" style={{ background: "#F8FAFC", borderTop: "1px solid var(--gray-200)" }}>
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 50px" }}
-          >
-            <span className="section-badge">
-              <i className="fa-solid fa-store"></i> Direct Showrooms
-            </span>
-            <h2 className="section-title">
-              Visit Our <span>Prime Branches</span>
-            </h2>
-            <p className="section-subtitle" style={{ margin: "0 auto" }}>
-              Walk into either of our two convenient branches for free battery health checkups, same-day delivery, and instant warranty claims.
-            </p>
-          </motion.div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-              gap: "30px",
-            }}
-          >
-            {branches.map((b, idx) => (
-              <motion.div
-                key={b.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                style={{
-                  background: "#FFFFFF",
-                  borderRadius: "var(--radius-xl)",
-                  border: "1px solid var(--gray-200)",
-                  overflow: "hidden",
-                  boxShadow: "var(--shadow-md)",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div
-                  style={{
-                    background: "linear-gradient(135deg, #0F2D6B, #1D4ED8)",
-                    color: "#FFFFFF",
-                    padding: "24px",
-                  }}
-                >
-                  <span
-                    style={{
-                      display: "inline-block",
-                      background: "rgba(255,255,255,0.15)",
-                      padding: "4px 12px",
-                      borderRadius: "999px",
-                      fontSize: "0.75rem",
-                      fontWeight: 800,
-                      color: "#FDE047",
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {b.isMain ? "★ MAIN HEAD BRANCH" : "★ AUTHORIZED BRANCH"}
-                  </span>
-                  <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "#FFFFFF" }}>
-                    {b.name}
-                  </h3>
-                </div>
-
-                <div
-                  style={{
-                    padding: "24px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "16px",
-                    flexGrow: 1,
-                  }}
-                >
-                  <div>
-                    <strong
-                      style={{
-                        display: "block",
-                        fontSize: "0.8rem",
-                        color: "#64748B",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      Address
-                    </strong>
-                    <div style={{ fontSize: "0.92rem", color: "var(--gray-800)" }}>{b.address}</div>
-                    <small style={{ color: "#64748B" }}>Landmark: {b.landmark}</small>
-                  </div>
-
-                  <div>
-                    <strong
-                      style={{
-                        display: "block",
-                        fontSize: "0.8rem",
-                        color: "#64748B",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      Calling Contact
-                    </strong>
-                    <a
-                      href={`tel:+91${b.phone}`}
-                      style={{ color: "var(--primary)", fontWeight: 700, fontSize: "1.05rem" }}
-                    >
-                      +91 {b.phone}
-                    </a>
-                  </div>
-
-                  <div>
-                    <strong
-                      style={{
-                        display: "block",
-                        fontSize: "0.8rem",
-                        color: "#64748B",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      Working Hours
-                    </strong>
-                    <div style={{ fontSize: "0.9rem", color: "var(--gray-700)" }}>{b.hours}</div>
-                  </div>
-
-                  {/* Resilient interactive BranchMap */}
-                  <BranchMap branch={b} />
-
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "10px",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <a href={`tel:+91${b.phone}`} className="btn btn-call btn-sm">
-                      <i className="fa-solid fa-phone"></i> Call Branch
-                    </a>
-                    <a
-                      href={b.mapDirectionsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline btn-sm"
-                    >
-                      <i className="fa-solid fa-diamond-turn-right"></i> Directions
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 

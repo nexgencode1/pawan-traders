@@ -41,7 +41,7 @@ export const INITIAL_DATA = {
       whatsapp: "8299362360",
       email: "pawantraderspuramufti@gmail.com",
       hours: "8:00 AM - 9:00 PM (All 7 Days)",
-      mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14407.472149504626!2d81.7051282!3d25.4760493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acadbe904cf75%3A0xe6bf446b528b8cf9!2sPura%20Mufti%2C%20Uttar%20Pradesh%20212208!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      mapEmbedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=81.685%2C25.456%2C81.725%2C25.496&layer=mapnik&marker=25.476049%2C81.705128",
       mapDirectionsUrl: "https://maps.google.com/?q=Puramufti+Prayagraj+Uttar+Pradesh+212208"
     },
     {
@@ -59,7 +59,7 @@ export const INITIAL_DATA = {
       whatsapp: "8299362360",
       email: "pawantraderspuramufti@gmail.com",
       hours: "8:30 AM - 8:30 PM (All 7 Days)",
-      mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14418.52837267104!2d81.569421!3d25.431289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a341b1bf4a0bd%3A0x6b4fb6c18d4512e0!2sCharwa%2C%20Uttar%20Pradesh%20212203!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin",
+      mapEmbedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=81.549%2C25.411%2C81.589%2C25.451&layer=mapnik&marker=25.431289%2C81.569421",
       mapDirectionsUrl: "https://maps.google.com/?q=Charwa+Town+Petrol+Pump+Kaushambi+Uttar+Pradesh+212203"
     }
   ],
