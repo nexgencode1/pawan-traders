@@ -207,13 +207,13 @@ export default function HomePage() {
 
       {/* ==================== 5. MEET OUR FOUNDER & LEADERSHIP ==================== */}
       <section className="section-padding" style={{ background: "#FFFFFF", borderTop: "1px solid var(--gray-200)" }}>
-        <div className="container">
+        <div className="container" style={{ maxWidth: "1340px" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 46px" }}
+            style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 46px" }}
           >
             <span className="section-badge">
               <i className="fa-solid fa-users"></i> Executive Leadership
@@ -226,7 +226,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div style={{ maxWidth: "1080px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "36px" }}>
+          <div style={{ width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: "45px" }}>
             {/* Director & Founder */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -234,26 +234,26 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               style={{
+                width: "100%",
                 background: "#FFFFFF",
                 borderRadius: "24px",
-                border: "2px solid rgba(29, 78, 216, 0.15)",
+                border: "1px solid rgba(29, 78, 216, 0.2)",
                 overflow: "hidden",
-                boxShadow: "0 18px 45px rgba(0, 0, 0, 0.06)",
+                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.08)",
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
-                alignItems: "center",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
+                alignItems: "stretch",
               }}
             >
-              {/* Photo Column */}
+              {/* Full Width Photo Column */}
               <div
                 style={{
-                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
-                  minHeight: "clamp(340px, 44vw, 440px)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "24px",
+                  width: "100%",
                   height: "100%",
+                  minHeight: "clamp(400px, 50vw, 540px)",
+                  position: "relative",
+                  overflow: "hidden",
+                  background: "#0A1128",
                 }}
               >
                 <img
@@ -261,16 +261,16 @@ export default function HomePage() {
                   alt="Mr. Pawan Kumar Kushwaha"
                   style={{
                     width: "100%",
-                    maxHeight: "420px",
-                    objectFit: "contain",
-                    borderRadius: "14px",
-                    filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.4))",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 18%",
+                    display: "block",
                   }}
                 />
               </div>
 
               {/* Information Column */}
-              <div style={{ padding: "clamp(24px, 4vw, 44px)" }}>
+              <div style={{ padding: "clamp(28px, 4.5vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <span
                   style={{
                     display: "inline-block",
@@ -282,29 +282,30 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    marginBottom: "12px",
+                    marginBottom: "14px",
+                    width: "fit-content",
                   }}
                 >
                   ★ Director &amp; Founder
                 </span>
 
-                <h3 style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                <h3 style={{ fontSize: "clamp(1.75rem, 2.6vw, 2.3rem)", fontWeight: 900, color: "#0F172A", marginBottom: "8px" }}>
                   Mr. Pawan Kumar Kushwaha
                 </h3>
 
-                <div style={{ color: "#2563EB", fontSize: "1rem", fontWeight: 700, marginBottom: "18px" }}>
+                <div style={{ color: "#2563EB", fontSize: "1.05rem", fontWeight: 700, marginBottom: "20px" }}>
                   15+ Years in Power Storage &amp; Solar Distribution
                 </div>
 
                 <blockquote
                   style={{
-                    fontSize: "0.98rem",
+                    fontSize: "1.02rem",
                     color: "#475569",
                     lineHeight: 1.8,
                     fontStyle: "italic",
-                    marginBottom: "22px",
+                    marginBottom: "24px",
                     background: "#F8FAFC",
-                    padding: "16px 20px",
+                    padding: "18px 22px",
                     borderRadius: "var(--radius-md)",
                     borderLeft: "4px solid var(--primary)",
                   }}
@@ -315,7 +316,7 @@ export default function HomePage() {
                 <a
                   href={`tel:+91${settings.callingNumber}`}
                   className="btn btn-primary"
-                  style={{ padding: "12px 26px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                  style={{ padding: "13px 28px", fontSize: "1rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px", width: "fit-content" }}
                 >
                   <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
                 </a>
@@ -329,26 +330,26 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
               style={{
+                width: "100%",
                 background: "#FFFFFF",
                 borderRadius: "24px",
-                border: "2px solid rgba(245, 158, 11, 0.2)",
+                border: "1px solid rgba(245, 158, 11, 0.25)",
                 overflow: "hidden",
-                boxShadow: "0 18px 45px rgba(0, 0, 0, 0.06)",
+                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.08)",
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
-                alignItems: "center",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
+                alignItems: "stretch",
               }}
             >
-              {/* Photo Column */}
+              {/* Full Width Photo Column */}
               <div
                 style={{
-                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
-                  minHeight: "clamp(340px, 44vw, 440px)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "24px",
+                  width: "100%",
                   height: "100%",
+                  minHeight: "clamp(400px, 50vw, 540px)",
+                  position: "relative",
+                  overflow: "hidden",
+                  background: "#0A1128",
                 }}
               >
                 <img
@@ -356,16 +357,16 @@ export default function HomePage() {
                   alt="Mr. Kartik Kushwaha"
                   style={{
                     width: "100%",
-                    maxHeight: "420px",
-                    objectFit: "contain",
-                    borderRadius: "14px",
-                    filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.4))",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 22%",
+                    display: "block",
                   }}
                 />
               </div>
 
               {/* Information Column */}
-              <div style={{ padding: "clamp(24px, 4vw, 44px)" }}>
+              <div style={{ padding: "clamp(28px, 4.5vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <span
                   style={{
                     display: "inline-block",
@@ -377,29 +378,30 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    marginBottom: "12px",
+                    marginBottom: "14px",
+                    width: "fit-content",
                   }}
                 >
                   ★ General Manager &amp; Technical Operations
                 </span>
 
-                <h3 style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                <h3 style={{ fontSize: "clamp(1.75rem, 2.6vw, 2.3rem)", fontWeight: 900, color: "#0F172A", marginBottom: "8px" }}>
                   Mr. Kartik Kushwaha
                 </h3>
 
-                <div style={{ color: "#D97706", fontSize: "1rem", fontWeight: 700, marginBottom: "18px" }}>
+                <div style={{ color: "#D97706", fontSize: "1.05rem", fontWeight: 700, marginBottom: "20px" }}>
                   Rooftop Solar EPC &amp; Store Dispatch Specialist
                 </div>
 
                 <blockquote
                   style={{
-                    fontSize: "0.98rem",
+                    fontSize: "1.02rem",
                     color: "#475569",
                     lineHeight: 1.8,
                     fontStyle: "italic",
-                    marginBottom: "22px",
+                    marginBottom: "24px",
                     background: "#F8FAFC",
-                    padding: "16px 20px",
+                    padding: "18px 22px",
                     borderRadius: "var(--radius-md)",
                     borderLeft: "4px solid var(--solar)",
                   }}
@@ -410,7 +412,7 @@ export default function HomePage() {
                 <a
                   href={`tel:+91${settings.managerContact || "9305839018"}`}
                   className="btn btn-solar"
-                  style={{ padding: "12px 26px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                  style={{ padding: "13px 28px", fontSize: "1rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px", width: "fit-content" }}
                 >
                   <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
                 </a>
