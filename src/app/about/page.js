@@ -157,10 +157,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. DEDICATED LARGE EXECUTIVE LEADERSHIP SECTION (PLACED UP DIRECTLY BELOW HERO) */}
+      {/* 2. DEDICATED EXECUTIVE LEADERSHIP SECTION */}
       <section className="section-padding" style={{ background: "var(--gray-50)", borderTop: "1px solid var(--gray-200)" }}>
-        <div className="container" style={{ maxWidth: "1340px" }}>
-          <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 50px" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 40px" }}>
             <span className="section-badge">
               <i className="fa-solid fa-users"></i> Executive Leadership
             </span>
@@ -172,82 +172,52 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div style={{ width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: "45px" }}>
+          <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "30px", alignItems: "center" }}>
             {/* FOUNDER & DIRECTOR SPOTLIGHT ROW */}
-            <div
-              style={{
-                width: "100%",
-                background: "#FFFFFF",
-                borderRadius: "24px",
-                border: "1px solid rgba(29, 78, 216, 0.2)",
-                overflow: "hidden",
-                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.08)",
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
-                alignItems: "stretch",
-              }}
-            >
-              {/* Full Width Photo Column */}
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  minHeight: "clamp(420px, 52vw, 560px)",
-                  position: "relative",
-                  overflow: "hidden",
-                  background: "#0A1128",
-                }}
-              >
+            <div className="leadership-spotlight-card">
+              <div className="leadership-spotlight-image-wrap">
                 <img
                   src="/director.jpeg"
                   alt="Mr. Pawan Kumar Kushwaha"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center 18%",
-                    display: "block",
-                  }}
                 />
               </div>
 
-              {/* Information Column */}
-              <div style={{ padding: "clamp(28px, 4.5vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <div className="leadership-spotlight-body">
                 <span
                   style={{
                     display: "inline-block",
-                    background: "rgba(29, 78, 216, 0.12)",
+                    background: "rgba(29, 78, 216, 0.1)",
                     color: "var(--primary)",
-                    padding: "6px 16px",
+                    padding: "5px 14px",
                     borderRadius: "999px",
-                    fontSize: "0.85rem",
+                    fontSize: "0.8rem",
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    marginBottom: "14px",
+                    marginBottom: "10px",
                     width: "fit-content",
                   }}
                 >
                   ★ Director &amp; Founder
                 </span>
 
-                <h3 style={{ fontSize: "clamp(1.75rem, 2.6vw, 2.3rem)", fontWeight: 900, color: "#0F172A", marginBottom: "8px" }}>
+                <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "#0F172A", marginBottom: "4px" }}>
                   Mr. Pawan Kumar Kushwaha
                 </h3>
 
-                <div style={{ color: "#2563EB", fontSize: "1.05rem", fontWeight: 700, marginBottom: "20px" }}>
+                <div style={{ color: "#2563EB", fontSize: "0.95rem", fontWeight: 700, marginBottom: "14px" }}>
                   15+ Years in Power Storage &amp; Solar Distribution
                 </div>
 
                 <blockquote
                   style={{
-                    fontSize: "1.05rem",
+                    fontSize: "0.9rem",
                     color: "#475569",
-                    lineHeight: 1.8,
+                    lineHeight: 1.6,
                     fontStyle: "italic",
-                    marginBottom: "26px",
+                    marginBottom: "18px",
                     background: "#F8FAFC",
-                    padding: "20px 24px",
+                    padding: "12px 18px",
                     borderRadius: "var(--radius-md)",
                     borderLeft: "4px solid var(--primary)",
                   }}
@@ -258,8 +228,8 @@ export default function AboutPage() {
                 <div>
                   <a
                     href={`tel:+91${settings.callingNumber}`}
-                    className="btn btn-primary"
-                    style={{ padding: "13px 28px", fontSize: "1rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                    className="btn btn-primary btn-sm"
+                    style={{ padding: "10px 22px", fontSize: "0.9rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
                   >
                     <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
                   </a>
@@ -268,80 +238,50 @@ export default function AboutPage() {
             </div>
 
             {/* GENERAL MANAGER SPOTLIGHT ROW */}
-            <div
-              style={{
-                width: "100%",
-                background: "#FFFFFF",
-                borderRadius: "24px",
-                border: "1px solid rgba(245, 158, 11, 0.25)",
-                overflow: "hidden",
-                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.08)",
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
-                alignItems: "stretch",
-              }}
-            >
-              {/* Full Width Photo Column */}
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  minHeight: "clamp(420px, 52vw, 560px)",
-                  position: "relative",
-                  overflow: "hidden",
-                  background: "#0A1128",
-                }}
-              >
+            <div className="leadership-spotlight-card" style={{ border: "1px solid rgba(245, 158, 11, 0.25)" }}>
+              <div className="leadership-spotlight-image-wrap">
                 <img
                   src="/manager.jpeg"
                   alt="Mr. Kartik Kushwaha"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center 22%",
-                    display: "block",
-                  }}
                 />
               </div>
 
-              {/* Information Column */}
-              <div style={{ padding: "clamp(28px, 4.5vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <div className="leadership-spotlight-body">
                 <span
                   style={{
                     display: "inline-block",
-                    background: "rgba(245, 158, 11, 0.15)",
+                    background: "rgba(245, 158, 11, 0.12)",
                     color: "#D97706",
-                    padding: "6px 16px",
+                    padding: "5px 14px",
                     borderRadius: "999px",
-                    fontSize: "0.85rem",
+                    fontSize: "0.8rem",
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    marginBottom: "14px",
+                    marginBottom: "10px",
                     width: "fit-content",
                   }}
                 >
                   ★ General Manager &amp; Technical Operations
                 </span>
 
-                <h3 style={{ fontSize: "clamp(1.75rem, 2.6vw, 2.3rem)", fontWeight: 900, color: "#0F172A", marginBottom: "8px" }}>
+                <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "#0F172A", marginBottom: "4px" }}>
                   Mr. Kartik Kushwaha
                 </h3>
 
-                <div style={{ color: "#D97706", fontSize: "1.05rem", fontWeight: 700, marginBottom: "20px" }}>
+                <div style={{ color: "#D97706", fontSize: "0.95rem", fontWeight: 700, marginBottom: "14px" }}>
                   Rooftop Solar EPC &amp; Store Dispatch Specialist
                 </div>
 
                 <blockquote
                   style={{
-                    fontSize: "1.05rem",
+                    fontSize: "0.9rem",
                     color: "#475569",
-                    lineHeight: 1.8,
+                    lineHeight: 1.6,
                     fontStyle: "italic",
-                    marginBottom: "26px",
+                    marginBottom: "18px",
                     background: "#F8FAFC",
-                    padding: "20px 24px",
+                    padding: "12px 18px",
                     borderRadius: "var(--radius-md)",
                     borderLeft: "4px solid var(--solar)",
                   }}
@@ -352,8 +292,8 @@ export default function AboutPage() {
                 <div>
                   <a
                     href={`tel:+91${settings.managerContact || "9305839018"}`}
-                    className="btn btn-solar"
-                    style={{ padding: "13px 28px", fontSize: "1rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                    className="btn btn-solar btn-sm"
+                    style={{ padding: "10px 22px", fontSize: "0.9rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
                   >
                     <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
                   </a>
