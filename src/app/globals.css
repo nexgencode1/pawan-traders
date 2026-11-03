@@ -854,30 +854,29 @@ h1, h2, h3, h4, h5, h6 {
 /* ================= EXECUTIVE LEADERSHIP SPOTLIGHT CARDS ================= */
 .leadership-spotlight-card {
   width: 100%;
-  max-width: 940px;
+  max-width: 1120px;
   margin: 0 auto;
   background: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 24px;
   border: 1px solid rgba(29, 78, 216, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
   overflow: hidden;
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  min-height: 330px;
-  max-height: 380px;
+  min-height: 440px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .leadership-spotlight-card:hover {
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
-  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.11);
+  transform: translateY(-4px);
 }
 
 .leadership-spotlight-image-wrap {
-  width: 290px;
-  min-width: 290px;
-  max-width: 290px;
+  width: 380px;
+  min-width: 380px;
+  max-width: 380px;
   height: 100%;
   position: relative;
   overflow: hidden;
@@ -891,36 +890,35 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 15%;
   display: block;
 }
 
 .leadership-spotlight-body {
   flex: 1;
-  padding: 28px 32px;
+  padding: clamp(32px, 4vw, 50px);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .leadership-spotlight-card {
     flex-direction: column;
-    max-height: none;
-    min-height: auto;
     max-width: 100%;
-    border-radius: 16px;
+    border-radius: 18px;
+    min-height: auto;
   }
 
   .leadership-spotlight-image-wrap {
     width: 100%;
     min-width: 100%;
     max-width: 100%;
-    height: 280px;
+    height: 360px;
   }
 
   .leadership-spotlight-body {
-    padding: 22px 20px;
+    padding: 28px 24px;
   }
 }
 

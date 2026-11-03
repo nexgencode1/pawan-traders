@@ -384,7 +384,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "30px", alignItems: "center" }}>
+          <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "36px", alignItems: "center" }}>
             {/* Director & Founder */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -406,36 +406,36 @@ export default function HomePage() {
                     display: "inline-block",
                     background: "rgba(29, 78, 216, 0.1)",
                     color: "var(--primary)",
-                    padding: "5px 14px",
+                    padding: "6px 16px",
                     borderRadius: "999px",
-                    fontSize: "0.8rem",
+                    fontSize: "0.85rem",
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    marginBottom: "10px",
+                    marginBottom: "12px",
                     width: "fit-content",
                   }}
                 >
                   ★ Director &amp; Founder
                 </span>
 
-                <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "#0F172A", marginBottom: "4px" }}>
+                <h3 style={{ fontSize: "clamp(1.6rem, 2.2vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
                   Mr. Pawan Kumar Kushwaha
                 </h3>
 
-                <div style={{ color: "#2563EB", fontSize: "0.95rem", fontWeight: 700, marginBottom: "14px" }}>
+                <div style={{ color: "#2563EB", fontSize: "1.05rem", fontWeight: 700, marginBottom: "18px" }}>
                   15+ Years in Power Storage &amp; Solar Distribution
                 </div>
 
                 <blockquote
                   style={{
-                    fontSize: "0.9rem",
+                    fontSize: "0.98rem",
                     color: "#475569",
-                    lineHeight: 1.6,
+                    lineHeight: 1.75,
                     fontStyle: "italic",
-                    marginBottom: "18px",
+                    marginBottom: "24px",
                     background: "#F8FAFC",
-                    padding: "12px 18px",
+                    padding: "16px 22px",
                     borderRadius: "var(--radius-md)",
                     borderLeft: "4px solid var(--primary)",
                   }}
@@ -446,8 +446,8 @@ export default function HomePage() {
                 <div>
                   <a
                     href={`tel:+91${settings.callingNumber}`}
-                    className="btn btn-primary btn-sm"
-                    style={{ padding: "10px 22px", fontSize: "0.9rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                    className="btn btn-primary"
+                    style={{ padding: "12px 28px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
                   >
                     <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
                   </a>
@@ -477,36 +477,36 @@ export default function HomePage() {
                     display: "inline-block",
                     background: "rgba(245, 158, 11, 0.12)",
                     color: "#D97706",
-                    padding: "5px 14px",
+                    padding: "6px 16px",
                     borderRadius: "999px",
-                    fontSize: "0.8rem",
+                    fontSize: "0.85rem",
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    marginBottom: "10px",
+                    marginBottom: "12px",
                     width: "fit-content",
                   }}
                 >
                   ★ General Manager &amp; Technical Operations
                 </span>
 
-                <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "#0F172A", marginBottom: "4px" }}>
+                <h3 style={{ fontSize: "clamp(1.6rem, 2.2vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
                   Mr. Kartik Kushwaha
                 </h3>
 
-                <div style={{ color: "#D97706", fontSize: "0.95rem", fontWeight: 700, marginBottom: "14px" }}>
+                <div style={{ color: "#D97706", fontSize: "1.05rem", fontWeight: 700, marginBottom: "18px" }}>
                   Rooftop Solar EPC &amp; Store Dispatch Specialist
                 </div>
 
                 <blockquote
                   style={{
-                    fontSize: "0.9rem",
+                    fontSize: "0.98rem",
                     color: "#475569",
-                    lineHeight: 1.6,
+                    lineHeight: 1.75,
                     fontStyle: "italic",
-                    marginBottom: "18px",
+                    marginBottom: "24px",
                     background: "#F8FAFC",
-                    padding: "12px 18px",
+                    padding: "16px 22px",
                     borderRadius: "var(--radius-md)",
                     borderLeft: "4px solid var(--solar)",
                   }}
@@ -517,8 +517,8 @@ export default function HomePage() {
                 <div>
                   <a
                     href={`tel:+91${settings.managerContact || "9305839018"}`}
-                    className="btn btn-solar btn-sm"
-                    style={{ padding: "10px 22px", fontSize: "0.9rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                    className="btn btn-solar"
+                    style={{ padding: "12px 28px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
                   >
                     <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
                   </a>
