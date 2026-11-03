@@ -157,10 +157,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. DEDICATED EXECUTIVE LEADERSHIP SECTION */}
-      <section className="section-padding" style={{ background: "var(--gray-50)", borderTop: "1px solid var(--gray-200)" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 40px" }}>
+      {/* 2. DEDICATED EXECUTIVE LEADERSHIP SECTION (1 CARD PER 100VH, 60VW WIDTH) */}
+      <section style={{ background: "var(--gray-50)", borderTop: "1px solid var(--gray-200)" }}>
+        {/* Section Title Header */}
+        <div className="container" style={{ paddingTop: "70px", paddingBottom: "10px", textAlign: "center" }}>
+          <div style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto" }}>
             <span className="section-badge">
               <i className="fa-solid fa-users"></i> Executive Leadership
             </span>
@@ -171,133 +172,139 @@ export default function AboutPage() {
               Providing personal guidance, authentic factory warranties, and honest battery and solar advisory since inception.
             </p>
           </div>
+        </div>
 
-          <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "36px", alignItems: "center" }}>
-            {/* FOUNDER & DIRECTOR SPOTLIGHT ROW */}
-            <div className="leadership-spotlight-card">
-              <div className="leadership-spotlight-image-wrap">
+        {/* 100VH SPOTLIGHT 1: DIRECTOR & FOUNDER (60VW CARD) */}
+        <div className="leadership-spotlight-section-100vh">
+          <div className="leadership-card-60vw">
+            <div className="leadership-photo-pane">
+              <div className="leadership-photo-frame">
                 <img
                   src="/director.jpeg"
                   alt="Mr. Pawan Kumar Kushwaha"
                 />
               </div>
-
-              <div className="leadership-spotlight-body">
-                <span
-                  style={{
-                    display: "inline-block",
-                    background: "rgba(29, 78, 216, 0.1)",
-                    color: "var(--primary)",
-                    padding: "6px 16px",
-                    borderRadius: "999px",
-                    fontSize: "0.85rem",
-                    fontWeight: 800,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    marginBottom: "12px",
-                    width: "fit-content",
-                  }}
-                >
-                  ★ Director &amp; Founder
-                </span>
-
-                <h3 style={{ fontSize: "clamp(1.6rem, 2.2vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
-                  Mr. Pawan Kumar Kushwaha
-                </h3>
-
-                <div style={{ color: "#2563EB", fontSize: "1.05rem", fontWeight: 700, marginBottom: "18px" }}>
-                  15+ Years in Power Storage &amp; Solar Distribution
-                </div>
-
-                <blockquote
-                  style={{
-                    fontSize: "0.98rem",
-                    color: "#475569",
-                    lineHeight: 1.75,
-                    fontStyle: "italic",
-                    marginBottom: "24px",
-                    background: "#F8FAFC",
-                    padding: "16px 22px",
-                    borderRadius: "var(--radius-md)",
-                    borderLeft: "4px solid var(--primary)",
-                  }}
-                >
-                  &ldquo;At Pawan Traders, every customer receives certified original products with manufacturer warranty registration. We stand behind every battery and solar panel we sell, ensuring complete trust.&rdquo;
-                </blockquote>
-
-                <div>
-                  <a
-                    href={`tel:+91${settings.callingNumber}`}
-                    className="btn btn-primary"
-                    style={{ padding: "12px 28px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
-                  >
-                    <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
-                  </a>
-                </div>
-              </div>
             </div>
 
-            {/* GENERAL MANAGER SPOTLIGHT ROW */}
-            <div className="leadership-spotlight-card" style={{ border: "1px solid rgba(245, 158, 11, 0.25)" }}>
-              <div className="leadership-spotlight-image-wrap">
+            <div className="leadership-info-pane">
+              <span
+                style={{
+                  display: "inline-block",
+                  background: "rgba(29, 78, 216, 0.1)",
+                  color: "var(--primary)",
+                  padding: "6px 16px",
+                  borderRadius: "999px",
+                  fontSize: "0.85rem",
+                  fontWeight: 800,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  marginBottom: "12px",
+                  width: "fit-content",
+                }}
+              >
+                ★ Director &amp; Founder
+              </span>
+
+              <h3 style={{ fontSize: "clamp(1.5rem, 2.2vw, 2rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                Mr. Pawan Kumar Kushwaha
+              </h3>
+
+              <div style={{ color: "#2563EB", fontSize: "1.02rem", fontWeight: 700, marginBottom: "18px" }}>
+                15+ Years in Power Storage &amp; Solar Distribution
+              </div>
+
+              <blockquote
+                style={{
+                  fontSize: "0.95rem",
+                  color: "#475569",
+                  lineHeight: 1.75,
+                  fontStyle: "italic",
+                  marginBottom: "24px",
+                  background: "#F8FAFC",
+                  padding: "16px 22px",
+                  borderRadius: "var(--radius-md)",
+                  borderLeft: "4px solid var(--primary)",
+                }}
+              >
+                &ldquo;At Pawan Traders, every customer receives certified original products with manufacturer warranty registration. We stand behind every battery and solar panel we sell, ensuring complete trust.&rdquo;
+              </blockquote>
+
+              <div>
+                <a
+                  href={`tel:+91${settings.callingNumber}`}
+                  className="btn btn-primary"
+                  style={{ padding: "12px 28px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                >
+                  <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 100VH SPOTLIGHT 2: GENERAL MANAGER (60VW CARD) */}
+        <div className="leadership-spotlight-section-100vh" style={{ paddingTop: "0" }}>
+          <div className="leadership-card-60vw" style={{ border: "1px solid rgba(245, 158, 11, 0.25)" }}>
+            <div className="leadership-photo-pane" style={{ background: "linear-gradient(145deg, #1C1917 0%, #292524 60%, #1E293B 100%)" }}>
+              <div className="leadership-photo-frame" style={{ borderColor: "rgba(245, 158, 11, 0.25)" }}>
                 <img
                   src="/manager.jpeg"
                   alt="Mr. Kartik Kushwaha"
                 />
               </div>
+            </div>
 
-              <div className="leadership-spotlight-body">
-                <span
-                  style={{
-                    display: "inline-block",
-                    background: "rgba(245, 158, 11, 0.12)",
-                    color: "#D97706",
-                    padding: "6px 16px",
-                    borderRadius: "999px",
-                    fontSize: "0.85rem",
-                    fontWeight: 800,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    marginBottom: "12px",
-                    width: "fit-content",
-                  }}
+            <div className="leadership-info-pane">
+              <span
+                style={{
+                  display: "inline-block",
+                  background: "rgba(245, 158, 11, 0.12)",
+                  color: "#D97706",
+                  padding: "6px 16px",
+                  borderRadius: "999px",
+                  fontSize: "0.85rem",
+                  fontWeight: 800,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  marginBottom: "12px",
+                  width: "fit-content",
+                }}
+              >
+                ★ General Manager &amp; Technical Operations
+              </span>
+
+              <h3 style={{ fontSize: "clamp(1.5rem, 2.2vw, 2rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                Mr. Kartik Kushwaha
+              </h3>
+
+              <div style={{ color: "#D97706", fontSize: "1.02rem", fontWeight: 700, marginBottom: "18px" }}>
+                Rooftop Solar EPC &amp; Store Dispatch Specialist
+              </div>
+
+              <blockquote
+                style={{
+                  fontSize: "0.95rem",
+                  color: "#475569",
+                  lineHeight: 1.75,
+                  fontStyle: "italic",
+                  marginBottom: "24px",
+                  background: "#F8FAFC",
+                  padding: "16px 22px",
+                  borderRadius: "var(--radius-md)",
+                  borderLeft: "4px solid var(--solar)",
+                }}
+              >
+                &ldquo;Overseeing customer technical enquiries, fast same-day doorstep dispatch, and rooftop solar engineering teams across both our Puramufti and Charwa branches.&rdquo;
+              </blockquote>
+
+              <div>
+                <a
+                  href={`tel:+91${settings.managerContact || "9305839018"}`}
+                  className="btn btn-solar"
+                  style={{ padding: "12px 28px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
                 >
-                  ★ General Manager &amp; Technical Operations
-                </span>
-
-                <h3 style={{ fontSize: "clamp(1.6rem, 2.2vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
-                  Mr. Kartik Kushwaha
-                </h3>
-
-                <div style={{ color: "#D97706", fontSize: "1.05rem", fontWeight: 700, marginBottom: "18px" }}>
-                  Rooftop Solar EPC &amp; Store Dispatch Specialist
-                </div>
-
-                <blockquote
-                  style={{
-                    fontSize: "0.98rem",
-                    color: "#475569",
-                    lineHeight: 1.75,
-                    fontStyle: "italic",
-                    marginBottom: "24px",
-                    background: "#F8FAFC",
-                    padding: "16px 22px",
-                    borderRadius: "var(--radius-md)",
-                    borderLeft: "4px solid var(--solar)",
-                  }}
-                >
-                  &ldquo;Overseeing customer technical enquiries, fast same-day doorstep dispatch, and rooftop solar engineering teams across both our Puramufti and Charwa branches.&rdquo;
-                </blockquote>
-
-                <div>
-                  <a
-                    href={`tel:+91${settings.managerContact || "9305839018"}`}
-                    className="btn btn-solar"
-                    style={{ padding: "12px 28px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
-                  >
-                    <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
-                  </a>
-                </div>
+                  <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
+                </a>
               </div>
             </div>
           </div>
