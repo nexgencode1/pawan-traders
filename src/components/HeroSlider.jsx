@@ -114,16 +114,34 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
             transition: "opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
             zIndex: 1,
             pointerEvents: idx === currentIndex ? "auto" : "none",
+            overflow: "hidden",
+            backgroundColor: "#050B18",
           }}
         >
+          {/* Ambient soft backdrop to fill empty space with matching tones */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${slide.imageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              filter: "blur(30px) brightness(0.45)",
+              transform: "scale(1.15)",
+            }}
+          />
+
+          {/* Sharp Foreground image with 100% aspect ratio preserved (Zero Cropping) */}
           <img
             src={slide.imageUrl}
             alt=""
             aria-hidden="true"
             style={{
+              position: "relative",
+              zIndex: 2,
               width: "100%",
               height: "100%",
-              objectFit: "cover",
+              objectFit: "contain",
               objectPosition: "center",
               transform: "none",
             }}
@@ -131,12 +149,14 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
               e.currentTarget.style.opacity = "0";
             }}
           />
+
           {/* Subtle light translucent overlay for crisp image clarity with high button contrast */}
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(180deg, rgba(5, 11, 24, 0.15) 0%, rgba(5, 11, 24, 0.45) 100%)",
+              zIndex: 3,
+              background: "linear-gradient(180deg, rgba(5, 11, 24, 0.1) 0%, rgba(5, 11, 24, 0.42) 100%)",
             }}
           />
         </div>

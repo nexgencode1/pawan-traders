@@ -799,6 +799,225 @@ export const INITIAL_DATA = {
       status: "Contacted",
       notes: "Site survey scheduled for Saturday 11 AM."
     }
+  ],
+
+  gallery: [
+    {
+      _id: "gal-01",
+      title: "Pawan Traders Puramufti Showroom Front",
+      caption: "Full inventory of Amaron, Exide, and Luminous batteries ready for dispatch on GT Road Puramufti.",
+      imageUrl: "/assets/images/gallery/gallery-01.jpg",
+      category: "branches",
+      featured: true,
+      order: 1
+    },
+    {
+      _id: "gal-02",
+      title: "Rooftop Solar Panel Structure Installation",
+      caption: "High efficiency Mono-PERC rooftop project with PM Surya Ghar subsidy approval in Prayagraj region.",
+      imageUrl: "/assets/images/gallery/gallery-02.jpg",
+      category: "solar",
+      featured: true,
+      order: 2
+    },
+    {
+      _id: "gal-03",
+      title: "Inverter & Tall Tubular Battery Stock",
+      caption: "Heavy duty inverter and tubular battery solutions tested and dispatched same-day.",
+      imageUrl: "/assets/images/gallery/gallery-03.jpg",
+      category: "batteries",
+      featured: true,
+      order: 3
+    },
+    {
+      _id: "gal-04",
+      title: "PM Surya Ghar On-Grid Solar Plant",
+      caption: "Certified rooftop solar EPC installation with net-metering and direct bank subsidy.",
+      imageUrl: "/assets/images/gallery/gallery-04.jpg",
+      category: "solar",
+      featured: true,
+      order: 4
+    },
+    {
+      _id: "gal-05",
+      title: "Amaron & Exide Battery Display",
+      caption: "100% genuine sealed batteries with official manufacturer barcode warranty registration.",
+      imageUrl: "/assets/images/gallery/gallery-05.jpg",
+      category: "batteries",
+      featured: true,
+      order: 5
+    },
+    {
+      _id: "gal-06",
+      title: "Lithium Inverter High-Capacity Bank",
+      caption: "Next-gen wall mounted smart LiFePO4 energy storage system for silent backup.",
+      imageUrl: "/assets/images/gallery/gallery-06.jpg",
+      category: "batteries",
+      featured: true,
+      order: 6
+    },
+    {
+      _id: "gal-07",
+      title: "Charwa Branch Service Desk & Testing",
+      caption: "Direct battery health testing, acid-level check, and fast doorstep delivery counter in Charwa.",
+      imageUrl: "/assets/images/gallery/gallery-07.jpg",
+      category: "branches",
+      featured: true,
+      order: 7
+    },
+    {
+      _id: "gal-08",
+      title: "Residential Solar Rooftop Setup",
+      caption: "Complete 3kW to 10kW residential solar project lowering electricity bills to zero.",
+      imageUrl: "/assets/images/gallery/gallery-08.jpg",
+      category: "solar",
+      featured: true,
+      order: 8
+    },
+    {
+      _id: "gal-09",
+      title: "Heavy Commercial Automotive Battery Bank",
+      caption: "High-cranking maintenance-free batteries for commercial transport and trucks.",
+      imageUrl: "/assets/images/gallery/gallery-09.jpg",
+      category: "installations",
+      featured: true,
+      order: 9
+    },
+    {
+      _id: "gal-10",
+      title: "Mono-PERC Solar Module Array",
+      caption: "550W+ Tier-1 high efficiency solar panels with 25 years performance warranty.",
+      imageUrl: "/assets/images/gallery/gallery-10.jpg",
+      category: "solar",
+      featured: false,
+      order: 10
+    },
+    {
+      _id: "gal-11",
+      title: "Shop Inventory & Trolley Setups",
+      caption: "Neat, modern battery trollies and sine wave inverter combinations for home safety.",
+      imageUrl: "/assets/images/gallery/gallery-11.jpg",
+      category: "branches",
+      featured: false,
+      order: 11
+    },
+    {
+      _id: "gal-12",
+      title: "Pure Sine Wave Inverter Connections",
+      caption: "Microtek and Luminous smart inverters installed with clean wire management.",
+      imageUrl: "/assets/images/gallery/gallery-12.jpg",
+      category: "batteries",
+      featured: false,
+      order: 12
+    },
+    {
+      _id: "gal-13",
+      title: "Commercial Backup Power Inverter Rack",
+      caption: "Heavy duty battery racks for offices, hospitals, and commercial complexes.",
+      imageUrl: "/assets/images/gallery/gallery-13.jpg",
+      category: "installations",
+      featured: false,
+      order: 13
+    },
+    {
+      _id: "gal-14",
+      title: "Rooftop Solar Net Metering Project",
+      caption: "UPPCL net metering compliant bi-directional meter installation in Puramufti.",
+      imageUrl: "/assets/images/gallery/gallery-14.jpg",
+      category: "solar",
+      featured: false,
+      order: 14
+    },
+    {
+      _id: "gal-15",
+      title: "Same-Day Customer Dispatch Counter",
+      caption: "Free fitting and delivery vehicles leaving for customer locations.",
+      imageUrl: "/assets/images/gallery/gallery-15.jpg",
+      category: "branches",
+      featured: false,
+      order: 15
+    },
+    {
+      _id: "gal-16",
+      title: "Solar PCU Hybrid Controller Setup",
+      caption: "Intelligent solar power conditioning unit managing grid, battery, and solar power.",
+      imageUrl: "/assets/images/gallery/gallery-16.jpg",
+      category: "solar",
+      featured: false,
+      order: 16
+    },
+    {
+      _id: "gal-17",
+      title: "Industrial SMF UPS Battery Installation",
+      caption: "12V VRLA Konta SMF battery bank installation for uninterrupted server operations.",
+      imageUrl: "/assets/images/gallery/gallery-17.jpg",
+      category: "installations",
+      featured: false,
+      order: 17
+    },
+    {
+      _id: "gal-18",
+      title: "Authorized Brand Battery Stockpile",
+      caption: "Freshly manufactured batteries received directly from company depots.",
+      imageUrl: "/assets/images/gallery/gallery-18.jpg",
+      category: "batteries",
+      featured: false,
+      order: 18
+    },
+    {
+      _id: "gal-19",
+      title: "High-Efficiency Solar Inverter Unit",
+      caption: "MPPT solar hybrid inverters ensuring maximum yield even on cloudy days.",
+      imageUrl: "/assets/images/gallery/gallery-19.jpg",
+      category: "solar",
+      featured: false,
+      order: 19
+    },
+    {
+      _id: "gal-20",
+      title: "Full Showroom Battery Inventory",
+      caption: "Wide selection of 2-wheeler, car, inverter, and solar storage solutions.",
+      imageUrl: "/assets/images/gallery/gallery-20.jpg",
+      category: "branches",
+      featured: false,
+      order: 20
+    },
+    {
+      _id: "gal-21",
+      title: "Technician Battery Testing & Health Check",
+      caption: "Digital load testers and hydrometers verifying battery gravity and health.",
+      imageUrl: "/assets/images/gallery/gallery-21.jpg",
+      category: "branches",
+      featured: false,
+      order: 21
+    },
+    {
+      _id: "gal-22",
+      title: "Solar Wiring & Lightning Protection",
+      caption: "Safety earthing and surge protection devices installed for rooftop projects.",
+      imageUrl: "/assets/images/gallery/gallery-22.jpg",
+      category: "solar",
+      featured: false,
+      order: 22
+    },
+    {
+      _id: "gal-23",
+      title: "Charwa Main Market Store Display",
+      caption: "Prominent location in front of Petrol Pump on Main Charwa Bazaar Road.",
+      imageUrl: "/assets/images/gallery/gallery-23.jpg",
+      category: "branches",
+      featured: false,
+      order: 23
+    },
+    {
+      _id: "gal-24",
+      title: "Home Inverter & Trolley Installation",
+      caption: "Safe household installation keeping batteries neat, elevated, and well-ventilated.",
+      imageUrl: "/assets/images/gallery/gallery-24.jpg",
+      category: "installations",
+      featured: false,
+      order: 24
+    }
   ]
 };
 

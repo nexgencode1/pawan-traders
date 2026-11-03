@@ -45,6 +45,115 @@ export default function AboutPage() {
           >
             Your trusted multi-brand battery distributor, inverter specialist and rooftop solar turnkey EPC contractor in Puramufti (Prayagraj) and Charwa Town (Kaushambi).
           </p>
+
+          {/* 3 Real Photos in About Hero Section */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+              gap: "20px",
+              marginTop: "40px",
+              maxWidth: "1060px",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            <div
+              style={{
+                borderRadius: "16px",
+                overflow: "hidden",
+                height: "220px",
+                border: "2px solid rgba(255, 255, 255, 0.2)",
+                boxShadow: "0 15px 30px rgba(0,0,0,0.25)",
+                position: "relative",
+              }}
+            >
+              <img
+                src="/assets/images/about/about-1.jpg"
+                alt="Pawan Traders Puramufti Showroom"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)",
+                  display: "flex",
+                  alignItems: "flex-end",
+                  padding: "16px",
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  fontSize: "0.92rem",
+                }}
+              >
+                Puramufti Showroom &amp; Retail Hub
+              </div>
+            </div>
+
+            <div
+              style={{
+                borderRadius: "16px",
+                overflow: "hidden",
+                height: "220px",
+                border: "2px solid rgba(245, 158, 11, 0.4)",
+                boxShadow: "0 15px 30px rgba(0,0,0,0.25)",
+                position: "relative",
+              }}
+            >
+              <img
+                src="/assets/images/about/about-2.jpg"
+                alt="Solar Rooftop Installation"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)",
+                  display: "flex",
+                  alignItems: "flex-end",
+                  padding: "16px",
+                  color: "#FDE047",
+                  fontWeight: 700,
+                  fontSize: "0.92rem",
+                }}
+              >
+                On-Grid &amp; Hybrid Solar Installations
+              </div>
+            </div>
+
+            <div
+              style={{
+                borderRadius: "16px",
+                overflow: "hidden",
+                height: "220px",
+                border: "2px solid rgba(255, 255, 255, 0.2)",
+                boxShadow: "0 15px 30px rgba(0,0,0,0.25)",
+                position: "relative",
+              }}
+            >
+              <img
+                src="/assets/images/about/about-3.jpg"
+                alt="Inverter & Battery Stock"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)",
+                  display: "flex",
+                  alignItems: "flex-end",
+                  padding: "16px",
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  fontSize: "0.92rem",
+                }}
+              >
+                Amaron, Exide &amp; Lithium Inventory
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -144,47 +253,30 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))",
-              gap: "36px",
-              maxWidth: "1060px",
-              margin: "0 auto",
-            }}
-          >
-            {/* DIRECTOR CARD - LARGE & PROMINENT */}
+          <div style={{ maxWidth: "1080px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "40px" }}>
+            {/* FOUNDER & DIRECTOR SPOTLIGHT ROW */}
             <div
-              className="hover-card"
               style={{
                 background: "#FFFFFF",
-                borderRadius: "var(--radius-xl)",
+                borderRadius: "24px",
                 border: "2px solid rgba(29, 78, 216, 0.15)",
-                padding: "36px 30px",
-                display: "flex",
-                flexDirection: "column",
+                overflow: "hidden",
+                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.06)",
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))",
                 alignItems: "center",
-                textAlign: "center",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                position: "relative",
               }}
             >
+              {/* Photo Column */}
               <div
                 style={{
-                  width: "100%",
-                  maxWidth: "340px",
-                  height: "360px",
-                  borderRadius: "16px",
-                  overflow: "hidden",
-                  border: "3px solid var(--primary)",
-                  boxShadow: "0 12px 32px rgba(29, 78, 216, 0.22)",
-                  marginBottom: "24px",
                   background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  minHeight: "clamp(380px, 46vw, 480px)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  padding: "8px",
-                  flexShrink: 0,
+                  padding: "24px",
+                  height: "100%",
                 }}
               >
                 <img
@@ -192,150 +284,159 @@ export default function AboutPage() {
                   alt="Mr. Pawan Kumar Kushwaha"
                   style={{
                     width: "100%",
-                    height: "100%",
+                    maxHeight: "460px",
                     objectFit: "contain",
-                    borderRadius: "10px",
+                    borderRadius: "14px",
+                    filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.4))",
                   }}
                 />
               </div>
 
-              <span
-                style={{
-                  display: "inline-block",
-                  background: "rgba(29, 78, 216, 0.12)",
-                  color: "var(--primary)",
-                  padding: "6px 16px",
-                  borderRadius: "999px",
-                  fontSize: "0.85rem",
-                  fontWeight: 800,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  marginBottom: "10px",
-                }}
-              >
-                ★ Director &amp; Founder
-              </span>
-
-              <h3 style={{ fontSize: "1.65rem", fontWeight: 800, color: "var(--gray-900)", marginBottom: "6px" }}>
-                Mr. Pawan Kumar Kushwaha
-              </h3>
-
-              <div style={{ color: "#64748B", fontSize: "0.95rem", fontWeight: 600, marginBottom: "18px" }}>
-                15+ Years in Power Storage &amp; Solar Distribution
-              </div>
-
-              <blockquote
-                style={{
-                  fontSize: "1rem",
-                  color: "#475569",
-                  lineHeight: 1.7,
-                  fontStyle: "italic",
-                  marginBottom: "24px",
-                  background: "#F8FAFC",
-                  padding: "16px 20px",
-                  borderRadius: "var(--radius-md)",
-                  borderLeft: "4px solid var(--primary)",
-                }}
-              >
-                &ldquo;At Pawan Traders, every customer receives certified original products with manufacturer warranty registration. We stand behind every battery and solar panel we sell, ensuring complete trust.&rdquo;
-              </blockquote>
-
-              <div style={{ display: "flex", gap: "12px", width: "100%", justifyContent: "center" }}>
-                <a
-                  href={`tel:+91${settings.callingNumber}`}
-                  className="btn btn-primary"
-                  style={{ flex: 1, justifyContent: "center", padding: "12px 20px" }}
+              {/* Information Column */}
+              <div style={{ padding: "clamp(24px, 4vw, 48px)" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(29, 78, 216, 0.12)",
+                    color: "var(--primary)",
+                    padding: "6px 16px",
+                    borderRadius: "999px",
+                    fontSize: "0.85rem",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    marginBottom: "12px",
+                  }}
                 >
-                  <i className="fa-solid fa-phone"></i> Call: +91 {settings.callingNumber}
-                </a>
+                  ★ Director &amp; Founder
+                </span>
+
+                <h3 style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.2rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                  Mr. Pawan Kumar Kushwaha
+                </h3>
+
+                <div style={{ color: "#2563EB", fontSize: "1.02rem", fontWeight: 700, marginBottom: "20px" }}>
+                  15+ Years in Power Storage &amp; Solar Distribution
+                </div>
+
+                <blockquote
+                  style={{
+                    fontSize: "1rem",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    fontStyle: "italic",
+                    marginBottom: "24px",
+                    background: "#F8FAFC",
+                    padding: "18px 22px",
+                    borderRadius: "var(--radius-md)",
+                    borderLeft: "4px solid var(--primary)",
+                  }}
+                >
+                  &ldquo;At Pawan Traders, every customer receives certified original products with manufacturer warranty registration. We stand behind every battery and solar panel we sell, ensuring complete trust.&rdquo;
+                </blockquote>
+
+                <div>
+                  <a
+                    href={`tel:+91${settings.callingNumber}`}
+                    className="btn btn-primary"
+                    style={{ padding: "12px 26px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                  >
+                    <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* MANAGER CARD - LARGE & PROMINENT */}
+            {/* GENERAL MANAGER SPOTLIGHT ROW */}
             <div
-              className="hover-card"
               style={{
                 background: "#FFFFFF",
-                borderRadius: "var(--radius-xl)",
+                borderRadius: "24px",
                 border: "2px solid rgba(245, 158, 11, 0.2)",
-                padding: "36px 30px",
-                display: "flex",
-                flexDirection: "column",
+                overflow: "hidden",
+                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.06)",
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))",
                 alignItems: "center",
-                textAlign: "center",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                position: "relative",
               }}
             >
+              {/* Photo Column */}
               <div
                 style={{
-                  width: "clamp(230px, 30vw, 290px)",
-                  height: "clamp(230px, 30vw, 290px)",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  border: "6px solid var(--solar)",
-                  boxShadow: "0 18px 45px rgba(245, 158, 11, 0.3)",
-                  marginBottom: "26px",
-                  background: "#FEF3C7",
-                  flexShrink: 0,
+                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  minHeight: "clamp(380px, 46vw, 480px)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "24px",
+                  height: "100%",
                 }}
               >
                 <img
                   src="/manager.jpeg"
                   alt="Mr. Kartik Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+                  style={{
+                    width: "100%",
+                    maxHeight: "460px",
+                    objectFit: "contain",
+                    borderRadius: "14px",
+                    filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.4))",
+                  }}
                 />
               </div>
 
-              <span
-                style={{
-                  display: "inline-block",
-                  background: "rgba(245, 158, 11, 0.15)",
-                  color: "#D97706",
-                  padding: "6px 16px",
-                  borderRadius: "999px",
-                  fontSize: "0.85rem",
-                  fontWeight: 800,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  marginBottom: "10px",
-                }}
-              >
-                ★ General Manager &amp; Technical Operations
-              </span>
-
-              <h3 style={{ fontSize: "1.65rem", fontWeight: 800, color: "var(--gray-900)", marginBottom: "6px" }}>
-                Mr. Kartik Kushwaha
-              </h3>
-
-              <div style={{ color: "#64748B", fontSize: "0.95rem", fontWeight: 600, marginBottom: "18px" }}>
-                Rooftop Solar EPC &amp; Store Dispatch Specialist
-              </div>
-
-              <blockquote
-                style={{
-                  fontSize: "1rem",
-                  color: "#475569",
-                  lineHeight: 1.7,
-                  fontStyle: "italic",
-                  marginBottom: "24px",
-                  background: "#F8FAFC",
-                  padding: "16px 20px",
-                  borderRadius: "var(--radius-md)",
-                  borderLeft: "4px solid var(--solar)",
-                }}
-              >
-                &ldquo;Overseeing customer technical enquiries, fast same-day doorstep dispatch, and rooftop solar engineering teams across both our Puramufti and Charwa branches.&rdquo;
-              </blockquote>
-
-              <div style={{ display: "flex", gap: "12px", width: "100%", justifyContent: "center" }}>
-                <a
-                  href={`tel:+91${settings.managerContact || "9305839018"}`}
-                  className="btn btn-solar"
-                  style={{ flex: 1, justifyContent: "center", padding: "12px 20px" }}
+              {/* Information Column */}
+              <div style={{ padding: "clamp(24px, 4vw, 48px)" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(245, 158, 11, 0.15)",
+                    color: "#D97706",
+                    padding: "6px 16px",
+                    borderRadius: "999px",
+                    fontSize: "0.85rem",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    marginBottom: "12px",
+                  }}
                 >
-                  <i className="fa-solid fa-phone"></i> Call: +91 {settings.managerContact || "9305839018"}
-                </a>
+                  ★ General Manager &amp; Technical Operations
+                </span>
+
+                <h3 style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.2rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                  Mr. Kartik Kushwaha
+                </h3>
+
+                <div style={{ color: "#D97706", fontSize: "1.02rem", fontWeight: 700, marginBottom: "20px" }}>
+                  Rooftop Solar EPC &amp; Store Dispatch Specialist
+                </div>
+
+                <blockquote
+                  style={{
+                    fontSize: "1rem",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    fontStyle: "italic",
+                    marginBottom: "24px",
+                    background: "#F8FAFC",
+                    padding: "18px 22px",
+                    borderRadius: "var(--radius-md)",
+                    borderLeft: "4px solid var(--solar)",
+                  }}
+                >
+                  &ldquo;Overseeing customer technical enquiries, fast same-day doorstep dispatch, and rooftop solar engineering teams across both our Puramufti and Charwa branches.&rdquo;
+                </blockquote>
+
+                <div>
+                  <a
+                    href={`tel:+91${settings.managerContact || "9305839018"}`}
+                    className="btn btn-solar"
+                    style={{ padding: "12px 26px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                  >
+                    <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

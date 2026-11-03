@@ -184,7 +184,7 @@ export default function Footer({ onOpenEnquiry }) {
           <div>
             &copy; {new Date().getFullYear()} Pawan Traders. All rights reserved. Puramufti, Prayagraj &amp; Charwa, Kaushambi.
           </div>
-          <div style={{ display: "flex", gap: "20px" }}>
+          <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
             <Link href="/about" style={{ color: "#94A3B8" }}>
               About Us
             </Link>
@@ -199,6 +199,26 @@ export default function Footer({ onOpenEnquiry }) {
             </Link>
             <Link href="/contact" style={{ color: "#94A3B8" }}>
               Contact
+            </Link>
+            <Link
+              href="/admin"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                color: "#FDE047",
+                background: "rgba(245, 158, 11, 0.15)",
+                border: "1px solid rgba(245, 158, 11, 0.35)",
+                padding: "4px 12px",
+                borderRadius: "6px",
+                fontWeight: 700,
+                fontSize: "0.78rem",
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+              }}
+              title="Access Admin Panel"
+            >
+              <i className="fa-solid fa-lock"></i> Admin Portal
             </Link>
           </div>
         </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { INITIAL_DATA, buildWhatsAppUrl } from "@/data/pawanData";
+import { INITIAL_DATA } from "@/data/pawanData";
 import ProductCard from "@/components/ProductCard";
 import SolarCalculator from "@/components/SolarCalculator";
 import QuickEnquiryModal from "@/components/QuickEnquiryModal";
@@ -24,10 +24,10 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ==================== HERO SECTION SLIDER ==================== */}
+      {/* ==================== 1. HERO SECTION SLIDER ==================== */}
       <HeroSlider />
 
-      {/* ==================== 5 CORE CATEGORIES ==================== */}
+      {/* ==================== 2. 5 CORE CATEGORIES ==================== */}
       <section className="section-padding">
         <div className="container">
           <motion.div
@@ -85,13 +85,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== BRANDS STRIP ==================== */}
+      {/* ==================== 3. BRANDS STRIP - RIGHT TO LEFT CONTINUOUS MARQUEE ==================== */}
       <section
         style={{
           background: "#FFFFFF",
           borderTop: "1px solid var(--gray-200)",
           borderBottom: "1px solid var(--gray-200)",
-          padding: "60px 0",
+          padding: "50px 0 45px",
+          overflow: "hidden",
         }}
       >
         <div className="container">
@@ -102,7 +103,7 @@ export default function HomePage() {
               alignItems: "center",
               flexWrap: "wrap",
               gap: "20px",
-              marginBottom: "30px",
+              marginBottom: "26px",
             }}
           >
             <div>
@@ -118,27 +119,30 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="brands-grid">
-            {brands.map((b, idx) => (
-              <motion.div
-                key={b.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: (idx % 7) * 0.04 }}
-                whileHover={{ y: -4 }}
-              >
-                <Link href={`/brands/${b.slug}`} className="brand-card">
-                  <img src={b.logo} alt={b.name} className="brand-card-logo" />
-                  <span className="brand-card-name">{b.name}</span>
+          <div className="brands-marquee-wrapper" title="Hover to pause">
+            <div className="brands-marquee-track">
+              {[...brands, ...brands].map((b, idx) => (
+                <Link
+                  key={`${b.id}-${idx}`}
+                  href={`/brands/${b.slug}`}
+                  className="brand-card-marquee"
+                >
+                  <img
+                    src={b.logo}
+                    alt={b.name}
+                    style={{ height: "40px", width: "auto", objectFit: "contain", marginBottom: "8px" }}
+                  />
+                  <span style={{ fontSize: "0.82rem", fontWeight: 800, color: "#1E293B" }}>
+                    {b.name}
+                  </span>
                 </Link>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== FEATURED PRODUCTS ==================== */}
+      {/* ==================== 4. FEATURED PRODUCTS (STRICTLY 3 CARDS + REDIRECT BUTTON) ==================== */}
       <section className="section-padding" style={{ background: "var(--gray-50)" }}>
         <div className="container">
           <div
@@ -165,24 +169,390 @@ export default function HomePage() {
           </div>
 
           <div className="products-grid">
-            {featuredProducts.slice(0, 8).map((prod, idx) => (
+            {featuredProducts.slice(0, 3).map((prod, idx) => (
               <motion.div
                 key={prod.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
                 whileHover={{ y: -6 }}
               >
                 <ProductCard product={prod} onQuickView={handleOpenModal} />
               </motion.div>
             ))}
           </div>
+
+          {/* Prominent Redirect Button to full catalogue */}
+          <div style={{ textAlign: "center", marginTop: "44px" }}>
+            <Link
+              href="/products"
+              className="btn btn-primary btn-lg"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "14px 34px",
+                fontSize: "1.05rem",
+                borderRadius: "var(--radius-md)",
+                boxShadow: "0 8px 24px rgba(29, 78, 216, 0.25)",
+              }}
+            >
+              <span>Explore All 20+ Models in Full Catalogue</span>
+              <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ==================== SOLAR FEATURETTE & CALCULATOR ==================== */}
-      <section className="section-padding">
+      {/* ==================== 5. MEET OUR FOUNDER & LEADERSHIP ==================== */}
+      <section className="section-padding" style={{ background: "#FFFFFF", borderTop: "1px solid var(--gray-200)" }}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 46px" }}
+          >
+            <span className="section-badge">
+              <i className="fa-solid fa-users"></i> Executive Leadership
+            </span>
+            <h2 className="section-title">
+              Meet Our <span>Founding Leadership</span>
+            </h2>
+            <p className="section-subtitle" style={{ margin: "0 auto" }}>
+              Committed to providing 100% genuine batteries, expert technical guidance, and transparent wholesale pricing across Prayagraj &amp; Kaushambi.
+            </p>
+          </motion.div>
+
+          <div style={{ maxWidth: "1080px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "36px" }}>
+            {/* Director & Founder */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "24px",
+                border: "2px solid rgba(29, 78, 216, 0.15)",
+                overflow: "hidden",
+                boxShadow: "0 18px 45px rgba(0, 0, 0, 0.06)",
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
+                alignItems: "center",
+              }}
+            >
+              {/* Photo Column */}
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  minHeight: "clamp(340px, 44vw, 440px)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "24px",
+                  height: "100%",
+                }}
+              >
+                <img
+                  src="/director.jpeg"
+                  alt="Mr. Pawan Kumar Kushwaha"
+                  style={{
+                    width: "100%",
+                    maxHeight: "420px",
+                    objectFit: "contain",
+                    borderRadius: "14px",
+                    filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.4))",
+                  }}
+                />
+              </div>
+
+              {/* Information Column */}
+              <div style={{ padding: "clamp(24px, 4vw, 44px)" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(29, 78, 216, 0.12)",
+                    color: "var(--primary)",
+                    padding: "6px 16px",
+                    borderRadius: "999px",
+                    fontSize: "0.85rem",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    marginBottom: "12px",
+                  }}
+                >
+                  ★ Director &amp; Founder
+                </span>
+
+                <h3 style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                  Mr. Pawan Kumar Kushwaha
+                </h3>
+
+                <div style={{ color: "#2563EB", fontSize: "1rem", fontWeight: 700, marginBottom: "18px" }}>
+                  15+ Years in Power Storage &amp; Solar Distribution
+                </div>
+
+                <blockquote
+                  style={{
+                    fontSize: "0.98rem",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    fontStyle: "italic",
+                    marginBottom: "22px",
+                    background: "#F8FAFC",
+                    padding: "16px 20px",
+                    borderRadius: "var(--radius-md)",
+                    borderLeft: "4px solid var(--primary)",
+                  }}
+                >
+                  &ldquo;At Pawan Traders, every customer receives certified original products with manufacturer warranty registration. We stand behind every battery and solar panel we sell, ensuring complete trust.&rdquo;
+                </blockquote>
+
+                <a
+                  href={`tel:+91${settings.callingNumber}`}
+                  className="btn btn-primary"
+                  style={{ padding: "12px 26px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                >
+                  <i className="fa-solid fa-phone"></i> Call Director: +91 {settings.callingNumber}
+                </a>
+              </div>
+            </motion.div>
+
+            {/* General Manager */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "24px",
+                border: "2px solid rgba(245, 158, 11, 0.2)",
+                overflow: "hidden",
+                boxShadow: "0 18px 45px rgba(0, 0, 0, 0.06)",
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
+                alignItems: "center",
+              }}
+            >
+              {/* Photo Column */}
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
+                  minHeight: "clamp(340px, 44vw, 440px)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "24px",
+                  height: "100%",
+                }}
+              >
+                <img
+                  src="/manager.jpeg"
+                  alt="Mr. Kartik Kushwaha"
+                  style={{
+                    width: "100%",
+                    maxHeight: "420px",
+                    objectFit: "contain",
+                    borderRadius: "14px",
+                    filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.4))",
+                  }}
+                />
+              </div>
+
+              {/* Information Column */}
+              <div style={{ padding: "clamp(24px, 4vw, 44px)" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(245, 158, 11, 0.15)",
+                    color: "#D97706",
+                    padding: "6px 16px",
+                    borderRadius: "999px",
+                    fontSize: "0.85rem",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    marginBottom: "12px",
+                  }}
+                >
+                  ★ General Manager &amp; Technical Operations
+                </span>
+
+                <h3 style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.1rem)", fontWeight: 900, color: "#0F172A", marginBottom: "6px" }}>
+                  Mr. Kartik Kushwaha
+                </h3>
+
+                <div style={{ color: "#D97706", fontSize: "1rem", fontWeight: 700, marginBottom: "18px" }}>
+                  Rooftop Solar EPC &amp; Store Dispatch Specialist
+                </div>
+
+                <blockquote
+                  style={{
+                    fontSize: "0.98rem",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    fontStyle: "italic",
+                    marginBottom: "22px",
+                    background: "#F8FAFC",
+                    padding: "16px 20px",
+                    borderRadius: "var(--radius-md)",
+                    borderLeft: "4px solid var(--solar)",
+                  }}
+                >
+                  &ldquo;Overseeing customer technical enquiries, fast same-day doorstep dispatch, and rooftop solar engineering teams across both our Puramufti and Charwa branches.&rdquo;
+                </blockquote>
+
+                <a
+                  href={`tel:+91${settings.managerContact || "9305839018"}`}
+                  className="btn btn-solar"
+                  style={{ padding: "12px 26px", fontSize: "0.95rem", borderRadius: "10px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                >
+                  <i className="fa-solid fa-phone"></i> Call Manager: +91 {settings.managerContact || "9305839018"}
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 6. PHOTO & INSTALLATION GALLERY HIGHLIGHT (REAL STORE PHOTOS) ==================== */}
+      <section className="section-padding" style={{ background: "#F1F5F9" }}>
+        <div className="container">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "20px",
+              marginBottom: "36px",
+            }}
+          >
+            <div>
+              <span className="section-badge">
+                <i className="fa-solid fa-camera"></i> Live Work Showcase
+              </span>
+              <h2 className="section-title" style={{ marginBottom: "8px" }}>
+                Recent <span>Installations &amp; Gallery</span>
+              </h2>
+              <p className="section-subtitle">
+                Real photos of solar rooftops, lithium storage, inverter banks, and Puramufti &amp; Charwa shops.
+              </p>
+            </div>
+            <div>
+              <Link href="/gallery" className="btn btn-primary">
+                <i className="fa-solid fa-images"></i> View Full Gallery (24 Photos)
+              </Link>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+            }}
+          >
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="hover-card"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src="/assets/images/gallery/gallery-01.jpg"
+                  alt="Pawan Traders Puramufti Showroom Front"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#1D4ED8", textTransform: "uppercase" }}>
+                  Main Branch Showroom
+                </span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
+                  Puramufti Head Office &amp; Retail Hub
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
+                  Full inventory of Amaron, Exide, and Luminous batteries ready for dispatch on GT Road Puramufti.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="hover-card"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src="/assets/images/gallery/gallery-02.jpg"
+                  alt="Rooftop Solar Plant Installation"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#F59E0B", textTransform: "uppercase" }}>
+                  Solar Installation
+                </span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
+                  Mono-PERC Rooftop Solar Plant
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
+                  High efficiency PM Surya Ghar subsidy approved on-grid solar plant in Prayagraj region.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="hover-card"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src="/assets/images/gallery/gallery-03.jpg"
+                  alt="Inverter & Battery Stock"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase" }}>
+                  Power Storage
+                </span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
+                  Inverter &amp; Tubular Battery Stock
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
+                  Heavy-duty inverter and tubular battery solutions tested and dispatched same-day.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 7. SOLAR FEATURETTE & CALCULATOR (RIGHT ABOVE BRANCHES) ==================== */}
+      <section className="section-padding" style={{ background: "#FFFFFF" }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -192,7 +562,7 @@ export default function HomePage() {
             style={{
               background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
               borderRadius: "var(--radius-xl)",
-              padding: "clamp(20px, 4vw, 40px)",
+              padding: "clamp(24px, 4vw, 44px)",
               color: "#FFFFFF",
               boxShadow: "var(--shadow-xl)",
             }}
@@ -262,208 +632,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== PHOTO & INSTALLATION GALLERY HIGHLIGHT ==================== */}
-      <section className="section-padding" style={{ background: "#F1F5F9" }}>
-        <div className="container">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              flexWrap: "wrap",
-              gap: "20px",
-              marginBottom: "40px",
-            }}
-          >
-            <div>
-              <span className="section-badge">
-                <i className="fa-solid fa-camera"></i> Live Work Showcase
-              </span>
-              <h2 className="section-title" style={{ marginBottom: "8px" }}>
-                Recent <span>Installations &amp; Gallery</span>
-              </h2>
-              <p className="section-subtitle">
-                Real photos of solar rooftops, lithium storage, inverter banks, and Puramufti &amp; Charwa shops.
-              </p>
-            </div>
-            <div>
-              <Link href="/gallery" className="btn btn-primary">
-                <i className="fa-solid fa-images"></i> View Full Gallery
-              </Link>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "24px",
-            }}
-          >
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              <div
-                style={{
-                  height: "200px",
-                  background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "16px",
-                }}
-              >
-                <img
-                  src="/assets/images/categories/solar.svg"
-                  alt="Rooftop Solar Plant"
-                  style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
-                />
-              </div>
-              <div style={{ padding: "18px" }}>
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "#F59E0B",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Solar Installation
-                </span>
-                <h3
-                  style={{
-                    fontSize: "1.05rem",
-                    fontWeight: 700,
-                    color: "#0F172A",
-                    marginTop: "4px",
-                  }}
-                >
-                  10kW Rooftop On-Grid Solar Plant
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
-                  PM Surya Ghar verified installation in Prayagraj region.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              <div
-                style={{
-                  height: "200px",
-                  background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "16px",
-                }}
-              >
-                <img
-                  src="/assets/images/categories/lithium.svg"
-                  alt="Vion Lithium Storage"
-                  style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
-                />
-              </div>
-              <div style={{ padding: "18px" }}>
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "#10B981",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Lithium Storage
-                </span>
-                <h3
-                  style={{
-                    fontSize: "1.05rem",
-                    fontWeight: 700,
-                    color: "#0F172A",
-                    marginTop: "4px",
-                  }}
-                >
-                  Vion LiFePO4 Inverter Battery Setup
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
-                  Wall mounted smart lithium system for uninterrupted backup.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              <div
-                style={{
-                  height: "200px",
-                  background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "16px",
-                }}
-              >
-                <img
-                  src="/assets/images/categories/automotive.svg"
-                  alt="Puramufti Showroom"
-                  style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
-                />
-              </div>
-              <div style={{ padding: "18px" }}>
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "#1D4ED8",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Branches
-                </span>
-                <h3
-                  style={{
-                    fontSize: "1.05rem",
-                    fontWeight: 700,
-                    color: "#0F172A",
-                    marginTop: "4px",
-                  }}
-                >
-                  Puramufti Main Branch Showroom
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
-                  GT Road Puramufti inventory of Amaron &amp; Exide batteries.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== BOTH BRANCHES ==================== */}
-      <section className="section-padding" style={{ background: "#FFFFFF" }}>
+      {/* ==================== 8. VISIT OUR PRIME BRANCHES (AT THE VERY BOTTOM) ==================== */}
+      <section className="section-padding" style={{ background: "#F8FAFC", borderTop: "1px solid var(--gray-200)" }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -620,210 +790,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== LEADERSHIP SECTION ==================== */}
-      <section className="section-padding" style={{ background: "var(--gray-50)" }}>
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 40px" }}
-          >
-            <span className="section-badge">
-              <i className="fa-solid fa-users"></i> Dedicated Leadership
-            </span>
-            <h2 className="section-title">
-              Meet Our <span>Founding Leadership</span>
-            </h2>
-            <p className="section-subtitle" style={{ margin: "0 auto" }}>
-              Committed to providing authentic batteries, expert technical guidance, and transparent pricing across Prayagraj &amp; Kaushambi.
-            </p>
-          </motion.div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-              gap: "30px",
-              maxWidth: "800px",
-              margin: "0 auto",
-            }}
-          >
-            {/* Director */}
-            <motion.div
-              whileHover={{ y: -6, boxShadow: "0 15px 35px rgba(30, 58, 138, 0.15)" }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-xl)",
-                padding: "30px 24px",
-                textAlign: "center",
-                border: "1px solid var(--gray-200)",
-                boxShadow: "var(--shadow-sm)",
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  maxWidth: "280px",
-                  height: "300px",
-                  borderRadius: "14px",
-                  margin: "0 auto 20px",
-                  overflow: "hidden",
-                  border: "3px solid #1E3A8A",
-                  boxShadow: "0 10px 25px rgba(30,58,138,0.2)",
-                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "6px",
-                }}
-              >
-                <img
-                  src="/director.jpeg"
-                  alt="Mr. Pawan Kumar Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "8px" }}
-                />
-              </div>
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: 800,
-                  color: "var(--gray-900)",
-                  marginBottom: "4px",
-                }}
-              >
-                Mr. Pawan Kumar Kushwaha
-              </h3>
-              <span
-                style={{
-                  display: "inline-block",
-                  background: "rgba(30,58,138,0.1)",
-                  color: "#1E3A8A",
-                  padding: "4px 12px",
-                  borderRadius: "999px",
-                  fontSize: "0.8rem",
-                  fontWeight: 700,
-                  marginBottom: "12px",
-                }}
-              >
-                Director &amp; Founder
-              </span>
-              <p
-                style={{
-                  fontSize: "0.88rem",
-                  color: "var(--gray-600)",
-                  lineHeight: 1.6,
-                  marginBottom: "16px",
-                }}
-              >
-                Leading Pawan Traders with 15+ years of excellence, dedicated to authentic quality and trusted customer relationships.
-              </p>
-              <a
-                href="tel:+919935618513"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  color: "var(--primary)",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                }}
-              >
-                <i className="fa-solid fa-phone"></i> +91 9935618513
-              </a>
-            </motion.div>
-
-            {/* Manager */}
-            <motion.div
-              whileHover={{ y: -6, boxShadow: "0 15px 35px rgba(245, 158, 11, 0.15)" }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-xl)",
-                padding: "30px 24px",
-                textAlign: "center",
-                border: "1px solid var(--gray-200)",
-                boxShadow: "var(--shadow-sm)",
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  maxWidth: "280px",
-                  height: "300px",
-                  borderRadius: "14px",
-                  margin: "0 auto 20px",
-                  overflow: "hidden",
-                  border: "3px solid #F59E0B",
-                  boxShadow: "0 10px 25px rgba(245,158,11,0.2)",
-                  background: "linear-gradient(135deg, #0A1128 0%, #1E293B 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "6px",
-                }}
-              >
-                <img
-                  src="/manager.jpeg"
-                  alt="Mr. Kartik Kushwaha"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "8px" }}
-                />
-              </div>
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: 800,
-                  color: "var(--gray-900)",
-                  marginBottom: "4px",
-                }}
-              >
-                Mr. Kartik Kushwaha
-              </h3>
-              <span
-                style={{
-                  display: "inline-block",
-                  background: "rgba(245,158,11,0.1)",
-                  color: "#D97706",
-                  padding: "4px 12px",
-                  borderRadius: "999px",
-                  fontSize: "0.8rem",
-                  fontWeight: 700,
-                  marginBottom: "12px",
-                }}
-              >
-                General Manager &amp; Technical Head
-              </span>
-              <p
-                style={{
-                  fontSize: "0.88rem",
-                  color: "var(--gray-600)",
-                  lineHeight: 1.6,
-                  marginBottom: "16px",
-                }}
-              >
-                Overseeing store operations, solar installations, technical customer support, and seamless same-day service delivery.
-              </p>
-              <a
-                href="tel:+919935618513"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  color: "var(--primary)",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                }}
-              >
-                <i className="fa-solid fa-phone"></i> +91 9935618513
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Modal */}
+      {/* Quick Enquiry Modal */}
       <QuickEnquiryModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}

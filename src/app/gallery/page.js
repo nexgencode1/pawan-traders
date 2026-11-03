@@ -5,8 +5,8 @@ import Link from "next/link";
 import { INITIAL_DATA, buildWhatsAppUrl } from "@/data/pawanData";
 
 export default function GalleryPage() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState(INITIAL_DATA.gallery || []);
+  const [loading, setLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
