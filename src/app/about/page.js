@@ -198,15 +198,15 @@ export default function AboutPage() {
           </div>
 
           {/* Row 2: General Manager & Technical Operations */}
-          <div className="executive-spotlight-row" style={{ paddingTop: "20px", borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
+          <div className="executive-spotlight-row" style={{ paddingTop: "40px", borderTop: "1px solid var(--gray-200)" }}>
             <div className="executive-spotlight-content">
-              <span className="executive-spotlight-eyebrow" style={{ color: "#FBBF24" }}>
+              <span className="executive-spotlight-eyebrow" style={{ color: "var(--solar-hover)" }}>
                 MEET OUR GENERAL MANAGER
               </span>
               <h2 className="executive-spotlight-name">
                 Mr. Kartik Kushwaha
               </h2>
-              <a href={`tel:+91${settings.managerContact || "9305839018"}`} className="executive-spotlight-phone" style={{ color: "#FBBF24" }}>
+              <a href={`tel:+91${settings.managerContact || "9305839018"}`} className="executive-spotlight-phone" style={{ color: "var(--solar-hover)" }}>
                 <i className="fa-solid fa-phone"></i>
                 <span>+91 {settings.managerContact || "9305839018"}</span>
               </a>
@@ -214,7 +214,7 @@ export default function AboutPage() {
                 Overseeing technical customer enquiries, rooftop solar EPC engineering, and same-day express doorstep dispatch, Mr. Kartik Kushwaha manages computerized battery testing benches and installation teams across both our Puramufti and Charwa branches.
               </p>
               <div className="executive-spotlight-signature">
-                <span className="executive-spotlight-sign-name" style={{ color: "#FBBF24" }}>
+                <span className="executive-spotlight-sign-name" style={{ color: "var(--solar-hover)" }}>
                   Kartik Kushwaha
                 </span>
                 <span className="executive-spotlight-sign-role">

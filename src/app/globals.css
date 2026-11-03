@@ -851,13 +851,14 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.06);
 }
 
-/* ================= EXECUTIVE SPOTLIGHT (MATCHING SHREE MAHADEV MOTORS UI) ================= */
+/* ================= EXECUTIVE SPOTLIGHT (PAWAN TRADERS BRAND PALETTE + REFERENCE LAYOUT) ================= */
 .executive-spotlight-section {
-  background: #111827; /* Dark sleek charcoal/navy */
-  color: #FFFFFF;
+  background: #F8FAFC; /* Clean light background matching Pawan Traders */
+  color: #0F172A;
   padding: clamp(60px, 7vw, 90px) 20px;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--gray-200);
 }
 
 .executive-spotlight-container {
@@ -865,7 +866,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(60px, 8vw, 100px);
+  gap: clamp(60px, 8vw, 90px);
 }
 
 .executive-spotlight-row {
@@ -882,21 +883,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .executive-spotlight-eyebrow {
-  color: #F59E0B; /* Solar copper/amber */
-  font-size: 0.9rem;
+  color: var(--primary); /* Pawan Traders Royal Blue */
+  font-size: 0.88rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: inline-block;
 }
 
 .executive-spotlight-name {
   font-size: clamp(2.2rem, 3.4vw, 3.1rem);
   font-weight: 900;
-  color: #FFFFFF;
+  color: #0F172A;
   line-height: 1.15;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   letter-spacing: -0.02em;
 }
 
@@ -904,25 +905,25 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #F59E0B;
+  color: var(--primary);
   font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
   width: fit-content;
 }
 
 .executive-spotlight-phone:hover {
-  color: #FBBF24;
+  color: #1E40AF;
   transform: translateX(4px);
 }
 
 .executive-spotlight-bio {
-  color: #94A3B8;
+  color: #475569;
   font-size: 1.05rem;
   line-height: 1.85;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   max-width: 540px;
 }
 
@@ -930,14 +931,14 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .executive-spotlight-sign-name {
   font-size: 1.6rem;
   font-style: italic;
   font-family: Georgia, "Times New Roman", serif;
-  color: #F59E0B;
+  color: var(--primary);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -956,9 +957,9 @@ h1, h2, h3, h4, h5, h6 {
   height: clamp(440px, 46vw, 560px);
   border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
-  background: #1E293B;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+  background: #0F172A;
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .executive-spotlight-image-card img {
@@ -974,13 +975,13 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 24px;
   right: 24px;
   max-width: 310px;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 16px 20px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #F8FAFC;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
   font-size: 0.88rem;
   font-style: italic;
   line-height: 1.6;
