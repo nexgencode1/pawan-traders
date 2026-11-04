@@ -48,24 +48,42 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
   );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [heroSettings, setHeroSettings] = useState({
+    heroSingleText: "Authorized Wholesale & Retail Battery & Solar Superstore for Prayagraj & Kaushambi",
+    showHeroSingleText: true,
+  });
   const timerRef = useRef(null);
 
-  // Background fetch to load custom slides from DB if available
+  // Background fetch to load custom slides and site settings from DB/API
   useEffect(() => {
-    async function loadSlides() {
+    async function loadData() {
       try {
-        const res = await fetch("/api/hero-slides");
-        if (res.ok) {
-          const data = await res.json();
+        const [slidesRes, settingsRes] = await Promise.all([
+          fetch("/api/hero-slides"),
+          fetch("/api/settings"),
+        ]);
+
+        if (slidesRes.ok) {
+          const data = await slidesRes.json();
           if (data.success && data.slides && data.slides.length > 0) {
             setSlides(data.slides);
+          }
+        }
+
+        if (settingsRes.ok) {
+          const sData = await settingsRes.json();
+          if (sData.success && sData.settings) {
+            setHeroSettings({
+              heroSingleText: sData.settings.heroSingleText || "Authorized Wholesale & Retail Battery & Solar Superstore for Prayagraj & Kaushambi",
+              showHeroSingleText: sData.settings.showHeroSingleText !== false,
+            });
           }
         }
       } catch (err) {
         // Fallback safely preserved
       }
     }
-    loadSlides();
+    loadData();
   }, []);
 
   // Auto-play interval
@@ -162,8 +180,8 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
         </div>
       ))}
 
-      {/* Action Buttons Layer (Only Buttons - No Text Overlay) */}
-      {(currentSlide.button1Text || currentSlide.button2Text) && (
+      {/* Content & Action Buttons Layer */}
+      {((currentSlide.button1Text || currentSlide.button2Text) || (heroSettings.showHeroSingleText && (currentSlide.title || heroSettings.heroSingleText))) && (
         <div
           className="container"
           style={{
@@ -177,6 +195,51 @@ export default function HeroSlider({ initialSlides = DEFAULT_HERO_SLIDES }) {
             pointerEvents: "none",
           }}
         >
+          {/* Toggleable Single Text Option (Admin Controllable) */}
+          {heroSettings.showHeroSingleText && (currentSlide.title || heroSettings.heroSingleText) && currentSlide.showTitle !== false && (
+            <div
+              style={{
+                marginBottom: "14px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                background: "rgba(15, 23, 42, 0.78)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.22)",
+                borderRadius: "10px",
+                padding: "10px 18px",
+                maxWidth: "760px",
+                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
+                pointerEvents: "auto",
+              }}
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  backgroundColor: "#F59E0B",
+                  boxShadow: "0 0 10px #F59E0B",
+                  flexShrink: 0,
+                }}
+              />
+              <p
+                style={{
+                  margin: 0,
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  fontSize: "clamp(0.92rem, 2vw, 1.22rem)",
+                  lineHeight: 1.4,
+                  letterSpacing: "-0.2px",
+                  textShadow: "0 2px 8px rgba(0,0,0,0.6)",
+                }}
+              >
+                {currentSlide.title || heroSettings.heroSingleText}
+              </p>
+            </div>
+          )}
+
           <div
             style={{
               display: "flex",

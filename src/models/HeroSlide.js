@@ -15,6 +15,10 @@ const HeroSlideSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    showTitle: {
+      type: Boolean,
+      default: true,
+    },
     badge: {
       type: String,
       default: "",

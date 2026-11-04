@@ -9,6 +9,8 @@ import { INITIAL_DATA } from "@/data/pawanData";
 let memorySettings = {
   announcementText: "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513 / 9305839018",
   showAnnouncement: true,
+  heroSingleText: "Authorized Wholesale & Retail Battery & Solar Superstore for Prayagraj & Kaushambi",
+  showHeroSingleText: true,
 };
 
 // In-Memory Fallback State (used when MongoDB is not connected)
@@ -637,11 +639,15 @@ export async function getSettings() {
           key: "general",
           announcementText: memorySettings.announcementText,
           showAnnouncement: memorySettings.showAnnouncement,
+          heroSingleText: memorySettings.heroSingleText,
+          showHeroSingleText: memorySettings.showHeroSingleText,
         });
       }
       return {
         announcementText: doc.announcementText || memorySettings.announcementText,
         showAnnouncement: doc.showAnnouncement !== false,
+        heroSingleText: doc.heroSingleText !== undefined ? doc.heroSingleText : memorySettings.heroSingleText,
+        showHeroSingleText: doc.showHeroSingleText !== false,
       };
     } catch (e) {}
   }
@@ -655,6 +661,12 @@ export async function updateSettings(data) {
   if (data.showAnnouncement !== undefined) {
     memorySettings.showAnnouncement = Boolean(data.showAnnouncement);
   }
+  if (data.heroSingleText !== undefined) {
+    memorySettings.heroSingleText = data.heroSingleText;
+  }
+  if (data.showHeroSingleText !== undefined) {
+    memorySettings.showHeroSingleText = Boolean(data.showHeroSingleText);
+  }
   const db = await connectToDatabase();
   if (db) {
     try {
@@ -663,12 +675,16 @@ export async function updateSettings(data) {
         {
           announcementText: memorySettings.announcementText,
           showAnnouncement: memorySettings.showAnnouncement,
+          heroSingleText: memorySettings.heroSingleText,
+          showHeroSingleText: memorySettings.showHeroSingleText,
         },
         { upsert: true, new: true }
       ).lean();
       return {
         announcementText: updated.announcementText,
         showAnnouncement: updated.showAnnouncement !== false,
+        heroSingleText: updated.heroSingleText,
+        showHeroSingleText: updated.showHeroSingleText !== false,
       };
     } catch (e) {}
   }

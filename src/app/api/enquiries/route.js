@@ -5,6 +5,7 @@ import {
   updateEnquiryStatus,
   deleteEnquiry,
 } from "@/lib/dataStore";
+import { sendEnquiryNotificationEmail } from "@/lib/smtp";
 
 export async function GET() {
   try {
@@ -35,6 +36,11 @@ export async function POST(request) {
       batteryOrSolarReq: body.batteryOrSolarReq || "",
       message: body.message || "",
       status: "New",
+    });
+
+    // Send asynchronous email notification (non-blocking)
+    sendEnquiryNotificationEmail(newEnquiry).catch((err) => {
+      console.warn("Non-blocking SMTP dispatch error:", err.message);
     });
 
     return NextResponse.json(

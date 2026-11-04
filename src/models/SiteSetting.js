@@ -16,6 +16,14 @@ const SiteSettingSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    heroSingleText: {
+      type: String,
+      default: "Authorized Wholesale & Retail Battery & Solar Superstore for Prayagraj & Kaushambi",
+    },
+    showHeroSingleText: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

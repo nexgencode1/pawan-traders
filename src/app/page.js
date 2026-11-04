@@ -205,7 +205,241 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== 5. VISIT OUR PRIME BRANCHES (MOVED UP FOR FAST CUSTOMER ACCESS) ==================== */}
+      {/* ==================== 5. PHOTO & INSTALLATION GALLERY HIGHLIGHT (REAL STORE PHOTOS) ==================== */}
+      <section className="section-padding" style={{ background: "#F1F5F9" }}>
+        <div className="container">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "20px",
+              marginBottom: "36px",
+            }}
+          >
+            <div>
+              <span className="section-badge">
+                <i className="fa-solid fa-camera"></i> Live Work Showcase
+              </span>
+              <h2 className="section-title" style={{ marginBottom: "8px" }}>
+                Recent <span>Installations &amp; Gallery</span>
+              </h2>
+              <p className="section-subtitle">
+                Real photos of solar rooftops, lithium storage, inverter banks, and Puramufti &amp; Charwa shops.
+              </p>
+            </div>
+            <div>
+              <Link href="/gallery" className="btn btn-primary">
+                <i className="fa-solid fa-images"></i> View Full Gallery (24 Photos)
+              </Link>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+            }}
+          >
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="hover-card"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src="/assets/images/gallery/gallery-01.jpg"
+                  alt="Pawan Traders Puramufti Showroom Front"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#1D4ED8", textTransform: "uppercase" }}>
+                  Main Branch Showroom
+                </span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
+                  Puramufti Head Office &amp; Retail Hub
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
+                  Full inventory of Amaron, Exide, and Luminous batteries ready for dispatch on GT Road Puramufti.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="hover-card"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src="/assets/images/gallery/gallery-02.jpg"
+                  alt="Rooftop Solar Plant Installation"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#F59E0B", textTransform: "uppercase" }}>
+                  Solar Installation
+                </span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
+                  Mono-PERC Rooftop Solar Plant
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
+                  High efficiency PM Surya Ghar subsidy approved on-grid solar plant in Prayagraj region.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="hover-card"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src="/assets/images/gallery/gallery-03.jpg"
+                  alt="Inverter & Battery Stock"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "18px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase" }}>
+                  Power Storage
+                </span>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
+                  Inverter &amp; Tubular Battery Stock
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
+                  Heavy-duty inverter and tubular battery solutions tested and dispatched same-day.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 6. EXECUTIVE LEADERSHIP SPOTLIGHT (EXACT MAHADEV MOTORS UI) ==================== */}
+      <section className="executive-spotlight-section" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
+        <div className="executive-spotlight-container">
+          {/* Row 1: Director & Founder */}
+          <div className="executive-spotlight-row">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="executive-spotlight-content"
+            >
+              <span className="executive-spotlight-eyebrow">
+                MEET OUR DIRECTOR
+              </span>
+              <h2 className="executive-spotlight-name">
+                Mr. Pawan Kumar Kushwaha
+              </h2>
+              <a href={`tel:+91${settings.callingNumber}`} className="executive-spotlight-phone">
+                <i className="fa-solid fa-phone"></i>
+                <span>+91 {settings.callingNumber}</span>
+              </a>
+              <p className="executive-spotlight-bio">
+                A visionary leader with a deep passion for automotive energy storage and solar power distribution, Mr. Pawan Kumar Kushwaha founded Pawan Traders with a simple goal &mdash; to create a dealership built on 100% genuine brand products, fair wholesale transparency, and authentic customer trust.
+              </p>
+              <div className="executive-spotlight-signature">
+                <span className="executive-spotlight-sign-name">
+                  Pawan Kumar Kushwaha
+                </span>
+                <span className="executive-spotlight-sign-role">
+                  DIRECTOR, PAWAN TRADERS
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="executive-spotlight-image-card"
+            >
+              <img
+                src="/director.jpeg"
+                alt="Mr. Pawan Kumar Kushwaha - Director & Founder"
+              />
+              <div className="executive-spotlight-quote-overlay">
+                &ldquo;Leadership is about service, trust, and creating real lasting value for people.&rdquo;
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Row 2: General Manager & Technical Operations */}
+          <div className="executive-spotlight-row" style={{ paddingTop: "40px", borderTop: "1px solid var(--gray-200)" }}>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="executive-spotlight-content"
+            >
+              <span className="executive-spotlight-eyebrow" style={{ color: "var(--solar-hover)" }}>
+                MEET OUR GENERAL MANAGER
+              </span>
+              <h2 className="executive-spotlight-name">
+                Mr. Kartik Kushwaha
+              </h2>
+              <a href={`tel:+91${settings.managerContact || "9305839018"}`} className="executive-spotlight-phone" style={{ color: "var(--solar-hover)" }}>
+                <i className="fa-solid fa-phone"></i>
+                <span>+91 {settings.managerContact || "9305839018"}</span>
+              </a>
+              <p className="executive-spotlight-bio">
+                Overseeing technical customer enquiries, rooftop solar EPC engineering, and same-day express doorstep dispatch, Mr. Kartik Kushwaha manages computerized battery testing benches and installation teams across both our Puramufti and Charwa branches.
+              </p>
+              <div className="executive-spotlight-signature">
+                <span className="executive-spotlight-sign-name" style={{ color: "var(--solar-hover)" }}>
+                  Kartik Kushwaha
+                </span>
+                <span className="executive-spotlight-sign-role">
+                  GENERAL MANAGER &amp; TECHNICAL HEAD, PAWAN TRADERS
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="executive-spotlight-image-card"
+            >
+              <img
+                src="/manager.jpeg"
+                alt="Mr. Kartik Kushwaha - General Manager"
+              />
+              <div className="executive-spotlight-quote-overlay">
+                &ldquo;Excellence is about fast doorstep service, computerized battery testing, and flawless rooftop solar execution.&rdquo;
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 7. VISIT OUR PRIME BRANCHES (DIRECTLY ABOVE SOLAR CALCULATOR) ==================== */}
       <section className="section-padding" style={{ background: "#FFFFFF", borderTop: "1px solid var(--gray-200)" }}>
         <div className="container">
           <motion.div
@@ -359,240 +593,6 @@ export default function HomePage() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== 6. EXECUTIVE LEADERSHIP SPOTLIGHT (EXACT MAHADEV MOTORS UI) ==================== */}
-      <section className="executive-spotlight-section" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
-        <div className="executive-spotlight-container">
-          {/* Row 1: Director & Founder */}
-          <div className="executive-spotlight-row">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="executive-spotlight-content"
-            >
-              <span className="executive-spotlight-eyebrow">
-                MEET OUR DIRECTOR
-              </span>
-              <h2 className="executive-spotlight-name">
-                Mr. Pawan Kumar Kushwaha
-              </h2>
-              <a href={`tel:+91${settings.callingNumber}`} className="executive-spotlight-phone">
-                <i className="fa-solid fa-phone"></i>
-                <span>+91 {settings.callingNumber}</span>
-              </a>
-              <p className="executive-spotlight-bio">
-                A visionary leader with a deep passion for automotive energy storage and solar power distribution, Mr. Pawan Kumar Kushwaha founded Pawan Traders with a simple goal &mdash; to create a dealership built on 100% genuine brand products, fair wholesale transparency, and authentic customer trust.
-              </p>
-              <div className="executive-spotlight-signature">
-                <span className="executive-spotlight-sign-name">
-                  Pawan Kumar Kushwaha
-                </span>
-                <span className="executive-spotlight-sign-role">
-                  DIRECTOR, PAWAN TRADERS
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="executive-spotlight-image-card"
-            >
-              <img
-                src="/director.jpeg"
-                alt="Mr. Pawan Kumar Kushwaha - Director & Founder"
-              />
-              <div className="executive-spotlight-quote-overlay">
-                &ldquo;Leadership is about service, trust, and creating real lasting value for people.&rdquo;
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Row 2: General Manager & Technical Operations */}
-          <div className="executive-spotlight-row" style={{ paddingTop: "40px", borderTop: "1px solid var(--gray-200)" }}>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="executive-spotlight-content"
-            >
-              <span className="executive-spotlight-eyebrow" style={{ color: "var(--solar-hover)" }}>
-                MEET OUR GENERAL MANAGER
-              </span>
-              <h2 className="executive-spotlight-name">
-                Mr. Kartik Kushwaha
-              </h2>
-              <a href={`tel:+91${settings.managerContact || "9305839018"}`} className="executive-spotlight-phone" style={{ color: "var(--solar-hover)" }}>
-                <i className="fa-solid fa-phone"></i>
-                <span>+91 {settings.managerContact || "9305839018"}</span>
-              </a>
-              <p className="executive-spotlight-bio">
-                Overseeing technical customer enquiries, rooftop solar EPC engineering, and same-day express doorstep dispatch, Mr. Kartik Kushwaha manages computerized battery testing benches and installation teams across both our Puramufti and Charwa branches.
-              </p>
-              <div className="executive-spotlight-signature">
-                <span className="executive-spotlight-sign-name" style={{ color: "var(--solar-hover)" }}>
-                  Kartik Kushwaha
-                </span>
-                <span className="executive-spotlight-sign-role">
-                  GENERAL MANAGER &amp; TECHNICAL HEAD, PAWAN TRADERS
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="executive-spotlight-image-card"
-            >
-              <img
-                src="/manager.jpeg"
-                alt="Mr. Kartik Kushwaha - General Manager"
-              />
-              <div className="executive-spotlight-quote-overlay">
-                &ldquo;Excellence is about fast doorstep service, computerized battery testing, and flawless rooftop solar execution.&rdquo;
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== 7. PHOTO & INSTALLATION GALLERY HIGHLIGHT (REAL STORE PHOTOS) ==================== */}
-      <section className="section-padding" style={{ background: "#F1F5F9" }}>
-        <div className="container">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              flexWrap: "wrap",
-              gap: "20px",
-              marginBottom: "36px",
-            }}
-          >
-            <div>
-              <span className="section-badge">
-                <i className="fa-solid fa-camera"></i> Live Work Showcase
-              </span>
-              <h2 className="section-title" style={{ marginBottom: "8px" }}>
-                Recent <span>Installations &amp; Gallery</span>
-              </h2>
-              <p className="section-subtitle">
-                Real photos of solar rooftops, lithium storage, inverter banks, and Puramufti &amp; Charwa shops.
-              </p>
-            </div>
-            <div>
-              <Link href="/gallery" className="btn btn-primary">
-                <i className="fa-solid fa-images"></i> View Full Gallery (24 Photos)
-              </Link>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "24px",
-            }}
-          >
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
-                <img
-                  src="/assets/images/gallery/gallery-01.jpg"
-                  alt="Pawan Traders Puramufti Showroom Front"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: "18px" }}>
-                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#1D4ED8", textTransform: "uppercase" }}>
-                  Main Branch Showroom
-                </span>
-                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
-                  Puramufti Head Office &amp; Retail Hub
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
-                  Full inventory of Amaron, Exide, and Luminous batteries ready for dispatch on GT Road Puramufti.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
-                <img
-                  src="/assets/images/gallery/gallery-02.jpg"
-                  alt="Rooftop Solar Plant Installation"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: "18px" }}>
-                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#F59E0B", textTransform: "uppercase" }}>
-                  Solar Installation
-                </span>
-                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
-                  Mono-PERC Rooftop Solar Plant
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
-                  High efficiency PM Surya Ghar subsidy approved on-grid solar plant in Prayagraj region.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="hover-card"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid #E2E8F0",
-              }}
-            >
-              <div style={{ height: "220px", overflow: "hidden", position: "relative" }}>
-                <img
-                  src="/assets/images/gallery/gallery-03.jpg"
-                  alt="Inverter & Battery Stock"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: "18px" }}>
-                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase" }}>
-                  Power Storage
-                </span>
-                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0F172A", marginTop: "4px" }}>
-                  Inverter &amp; Tubular Battery Stock
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748B", marginTop: "4px" }}>
-                  Heavy-duty inverter and tubular battery solutions tested and dispatched same-day.
-                </p>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>

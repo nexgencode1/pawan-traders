@@ -30,10 +30,12 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
 
-  // Running Marquee Banner Settings
+  // Running Marquee Banner & Site Settings
   const [siteSettings, setSiteSettings] = useState({
     announcementText: "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513",
     showAnnouncement: true,
+    heroSingleText: "Authorized Wholesale & Retail Battery & Solar Superstore for Prayagraj & Kaushambi",
+    showHeroSingleText: true,
   });
   const [savingSettings, setSavingSettings] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -45,6 +47,7 @@ export default function AdminPage() {
     imageUrl: "",
     cloudinaryPublicId: "",
     title: "", // Optional text
+    showTitle: true,
     badge: "100% Authorized Hub",
     button1Text: "Explore Products",
     button1Link: "/products",
@@ -1077,6 +1080,123 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                 </div>
               </div>
 
+              {/* ================= HERO SECTION SINGLE TEXT SETTINGS ================= */}
+              <div style={{ marginTop: "36px", paddingTop: "28px", borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginBottom: "20px" }}>
+                  <div>
+                    <span style={{ color: "#38BDF8", fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase" }}>
+                      <i className="fa-solid fa-heading"></i> Hero Slider Single Text Overlay
+                    </span>
+                    <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "#FFFFFF", marginTop: "4px" }}>
+                      Hero Section Single Text &amp; Show/Hide Toggle
+                    </h3>
+                    <p style={{ color: "#94A3B8", fontSize: "0.88rem", marginTop: "4px" }}>
+                      Turn this ON to show a clean, high-contrast headline banner above the slider buttons. Turn OFF to show only pure slider images and buttons.
+                    </p>
+                  </div>
+
+                  {/* Toggle Button */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span style={{ fontSize: "0.9rem", fontWeight: 700, color: siteSettings.showHeroSingleText ? "#34D399" : "#F87171" }}>
+                      {siteSettings.showHeroSingleText ? "● Hero Text Visible (ON)" : "○ Hero Text Hidden (OFF)"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setSiteSettings(prev => ({ ...prev, showHeroSingleText: !prev.showHeroSingleText }))}
+                      style={{
+                        background: siteSettings.showHeroSingleText ? "#10B981" : "#475569",
+                        color: "#FFFFFF",
+                        border: "none",
+                        padding: "8px 18px",
+                        borderRadius: "999px",
+                        fontWeight: 800,
+                        fontSize: "0.85rem",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease"
+                      }}
+                    >
+                      <i className={`fa-solid ${siteSettings.showHeroSingleText ? "fa-toggle-on" : "fa-toggle-off"}`}></i> Toggle {siteSettings.showHeroSingleText ? "OFF" : "ON"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Hero Single Text Preview */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={{ color: "#CBD5E1", fontSize: "0.85rem", fontWeight: 700, display: "block", marginBottom: "8px" }}>
+                    Live Hero Text Preview:
+                  </label>
+                  <div style={{
+                    background: "rgba(15, 23, 42, 0.8)",
+                    borderRadius: "10px",
+                    padding: "12px 20px",
+                    border: "1px solid rgba(56, 189, 248, 0.35)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px"
+                  }}>
+                    <span style={{ background: siteSettings.showHeroSingleText ? "#10B981" : "#EF4444", color: "#FFFFFF", padding: "2px 8px", borderRadius: "4px", fontSize: "0.75rem", fontWeight: 800 }}>
+                      {siteSettings.showHeroSingleText ? "ACTIVE" : "HIDDEN"}
+                    </span>
+                    <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: "0.95rem" }}>
+                      {siteSettings.heroSingleText || "No text specified"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="form-group" style={{ marginBottom: "20px" }}>
+                  <label style={{ color: "#CBD5E1", fontSize: "0.88rem", fontWeight: 700, display: "block", marginBottom: "8px" }}>
+                    Edit Hero Single Text:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={siteSettings.heroSingleText || ""}
+                    onChange={(e) => setSiteSettings(prev => ({ ...prev, heroSingleText: e.target.value }))}
+                    placeholder="Enter the single text headline for Hero section..."
+                    style={{
+                      background: "#0F172A",
+                      border: "1px solid #334155",
+                      color: "#FFFFFF",
+                      fontSize: "0.95rem",
+                      padding: "12px 16px"
+                    }}
+                  />
+                </div>
+
+                {/* Preset Suggestions */}
+                <div style={{ marginBottom: "24px" }}>
+                  <span style={{ fontSize: "0.82rem", color: "#94A3B8", fontWeight: 600, display: "block", marginBottom: "8px" }}>
+                    Quick presets:
+                  </span>
+                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                    <button
+                      type="button"
+                      className="btn btn-outline btn-sm"
+                      style={{ fontSize: "0.78rem", color: "#CBD5E1", borderColor: "#475569" }}
+                      onClick={() => setSiteSettings(prev => ({ ...prev, heroSingleText: "Authorized Wholesale & Retail Battery & Solar Superstore for Prayagraj & Kaushambi" }))}
+                    >
+                      Superstore Puramufti &amp; Charwa
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline btn-sm"
+                      style={{ fontSize: "0.78rem", color: "#CBD5E1", borderColor: "#475569" }}
+                      onClick={() => setSiteSettings(prev => ({ ...prev, heroSingleText: "PM Surya Ghar Muft Bijli Yojana Approved Solar Rooftop EPC Installer" }))}
+                    >
+                      PM Surya Ghar Approved
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline btn-sm"
+                      style={{ fontSize: "0.78rem", color: "#CBD5E1", borderColor: "#475569" }}
+                      onClick={() => setSiteSettings(prev => ({ ...prev, heroSingleText: "100% Genuine Amaron, Exide, Luminous Batteries with Free Doorstep Fitting" }))}
+                    >
+                      Genuine Batteries &amp; Fitting
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <button
                 type="submit"
                 disabled={savingSettings}
@@ -1179,6 +1299,7 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                           imageUrl: slide.imageUrl,
                           cloudinaryPublicId: slide.cloudinaryPublicId || "",
                           title: slide.title || "",
+                          showTitle: slide.showTitle !== false,
                           badge: slide.badge || "",
                           button1Text: slide.button1Text || "",
                           button1Link: slide.button1Link || "",
@@ -1629,11 +1750,30 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                 </div>
               </div>
 
-              {/* SINGLE TEXT (OPTIONAL AS REQUESTED) */}
+              {/* SINGLE TEXT (WITH TOGGLE) */}
               <div className="form-group" style={{ marginBottom: "16px" }}>
-                <label style={{ color: "#CBD5E1", fontSize: "0.85rem", fontWeight: 700 }}>
-                  Single Headline Text <span style={{ color: "#F59E0B" }}>(Optional &mdash; Leave blank if not needed)</span>
-                </label>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                  <label style={{ color: "#CBD5E1", fontSize: "0.85rem", fontWeight: 700, margin: 0 }}>
+                    Single Headline Text <span style={{ color: "#F59E0B" }}>(Optional)</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setSlideFormData(prev => ({ ...prev, showTitle: !prev.showTitle }))}
+                    style={{
+                      background: slideFormData.showTitle ? "#10B981" : "#475569",
+                      color: "#FFFFFF",
+                      border: "none",
+                      padding: "3px 10px",
+                      borderRadius: "999px",
+                      fontSize: "0.74rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s ease"
+                    }}
+                  >
+                    <i className={`fa-solid ${slideFormData.showTitle ? "fa-toggle-on" : "fa-toggle-off"}`}></i> Text: {slideFormData.showTitle ? "ON (Visible)" : "OFF (Hidden)"}
+                  </button>
+                </div>
                 <input
                   type="text"
                   className="form-control"
@@ -1643,7 +1783,7 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                   style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
                 />
                 <span style={{ fontSize: "0.75rem", color: "#94A3B8" }}>
-                  If left empty, the slide will highlight the photo and the 2 buttons without empty text gaps.
+                  Toggle switch allows instantly showing or hiding this text on this slide.
                 </span>
               </div>
 

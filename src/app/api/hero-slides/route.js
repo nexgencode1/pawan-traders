@@ -29,6 +29,7 @@ export async function POST(request) {
       imageUrl: body.imageUrl,
       cloudinaryPublicId: body.cloudinaryPublicId || "",
       title: body.title || "", // Single text (optional)
+      showTitle: body.showTitle !== undefined ? Boolean(body.showTitle) : true,
       badge: body.badge || "",
       button1Text: body.button1Text || "Explore Products",
       button1Link: body.button1Link || "/products",
