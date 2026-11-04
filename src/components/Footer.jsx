@@ -340,8 +340,28 @@ export default function Footer({ onOpenEnquiry }) {
             fontSize: "0.82rem",
           }}
         >
-          <div>
-            &copy; {new Date().getFullYear()} <strong style={{ color: "#FFFFFF" }}>Pawan Traders</strong>. All rights reserved. Puramufti (Prayagraj) &amp; Charwa (Kaushambi).
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <div>
+              &copy; {new Date().getFullYear()} <strong style={{ color: "#FFFFFF" }}>Pawan Traders</strong>. All rights reserved. Puramufti (Prayagraj) &amp; Charwa (Kaushambi).
+            </div>
+            <div style={{ color: "#64748B", fontSize: "0.78rem" }}>
+              Designed &amp; Developed with <i className="fa-solid fa-heart" style={{ color: "#EF4444", fontSize: "0.7rem" }}></i> by{" "}
+              <a
+                href="https://nexgencode.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#38BDF8",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  borderBottom: "1px dashed rgba(56, 189, 248, 0.4)",
+                  paddingBottom: "1px",
+                  transition: "color 0.2s ease",
+                }}
+              >
+                NexGen Code
+              </a>
+            </div>
           </div>
           <div style={{ display: "flex", gap: "18px", alignItems: "center", flexWrap: "wrap" }}>
             <Link href="/about" style={{ color: "#94A3B8", textDecoration: "none" }} className="footer-link-hover">

@@ -40,9 +40,9 @@ export default function GalleryPage() {
     <>
       {/* Header Banner */}
       <section style={{
-        background: "linear-gradient(135deg, #091E42 0%, #0F2D6B 60%, #1D4ED8 100%)",
+        background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
         color: "#FFFFFF",
-        padding: "60px 0 50px 0",
+        padding: "70px 20px 60px",
         textAlign: "center"
       }}>
         <div className="container">
@@ -52,7 +52,7 @@ export default function GalleryPage() {
           <h1 style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", fontWeight: 800, color: "#FFFFFF", marginBottom: "14px" }}>
             Product &amp; Project Gallery
           </h1>
-          <p style={{ color: "#CBD5E1", fontSize: "1.05rem", maxWidth: "650px", margin: "0 auto" }}>
+          <p style={{ color: "#E2E8F0", fontSize: "1.05rem", maxWidth: "650px", margin: "0 auto" }}>
             Real installation photos of Rooftop Solar Projects, Inverter Battery Setups, Puramufti &amp; Charwa branches, and customer dispatches across Prayagraj &amp; Kaushambi.
           </p>
         </div>

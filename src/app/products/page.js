@@ -66,10 +66,10 @@ function ProductsContent() {
   return (
     <div>
       <section style={{
-        background: "linear-gradient(135deg, #091E42, #0F2D6B)",
+        background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
         color: "#FFFFFF",
         textAlign: "center",
-        padding: "60px 20px"
+        padding: "70px 20px 60px"
       }}>
         <div className="container">
           <span className="section-badge solar" style={{ margin: "0 auto 14px" }}>
@@ -78,7 +78,7 @@ function ProductsContent() {
           <h1 style={{ fontSize: "2.6rem", fontWeight: 800, marginBottom: "12px", color: "#FFFFFF" }}>
             Battery &amp; Solar Product Catalogue
           </h1>
-          <p style={{ fontSize: "1.05rem", maxWidth: "680px", margin: "0 auto", color: "#CBD5E1" }}>
+          <p style={{ fontSize: "1.05rem", maxWidth: "680px", margin: "0 auto", color: "#E2E8F0" }}>
             Explore models across Automotive, Vion Lithium, Solar Panels, Tall Tubular, and SMF UPS dry batteries.
           </p>
         </div>

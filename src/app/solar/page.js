@@ -44,10 +44,10 @@ export default function SolarPage() {
   return (
     <div>
       <section style={{
-        background: "linear-gradient(135deg, #0F172A, #0284C7)",
+        background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
         color: "#FFFFFF",
         textAlign: "center",
-        padding: "70px 20px"
+        padding: "70px 20px 60px"
       }}>
         <div className="container">
           <span className="section-badge solar" style={{ margin: "0 auto 14px" }}>

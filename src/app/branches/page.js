@@ -38,10 +38,10 @@ export default function BranchesPage() {
   return (
     <div>
       <section style={{
-        background: "linear-gradient(135deg, #091E42, #0F2D6B)",
+        background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
         color: "#FFFFFF",
         textAlign: "center",
-        padding: "60px 20px"
+        padding: "70px 20px 60px"
       }}>
         <div className="container">
           <span className="section-badge solar" style={{ margin: "0 auto 14px" }}>
@@ -50,7 +50,7 @@ export default function BranchesPage() {
           <h1 style={{ fontSize: "2.6rem", fontWeight: 800, marginBottom: "12px", color: "#FFFFFF" }}>
             Our Two Branch Locations
           </h1>
-          <p style={{ fontSize: "1.05rem", maxWidth: "680px", margin: "0 auto", color: "#CBD5E1" }}>
+          <p style={{ fontSize: "1.05rem", maxWidth: "680px", margin: "0 auto", color: "#E2E8F0" }}>
             Convenient physical stores in Puramufti (Prayagraj) and Charwa Town (Kaushambi). Visit for prompt in-store testing, exchange, and pickup.
           </p>
         </div>

@@ -222,8 +222,18 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Row 2: General Manager & Technical Operations */}
+          {/* Row 2: General Manager & Technical Operations (Image Left, Info Right) */}
           <div className="executive-spotlight-row" style={{ paddingTop: "40px", borderTop: "1px solid var(--gray-200)" }}>
+            <div className="executive-spotlight-image-card">
+              <img
+                src="/manager.jpeg"
+                alt="Mr. Kartik Kushwaha - General Manager"
+              />
+              <div className="executive-spotlight-quote-overlay">
+                &ldquo;Excellence is about fast doorstep service, computerized battery testing, and flawless rooftop solar execution.&rdquo;
+              </div>
+            </div>
+
             <div className="executive-spotlight-content">
               <span className="executive-spotlight-eyebrow" style={{ color: "var(--solar-hover)" }}>
                 MEET OUR GENERAL MANAGER
@@ -245,16 +255,6 @@ export default function AboutPage() {
                 <span className="executive-spotlight-sign-role">
                   GENERAL MANAGER &amp; TECHNICAL HEAD, PAWAN TRADERS
                 </span>
-              </div>
-            </div>
-
-            <div className="executive-spotlight-image-card">
-              <img
-                src="/manager.jpeg"
-                alt="Mr. Kartik Kushwaha - General Manager"
-              />
-              <div className="executive-spotlight-quote-overlay">
-                &ldquo;Excellence is about fast doorstep service, computerized battery testing, and flawless rooftop solar execution.&rdquo;
               </div>
             </div>
           </div>

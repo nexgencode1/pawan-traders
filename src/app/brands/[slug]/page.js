@@ -54,9 +54,9 @@ export default async function BrandProductsPage({ params }) {
   return (
     <div>
       <section style={{
-        background: "linear-gradient(135deg, #091E42, #1D4ED8)",
+        background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
         color: "#FFFFFF",
-        padding: "60px 20px"
+        padding: "70px 20px 60px"
       }}>
         <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
           <div>

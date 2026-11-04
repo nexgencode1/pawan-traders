@@ -39,10 +39,10 @@ export default function BrandsDirectoryPage() {
   return (
     <div>
       <section style={{
-        background: "linear-gradient(135deg, #091E42, #1E293B)",
+        background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
         color: "#FFFFFF",
         textAlign: "center",
-        padding: "60px 20px"
+        padding: "70px 20px 60px"
       }}>
         <div className="container">
           <span className="section-badge solar" style={{ margin: "0 auto 14px" }}>
@@ -51,7 +51,7 @@ export default function BrandsDirectoryPage() {
           <h1 style={{ fontSize: "2.6rem", fontWeight: 800, marginBottom: "12px", color: "#FFFFFF" }}>
             Authorized Battery &amp; Solar Brands
           </h1>
-          <p style={{ fontSize: "1.05rem", maxWidth: "700px", margin: "0 auto", color: "#CBD5E1" }}>
+          <p style={{ fontSize: "1.05rem", maxWidth: "700px", margin: "0 auto", color: "#E2E8F0" }}>
             We carry India&apos;s foremost energy brands across all automotive, lithium, tubular inverter, and solar energy lines.
           </p>
         </div>

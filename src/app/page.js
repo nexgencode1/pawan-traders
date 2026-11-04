@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { INITIAL_DATA } from "@/data/pawanData";
 import ProductCard from "@/components/ProductCard";
-import SolarCalculator from "@/components/SolarCalculator";
 import QuickEnquiryModal from "@/components/QuickEnquiryModal";
 import HeroSlider from "@/components/HeroSlider";
 import BranchMap from "@/components/BranchMap";
@@ -597,84 +596,250 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== 8. SOLAR FEATURETTE & CALCULATOR ==================== */}
-      <section className="section-padding" style={{ background: "#FFFFFF" }}>
+      {/* ==================== 8. CUSTOMER TESTIMONIALS & REVIEWS ==================== */}
+      <section className="section-padding" style={{ background: "#F8FAFC", borderTop: "1px solid var(--gray-200)" }}>
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto 50px" }}>
+            <span className="section-badge solar" style={{ margin: "0 auto 12px" }}>
+              <i className="fa-solid fa-star"></i> 4.9/5 Rating &bull; 10,000+ Happy Customers
+            </span>
+            <h2 className="section-title">
+              What Our Customers Say Across <span>Prayagraj &amp; Kaushambi</span>
+            </h2>
+            <p className="section-subtitle">
+              Authentic reviews from homeowners, vehicle owners, and commercial establishments who rely on Pawan Traders for genuine batteries, fast doorstep service, and rooftop solar installations.
+            </p>
+          </div>
+
+          <div
             style={{
-              background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
-              borderRadius: "var(--radius-xl)",
-              padding: "clamp(24px, 4vw, 44px)",
-              color: "#FFFFFF",
-              boxShadow: "var(--shadow-xl)",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
+              gap: "24px",
+              marginBottom: "40px",
             }}
           >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-                gap: "30px",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <span className="section-badge solar">
-                  <i className="fa-solid fa-sun"></i> PM Surya Ghar Yojana
-                </span>
-                <h2 style={{ fontSize: "2.2rem", color: "#FFFFFF", marginBottom: "16px" }}>
-                  Cut Electricity Bills to <span style={{ color: "#FBBF24" }}>Zero with Solar Power</span>
-                </h2>
-                <p style={{ color: "#CBD5E1", fontSize: "1.05rem", marginBottom: "24px", lineHeight: 1.7 }}>
-                  Pawan Traders is your certified rooftop solar EPC contractor in Puramufti, Prayagraj and Charwa, Kaushambi. Complete On-Grid net metering, Off-Grid storage, and Hybrid systems with up to ₹78,000 direct bank subsidy assistance.
-                </p>
-
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))",
-                    gap: "16px",
-                    marginBottom: "28px",
-                  }}
-                >
-                  <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "10px", padding: "14px" }}>
-                    <strong style={{ color: "#FBBF24", display: "block", fontSize: "1.1rem", marginBottom: "4px" }}>
-                      Tier-1 Mono PERC
-                    </strong>
-                    <span style={{ fontSize: "0.85rem", color: "#E2E8F0" }}>
-                      550W+ High efficiency panels with 25 yrs warranty.
+            {[
+              {
+                id: "test-1",
+                name: "Dr. Arvind Mishra",
+                role: "Senior Physician",
+                location: "Civil Lines, Prayagraj",
+                stars: 5,
+                product: "5kW On-Grid Rooftop Solar Plant",
+                review: "Installed a 5kW rooftop solar plant at my clinic & residence through Pawan Traders under PM Surya Ghar Yojana. The paperwork was completely seamless and the ₹78,000 direct bank subsidy was credited without any hassle. My monthly electricity bill dropped from ₹8,500 to almost zero! Very professional execution by Kartik ji and team.",
+                date: "Verified Solar Buyer",
+                initials: "AM",
+                badgeColor: "#10B981"
+              },
+              {
+                id: "test-2",
+                name: "Rajesh Kesarwani",
+                role: "Wholesale Merchant",
+                location: "Main Market, Puramufti",
+                stars: 5,
+                product: "Luminous 220Ah Tall Tubular Inverter Setup",
+                review: "Pawan Traders has been our family store for over 12 years. Replaced our home inverter battery with a high-capacity Luminous tall tubular. Got the best exchange rate for our old battery, same-day doorstep delivery, and proper computerized warranty. Honest pricing and zero hidden charges.",
+                date: "Verified Inverter Buyer",
+                initials: "RK",
+                badgeColor: "#1D4ED8"
+              },
+              {
+                id: "test-3",
+                name: "Er. Sandeep Patel",
+                role: "Civil Engineer",
+                location: "Phaphamau, Prayagraj",
+                stars: 5,
+                product: "Amaron Pro Car Battery Replacement",
+                review: "My SUV battery broke down in the morning near Soraon. Called Pawan Traders and their technician arrived in 30 minutes with a fresh Amaron Pro battery, tested the alternator for free, and fitted it on the spot. Truly lifesaver emergency doorstep service!",
+                date: "Verified Automotive Buyer",
+                initials: "SP",
+                badgeColor: "#F59E0B"
+              },
+              {
+                id: "test-4",
+                name: "Mohd. Tariq",
+                role: "Lab Director",
+                location: "Charwa Town, Kaushambi",
+                stars: 5,
+                product: "Vion Smart Lithium Battery & Hybrid PCU",
+                review: "Installed a Vion LiFePO4 smart lithium battery for my diagnostic lab in Charwa. Fast charging in 2.5 hours and zero maintenance water topping. Staff at the Charwa branch in front of the petrol pump is extremely helpful and technically sound. Highly recommended!",
+                date: "Verified Lithium Buyer",
+                initials: "MT",
+                badgeColor: "#8B5CF6"
+              },
+              {
+                id: "test-5",
+                name: "Anil Yadav",
+                role: "Agro Business Owner",
+                location: "Soraon, Prayagraj",
+                stars: 5,
+                product: "3kW Commercial Hybrid Solar System",
+                review: "Got a 3kW hybrid solar system for my dairy and grain shop. Even during severe power cuts in peak summer, all heavy fans and refrigeration run without interruption. Best wholesale price in the entire Allahabad region.",
+                date: "Verified Commercial Buyer",
+                initials: "AY",
+                badgeColor: "#059669"
+              },
+              {
+                id: "test-6",
+                name: "Rameshwar Tiwari",
+                role: "Transport Owner",
+                location: "Manjhanpur, Kaushambi",
+                stars: 5,
+                product: "Exide Tractor & Home Tubular Batteries",
+                review: "Got both my tractor battery and home inverter battery from Pawan Traders. Genuine Exide products with direct company warranty. Fair rate and very honest advice from Pawan Kumar ji.",
+                date: "Verified Battery Buyer",
+                initials: "RT",
+                badgeColor: "#D97706"
+              }
+            ].map((t) => (
+              <motion.div
+                key={t.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid var(--gray-200)",
+                  borderRadius: "16px",
+                  padding: "26px",
+                  boxShadow: "var(--shadow-sm)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  position: "relative",
+                }}
+              >
+                <div>
+                  {/* Top Row: Avatar, Name, Location & Verified Check */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                      <div
+                        style={{
+                          width: "44px",
+                          height: "44px",
+                          borderRadius: "12px",
+                          background: t.badgeColor,
+                          color: "#FFFFFF",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: 800,
+                          fontSize: "1rem",
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                        }}
+                      >
+                        {t.initials}
+                      </div>
+                      <div>
+                        <h4 style={{ fontSize: "1.02rem", fontWeight: 800, margin: 0, color: "var(--gray-900)" }}>
+                          {t.name}
+                        </h4>
+                        <span style={{ fontSize: "0.8rem", color: "#64748B", display: "flex", alignItems: "center", gap: "4px" }}>
+                          <i className="fa-solid fa-location-dot" style={{ color: "#EF4444", fontSize: "0.75rem" }}></i>
+                          {t.location}
+                        </span>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        background: "#ECFDF5",
+                        color: "#059669",
+                        fontSize: "0.72rem",
+                        fontWeight: 800,
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
+                      }}
+                    >
+                      <i className="fa-solid fa-circle-check"></i> Verified
                     </span>
                   </div>
-                  <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: "10px", padding: "14px" }}>
-                    <strong style={{ color: "#38BDF8", display: "block", fontSize: "1.1rem", marginBottom: "4px" }}>
-                      Smart Lithium &amp; Hybrid
-                    </strong>
-                    <span style={{ fontSize: "0.85rem", color: "#E2E8F0" }}>
-                      Vion LiFePO4 batteries &amp; MPPT hybrid PCUs.
+
+                  {/* Stars */}
+                  <div style={{ display: "flex", gap: "3px", color: "#F59E0B", fontSize: "0.9rem", marginBottom: "12px" }}>
+                    {[...Array(t.stars)].map((_, i) => (
+                      <i key={i} className="fa-solid fa-star"></i>
+                    ))}
+                  </div>
+
+                  {/* Product purchased tag */}
+                  <div style={{ marginBottom: "14px" }}>
+                    <span
+                      style={{
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        color: "#1E293B",
+                        background: "#F1F5F9",
+                        padding: "4px 10px",
+                        borderRadius: "6px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <i className="fa-solid fa-tag" style={{ color: "var(--primary)", marginRight: "6px" }}></i>
+                      {t.product}
                     </span>
                   </div>
+
+                  {/* Review Text */}
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.65, fontStyle: "italic", margin: 0 }}>
+                    &ldquo;{t.review}&rdquo;
+                  </p>
                 </div>
 
-                <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-                  <Link href="/solar" className="btn btn-solar btn-lg">
-                    <i className="fa-solid fa-solar-panel"></i> Full Solar Guide
-                  </Link>
-                  <button
-                    className="btn btn-white btn-lg"
-                    onClick={() => handleOpenModal({ name: "Rooftop Solar Plant Free Site Survey" })}
-                  >
-                    <i className="fa-solid fa-clipboard-check"></i> Book Site Survey
-                  </button>
+                {/* Footer Tag */}
+                <div style={{ marginTop: "18px", paddingTop: "14px", borderTop: "1px solid var(--gray-100)", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.78rem", color: "#94A3B8" }}>
+                  <span>{t.date}</span>
+                  <span style={{ color: "#059669", fontWeight: 700 }}>
+                    <i className="fa-solid fa-shield-check"></i> 100% Genuine Bill
+                  </span>
                 </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
 
-              {/* Calculator */}
-              <SolarCalculator />
+          {/* Bottom Review Action Callout */}
+          <div
+            style={{
+              background: "linear-gradient(135deg, #091E42 0%, #1D4ED8 100%)",
+              borderRadius: "16px",
+              padding: "24px 30px",
+              color: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "20px",
+            }}
+          >
+            <div>
+              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, margin: "0 0 6px 0", color: "#FFFFFF" }}>
+                Need Genuine Batteries or PM Surya Ghar Solar for Your Home?
+              </h3>
+              <p style={{ color: "#E0F2FE", fontSize: "0.92rem", margin: 0 }}>
+                Get wholesale prices, instant old battery exchange, and doorstep delivery across Prayagraj &amp; Kaushambi.
+              </p>
             </div>
-          </motion.div>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <a
+                href={`tel:+91${settings.callingNumber || "9935618513"}`}
+                className="btn btn-solar"
+                style={{ padding: "10px 20px" }}
+              >
+                <i className="fa-solid fa-phone"></i> Call 9935618513
+              </a>
+              <button
+                className="btn btn-white"
+                onClick={() => handleOpenModal({ name: "General Battery & Solar Enquiry" })}
+                style={{ padding: "10px 20px" }}
+              >
+                <i className="fa-solid fa-paper-plane"></i> Quick Enquiry
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
