@@ -1,37 +1,48 @@
 import nodemailer from "nodemailer";
 
-const isSmtpConfigured = Boolean(
-  process.env.SMTP_HOST &&
-  process.env.SMTP_USER &&
-  process.env.SMTP_PASS
-);
+let cachedTransporter = null;
 
-let transporter = null;
+export function getTransporter() {
+  const isSmtpConfigured = Boolean(
+    process.env.SMTP_HOST &&
+    process.env.SMTP_USER &&
+    process.env.SMTP_PASS
+  );
 
-if (isSmtpConfigured) {
-  try {
-    transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: Number(process.env.SMTP_PORT) === 465, // true for 465, false for 587 / other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false, // Prevents self-signed cert or local TLS handshake issues
-      },
-    });
-  } catch (err) {
-    console.warn("⚠️ Failed to initialize nodemailer transporter:", err.message);
+  if (!isSmtpConfigured) {
+    return null;
   }
+
+  if (!cachedTransporter) {
+    try {
+      const port = Number(process.env.SMTP_PORT) || 587;
+      cachedTransporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port,
+        secure: port === 465,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      });
+    } catch (err) {
+      console.warn("⚠️ Failed to initialize nodemailer transporter:", err.message);
+      return null;
+    }
+  }
+
+  return cachedTransporter;
 }
 
 /**
  * Verify SMTP connection
  */
 export async function testSmtpConnection() {
-  if (!isSmtpConfigured || !transporter) {
+  const transporter = getTransporter();
+  if (!transporter) {
     return {
       configured: false,
       connected: false,
@@ -59,7 +70,8 @@ export async function testSmtpConnection() {
  * Send an email notification for a new customer enquiry or contact form submission
  */
 export async function sendEnquiryNotificationEmail(enquiry) {
-  if (!isSmtpConfigured || !transporter) {
+  const transporter = getTransporter();
+  if (!transporter) {
     console.info("ℹ️ SMTP notification skipped: SMTP environment variables are not configured. Stored in DB/Memory successfully.");
     return { success: false, reason: "SMTP_NOT_CONFIGURED" };
   }

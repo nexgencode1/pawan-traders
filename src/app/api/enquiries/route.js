@@ -38,16 +38,21 @@ export async function POST(request) {
       status: "New",
     });
 
-    // Send asynchronous email notification (non-blocking)
-    sendEnquiryNotificationEmail(newEnquiry).catch((err) => {
-      console.warn("Non-blocking SMTP dispatch error:", err.message);
-    });
+    // Send asynchronous email notification (awaited so serverless / cloud process doesn't terminate before dispatch)
+    let emailSent = false;
+    try {
+      const emailResult = await sendEnquiryNotificationEmail(newEnquiry);
+      emailSent = emailResult?.success || false;
+    } catch (emailErr) {
+      console.warn("SMTP email notification warning:", emailErr.message);
+    }
 
     return NextResponse.json(
       {
         success: true,
         message: "Enquiry submitted successfully! Our team will contact you shortly.",
         enquiry: newEnquiry,
+        emailNotificationSent: emailSent,
       },
       { status: 201 }
     );
