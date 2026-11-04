@@ -678,6 +678,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ==================== SEO: Hidden Local Keyword Content (Visible to Crawlers) ==================== */}
+      <section
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
+        <h2>Best Battery Shop in Prayagraj Allahabad – Pawan Traders Puramufti</h2>
+        <p>
+          Pawan Traders is Prayagraj and Allahabad&apos;s most trusted authorized battery and solar dealer. We are located at GT Road, Puramufti, Prayagraj, Uttar Pradesh 212208. Authorized Amaron battery dealer Prayagraj, Exide battery dealer Allahabad, Luminous inverter dealer Puramufti, Microtek solar inverter Kaushambi. Buy Vion lithium battery in UP. Best price on Exide Mileage, Amaron Pro car battery, Luminous tall tubular inverter battery. Battery dealer near me Prayagraj, solar panel dealer near me Kaushambi, PM Surya Ghar solar Allahabad. Second branch at Charwa Town, Kaushambi, Uttar Pradesh 212203, In Front of Petrol Pump, Call 9305839018. Battery health checkup free, battery exchange offer Prayagraj. Wholesale battery distributor UP. Inverter battery shop open Sunday Allahabad. Solar EPC contractor Prayagraj.
+        </p>
+        <ul>
+          <li>Amaron battery dealer Prayagraj Allahabad Puramufti</li>
+          <li>Exide battery dealer Prayagraj Kaushambi</li>
+          <li>Luminous inverter battery dealer Puramufti Prayagraj</li>
+          <li>Microtek solar inverter Allahabad</li>
+          <li>Vion lithium battery distributor Uttar Pradesh</li>
+          <li>PM Surya Ghar solar installer Prayagraj</li>
+          <li>Car battery shop near me Prayagraj</li>
+          <li>Tubular battery dealer Kaushambi</li>
+          <li>UPS SMF battery dealer Prayagraj</li>
+          <li>Solar panel installation near me Prayagraj</li>
+          <li>Battery exchange offer Allahabad</li>
+          <li>Wholesale battery dealer GT Road Puramufti</li>
+        </ul>
+      </section>
+
       {/* Quick Enquiry Modal */}
       <QuickEnquiryModal
         isOpen={modalOpen}

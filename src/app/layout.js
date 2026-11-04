@@ -1,6 +1,16 @@
 import "./globals.css";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1D4ED8" },
+    { media: "(prefers-color-scheme: dark)", color: "#1D4ED8" },
+  ],
+};
+
 export const metadata = {
   metadataBase: new URL("https://pawan-traders-next.onrender.com"),
   title: "Pawan Traders | Best Battery Shop & Solar Inverter Dealer in Prayagraj (Allahabad)",
@@ -49,6 +59,7 @@ export const metadata = {
       "Authorized Amaron, Exide, Luminous & Rooftop Solar contractor in Puramufti Prayagraj & Charwa Kaushambi.",
     images: ["/assets/images/categories/solar.svg"],
   },
+  alternates: { canonical: "https://www.pawantraders.in/" },
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -57,6 +68,8 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.png",
   },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  verification: { google: "" },
 };
 
 export default function RootLayout({ children }) {
@@ -94,7 +107,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />

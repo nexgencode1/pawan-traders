@@ -2,8 +2,35 @@ import Link from "next/link";
 import { INITIAL_DATA } from "@/data/pawanData";
 
 export const metadata = {
-  title: "Authorized Brands | Pawan Traders - Battery & Solar",
-  description: "Browse 14 authorized brands at Pawan Traders: Amaron, Exide, Luminous, Microtek, Vion Lithium, Tata Green, Livfast, and more.",
+  title: "Authorized Battery & Solar Brands | Amaron Exide Luminous Microtek Vion | Pawan Traders Prayagraj",
+  description: "Shop 14 authorized battery and solar brands at Pawan Traders Prayagraj: Amaron, Exide, Luminous, Microtek, Vion Lithium, Tata Green, SF Sonic, Livfast, Smarten, UTL Solar, Extron, Amaze, Tuga Power, Konta. Genuine products with manufacturer warranty. Call 9935618513.",
+  keywords: [
+    "Amaron battery dealer Prayagraj Allahabad",
+    "Exide battery dealer Prayagraj",
+    "Luminous inverter dealer Prayagraj",
+    "Microtek solar inverter Kaushambi",
+    "Vion lithium battery dealer UP",
+    "Authorized battery brands Puramufti",
+    "Tata Green battery dealer Prayagraj",
+    "UTL Solar dealer Prayagraj",
+    "SF Sonic battery Allahabad",
+    "14 battery brands Prayagraj",
+  ],
+  openGraph: {
+    title: "14 Authorized Battery & Solar Brands | Pawan Traders Prayagraj",
+    description: "Browse Amaron, Exide, Luminous, Microtek, Vion Lithium, UTL Solar and 8 more brands — all genuine with manufacturer warranty — at Pawan Traders Puramufti, Prayagraj.",
+    images: [{ url: "/assets/images/brands/amaron.svg", width: 400, height: 300, alt: "Amaron Authorized Dealer Prayagraj - Pawan Traders" }],
+    type: "website",
+    locale: "en_IN",
+    siteName: "Pawan Traders Battery & Solar Hub",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "14 Authorized Battery Brands at Pawan Traders Prayagraj",
+    description: "Amaron, Exide, Luminous, Microtek, Vion, UTL Solar & more. Genuine products. Puramufti Prayagraj & Charwa Kaushambi.",
+    images: ["/assets/images/brands/amaron.svg"],
+  },
+  alternates: { canonical: "https://www.pawantraders.in/brands" },
 };
 
 export default function BrandsDirectoryPage() {
@@ -77,6 +104,34 @@ export default function BrandsDirectoryPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Authorized Brands at Pawan Traders Prayagraj",
+          "url": "https://www.pawantraders.in/brands",
+          "description": "14 authorized battery and solar brands available at Pawan Traders, Prayagraj and Kaushambi.",
+          "numberOfItems": 14,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "AMARON", "url": "https://www.pawantraders.in/brands/amaron" },
+            { "@type": "ListItem", "position": 2, "name": "EXIDE", "url": "https://www.pawantraders.in/brands/exide" },
+            { "@type": "ListItem", "position": 3, "name": "LUMINOUS", "url": "https://www.pawantraders.in/brands/luminous" },
+            { "@type": "ListItem", "position": 4, "name": "MICROTEK", "url": "https://www.pawantraders.in/brands/microtek" },
+            { "@type": "ListItem", "position": 5, "name": "VION", "url": "https://www.pawantraders.in/brands/vion" },
+            { "@type": "ListItem", "position": 6, "name": "TATA GREEN", "url": "https://www.pawantraders.in/brands/tata-green" },
+            { "@type": "ListItem", "position": 7, "name": "UTL SOLAR", "url": "https://www.pawantraders.in/brands/utl-solar" }
+          ],
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pawantraders.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Brands", "item": "https://www.pawantraders.in/brands" }
+            ]
+          }
+        }) }}
+      />
     </div>
   );
 }

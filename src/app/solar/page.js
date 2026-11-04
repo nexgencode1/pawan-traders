@@ -3,8 +3,39 @@ import SolarCalculator from "@/components/SolarCalculator";
 import ProductCard from "@/components/ProductCard";
 
 export const metadata = {
-  title: "Solar Solutions & Rooftop EPC | Pawan Traders",
-  description: "PM Surya Ghar Yojana authorized solar dealer in Prayagraj & Kaushambi. On-grid, off-grid & hybrid solar plants with up to ₹78,000 subsidy.",
+  title: "Solar Panel & Rooftop EPC Prayagraj | PM Surya Ghar Yojana | ₹78,000 Subsidy | Pawan Traders",
+  description: "PM Surya Ghar Yojana authorized solar dealer in Prayagraj & Kaushambi. Install 1kW–10kW On-Grid, Off-Grid & Hybrid rooftop solar systems. Get up to ₹78,000 direct bank subsidy. Luminous, Microtek, UTL Solar, Smarten & Vion Lithium storage. Free site survey. Call 9935618513.",
+  keywords: [
+    "PM Surya Ghar Yojana Prayagraj",
+    "Solar panel dealer Prayagraj Allahabad",
+    "Rooftop solar installation Kaushambi",
+    "Solar subsidy Allahabad 2024 2025",
+    "1kW 2kW 3kW solar plant Prayagraj",
+    "On-grid solar system Prayagraj",
+    "Off-grid solar Kaushambi village",
+    "Solar EPC contractor Puramufti",
+    "Luminous solar dealer Prayagraj",
+    "UTL Solar dealer Allahabad",
+    "Free solar site survey Prayagraj",
+    "PM Surya Ghar subsidy 78000",
+    "Vion lithium solar battery Prayagraj",
+    "Hybrid solar system Prayagraj",
+  ],
+  openGraph: {
+    title: "Solar Rooftop & PM Surya Ghar Yojana | Pawan Traders Prayagraj | ₹78,000 Subsidy",
+    description: "Prayagraj's most trusted PM Surya Ghar solar dealer. Install 1kW-10kW rooftop solar with ₹78K subsidy. Luminous, UTL, Microtek. Free site survey. Call 9935618513.",
+    images: [{ url: "/assets/images/categories/solar.svg", width: 1200, height: 630, alt: "Solar Rooftop Installation Prayagraj - PM Surya Ghar Yojana" }],
+    type: "website",
+    locale: "en_IN",
+    siteName: "Pawan Traders Battery & Solar Hub",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PM Surya Ghar Solar | ₹78,000 Subsidy | Pawan Traders Prayagraj",
+    description: "On-Grid, Off-Grid & Hybrid solar in Prayagraj & Kaushambi. Up to ₹78,000 subsidy. Luminous, UTL Solar, Microtek. Free site survey.",
+    images: ["/assets/images/categories/solar.svg"],
+  },
+  alternates: { canonical: "https://www.pawantraders.in/solar" },
 };
 
 export default function SolarPage() {
@@ -104,6 +135,43 @@ export default function SolarPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Rooftop Solar EPC & PM Surya Ghar Installation",
+          "url": "https://www.pawantraders.in/solar",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Pawan Traders",
+            "telephone": "+919935618513",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "GT Road, Puramufti",
+              "addressLocality": "Prayagraj",
+              "addressRegion": "Uttar Pradesh",
+              "postalCode": "212208",
+              "addressCountry": "IN"
+            }
+          },
+          "areaServed": ["Prayagraj", "Allahabad", "Kaushambi", "Puramufti", "Charwa"],
+          "description": "Complete turnkey rooftop solar EPC including On-Grid, Off-Grid and Hybrid systems with PM Surya Ghar Yojana subsidy assistance up to ₹78,000.",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "description": "1kW to 10kW rooftop solar systems with up to ₹78,000 PM Surya Ghar subsidy"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pawantraders.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Solar Solutions", "item": "https://www.pawantraders.in/solar" }
+            ]
+          }
+        }) }}
+      />
     </div>
   );
 }

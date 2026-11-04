@@ -7,9 +7,37 @@ export async function generateMetadata({ params }) {
   const product = INITIAL_DATA.products.find((p) => p.id === id);
   if (!product) return { title: "Product Not Found | Pawan Traders" };
 
+  const brand = INITIAL_DATA.brands.find((b) => b.id === product.brandId);
+  const category = INITIAL_DATA.categories.find((c) => c.id === product.categoryId);
+  const brandName = brand ? brand.name : "";
+  const categoryName = category ? category.name : "Battery";
+
   return {
-    title: `${product.name} | Pawan Traders - Prayagraj & Kaushambi`,
-    description: `${product.name} (${product.capacityAh}, ${product.voltage}) with ${product.warranty}. Authorized dealership pricing and same-day delivery at Pawan Traders.`,
+    title: `${product.name} | ${brandName} ${categoryName} | Best Price Prayagraj | Pawan Traders`,
+    description: `Buy ${product.name} (${product.capacityAh || ""}, ${product.voltage || ""}) with ${product.warranty || "official warranty"} at Pawan Traders. ${product.shortDescription || ""} Authorized ${brandName} dealer in Puramufti Prayagraj & Charwa Kaushambi. Best price, old battery exchange, free delivery. Call 9935618513.`,
+    keywords: [
+      `${product.name} price Prayagraj`,
+      `${brandName} ${categoryName} dealer Allahabad`,
+      `Buy ${brandName} ${product.capacityAh || ""} Prayagraj`,
+      `${product.name} Puramufti`,
+      `${brandName} authorized dealer Prayagraj`,
+      `${categoryName} shop near me Prayagraj`,
+    ],
+    openGraph: {
+      title: `${product.name} | Pawan Traders Prayagraj`,
+      description: `${product.shortDescription || product.name} — ${brandName} authorized dealer pricing, official warranty, same-day delivery. Prayagraj & Kaushambi.`,
+      images: [{ url: product.image || "/assets/images/categories/automotive.svg", width: 800, height: 600, alt: `${product.name} - Pawan Traders Prayagraj` }],
+      type: "website",
+      locale: "en_IN",
+      siteName: "Pawan Traders Battery & Solar Hub",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Pawan Traders`,
+      description: `${brandName} authorized dealer. Best price, old battery exchange. Prayagraj & Kaushambi.`,
+      images: [product.image || "/assets/images/categories/automotive.svg"],
+    },
+    alternates: { canonical: `https://www.pawantraders.in/products/${id}` },
   };
 }
 
@@ -25,6 +53,44 @@ export default async function ProductDetailPage({ params }) {
   return (
     <div className="section-padding">
       <div className="container">
+        {/* SEO Product JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "image": [`https://www.pawantraders.in${product.image || "/assets/images/categories/automotive.svg"}`],
+            "description": product.shortDescription || product.name,
+            "brand": { "@type": "Brand", "name": brand ? brand.name : "Unknown" },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "seller": {
+                "@type": "LocalBusiness",
+                "name": "Pawan Traders",
+                "telephone": "+919935618513",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "GT Road, Puramufti",
+                  "addressLocality": "Prayagraj",
+                  "addressRegion": "Uttar Pradesh",
+                  "postalCode": "212208",
+                  "addressCountry": "IN"
+                }
+              }
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pawantraders.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.pawantraders.in/products" },
+                { "@type": "ListItem", "position": 3, "name": product.name, "item": `https://www.pawantraders.in/products/${product.id}` }
+              ]
+            }
+          }) }}
+        />
         {/* Breadcrumb */}
         <div style={{ display: "flex", gap: "8px", fontSize: "0.85rem", color: "#64748B", marginBottom: "24px" }}>
           <Link href="/">Home</Link> &gt;

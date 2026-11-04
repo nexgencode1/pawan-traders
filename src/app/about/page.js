@@ -2,8 +2,33 @@ import Link from "next/link";
 import { INITIAL_DATA } from "@/data/pawanData";
 
 export const metadata = {
-  title: "About Us | Pawan Traders - Battery & Solar Energy Solutions Prayagraj",
-  description: "Learn about Pawan Traders, Director Mr. Pawan Kumar Kushwaha, Manager Mr. Kartik Kushwaha, and our 15+ years of delivering reliable battery and solar power in Prayagraj & Kaushambi.",
+  title: "About Pawan Traders | 15+ Years Battery & Solar Dealer Prayagraj | Director Mr. Pawan Kumar Kushwaha",
+  description: "Pawan Traders — Prayagraj & Kaushambi's most trusted authorized battery and solar dealer since 2008. Director Mr. Pawan Kumar Kushwaha leads two showrooms in Puramufti (Prayagraj) & Charwa (Kaushambi). Authorized for Amaron, Exide, Luminous, Microtek & Vion Lithium.",
+  keywords: [
+    "About Pawan Traders Prayagraj",
+    "Battery dealer Puramufti history",
+    "Mr Pawan Kumar Kushwaha director",
+    "Authorized Exide dealer Prayagraj",
+    "Amaron authorized dealer Prayagraj",
+    "Best battery shop Allahabad 15 years",
+    "Solar EPC contractor Prayagraj",
+    "Battery wholesale dealer Kaushambi",
+  ],
+  openGraph: {
+    title: "About Pawan Traders | Director Mr. Pawan Kumar Kushwaha | Prayagraj & Kaushambi",
+    description: "15+ years serving Prayagraj (Puramufti) & Kaushambi (Charwa) with genuine Amaron, Exide, Luminous batteries and rooftop solar. Meet the team behind Prayagraj's most trusted energy store.",
+    images: [{ url: "/director.jpeg", width: 800, height: 900, alt: "Mr. Pawan Kumar Kushwaha - Director, Pawan Traders Prayagraj" }],
+    type: "website",
+    locale: "en_IN",
+    siteName: "Pawan Traders Battery & Solar Hub",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Pawan Traders Prayagraj | Director Mr. Pawan Kumar Kushwaha",
+    description: "Authorized battery & solar dealer in Puramufti Prayagraj since 2008. Exide, Amaron, Luminous, Vion Lithium & PM Surya Ghar solar.",
+    images: ["/director.jpeg"],
+  },
+  alternates: { canonical: "https://www.pawantraders.in/about" },
 };
 
 export default function AboutPage() {
@@ -316,6 +341,46 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* SEO: Hidden keyword content for local search */}
+      <div style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }} aria-hidden="true">
+        <p>Pawan Traders is Prayagraj and Allahabad&apos;s best battery shop. Authorized Amaron battery dealer Prayagraj, Exide battery dealer Allahabad, Luminous inverter dealer Puramufti, Microtek solar inverter Kaushambi. Mr. Pawan Kumar Kushwaha director, 15+ years experience, GT Road Puramufti Prayagraj 212208. Battery dealer near me Prayagraj, solar panel dealer near me Kaushambi.</p>
+      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About Pawan Traders - Battery & Solar Energy Solutions",
+          "url": "https://www.pawantraders.in/about",
+          "description": "Pawan Traders — Prayagraj & Kaushambi authorized battery and solar dealer since 2008. Director Mr. Pawan Kumar Kushwaha.",
+          "mainEntity": {
+            "@type": "Person",
+            "name": "Mr. Pawan Kumar Kushwaha",
+            "jobTitle": "Director & Founder",
+            "worksFor": {
+              "@type": "LocalBusiness",
+              "name": "Pawan Traders",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "GT Road, Puramufti",
+                "addressLocality": "Prayagraj",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "212208",
+                "addressCountry": "IN"
+              }
+            },
+            "telephone": "+919935618513"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pawantraders.in/" },
+              { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://www.pawantraders.in/about" }
+            ]
+          }
+        }) }}
+      />
     </div>
   );
 }

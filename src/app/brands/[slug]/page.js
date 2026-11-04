@@ -8,9 +8,38 @@ export async function generateMetadata({ params }) {
   const brand = INITIAL_DATA.brands.find((b) => b.slug === slug);
   if (!brand) return { title: "Brand Not Found | Pawan Traders" };
 
+  const categoryNames = brand.categories.map(cid => {
+    const cat = INITIAL_DATA.categories.find(c => c.id === cid);
+    return cat ? cat.name : "";
+  }).filter(Boolean).join(", ");
+
   return {
-    title: `${brand.name} Batteries & Solar Products | Pawan Traders`,
-    description: `Buy genuine ${brand.name} products with official warranty in Prayagraj & Kaushambi at Pawan Traders. Call 9935618513.`,
+    title: `${brand.name} ${categoryNames} | Authorized Dealer Prayagraj | Pawan Traders`,
+    description: `Buy genuine ${brand.name} products (${brand.tagline}) at Pawan Traders — authorized ${brand.name} dealer in Prayagraj (Puramufti) & Kaushambi (Charwa). ${brand.description} Official warranty, best price & free delivery. Call 9935618513.`,
+    keywords: [
+      `${brand.name} dealer Prayagraj`,
+      `${brand.name} authorized dealer Allahabad`,
+      `${brand.name} price Prayagraj`,
+      `Buy ${brand.name} Puramufti`,
+      `${brand.name} dealer near me Prayagraj`,
+      `Pawan Traders ${brand.name}`,
+      `${brand.name} Kaushambi`,
+    ],
+    openGraph: {
+      title: `${brand.name} | Authorized Dealer in Prayagraj & Kaushambi | Pawan Traders`,
+      description: `${brand.description} Official warranty. Best price. Old battery exchange. Prayagraj (9935618513) & Kaushambi (9305839018).`,
+      images: [{ url: brand.logo, width: 400, height: 300, alt: `${brand.name} Authorized Dealer Prayagraj - Pawan Traders` }],
+      type: "website",
+      locale: "en_IN",
+      siteName: "Pawan Traders Battery & Solar Hub",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${brand.name} Authorized Dealer | Pawan Traders Prayagraj`,
+      description: `${brand.tagline}. Buy ${brand.name} at Pawan Traders Puramufti, Prayagraj & Charwa, Kaushambi. Best price guaranteed.`,
+      images: [brand.logo],
+    },
+    alternates: { canonical: `https://www.pawantraders.in/brands/${slug}` },
   };
 }
 

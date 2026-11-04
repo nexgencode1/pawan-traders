@@ -2,8 +2,34 @@ import { INITIAL_DATA } from "@/data/pawanData";
 import BranchMap from "@/components/BranchMap";
 
 export const metadata = {
-  title: "Our Branches | Pawan Traders - Prayagraj & Kaushambi",
-  description: "Visit Pawan Traders Main Branch at Puramufti (Prayagraj) or Second Branch at Charwa Town (Kaushambi). Google Maps directions, phone and timings.",
+  title: "Our Branches | Pawan Traders Puramufti Prayagraj & Charwa Kaushambi | Battery Shop Near Me",
+  description: "Find Pawan Traders nearest battery shop: Main Branch at GT Road Puramufti, Prayagraj (212208) — 8AM-9PM, Call 9935618513. Second Branch at Charwa Town In Front of Petrol Pump, Kaushambi (212203) — 8:30AM-8:30PM, Call 9305839018. Free battery testing & same-day service.",
+  keywords: [
+    "Battery shop Puramufti Prayagraj",
+    "Battery dealer Charwa Kaushambi",
+    "Pawan Traders Puramufti address",
+    "Battery shop near me Prayagraj",
+    "Battery dealer near me Kaushambi",
+    "GT Road Puramufti battery shop",
+    "Charwa petrol pump battery dealer",
+    "Inverter shop Prayagraj 212208",
+    "Battery shop open Sunday Allahabad",
+  ],
+  openGraph: {
+    title: "Pawan Traders Branches | Puramufti Prayagraj & Charwa Kaushambi",
+    description: "Visit our 2 battery & solar showrooms. Main: GT Road Puramufti, Prayagraj — open 8AM to 9PM all 7 days. Branch 2: Charwa Town, Kaushambi — open 8:30AM to 8:30PM.",
+    images: [{ url: "/assets/images/gallery/gallery-01.jpg", width: 1200, height: 630, alt: "Pawan Traders Puramufti Prayagraj Showroom" }],
+    type: "website",
+    locale: "en_IN",
+    siteName: "Pawan Traders Battery & Solar Hub",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pawan Traders | Battery Shop Puramufti Prayagraj & Charwa Kaushambi",
+    description: "2 showrooms. GT Road Puramufti Prayagraj (9935618513) & Charwa Town Kaushambi (9305839018). Open all 7 days.",
+    images: ["/assets/images/gallery/gallery-01.jpg"],
+  },
+  alternates: { canonical: "https://www.pawantraders.in/branches" },
 };
 
 export default function BranchesPage() {
@@ -94,6 +120,59 @@ export default function BranchesPage() {
           </div>
         </div>
       </section>
+
+      {/* SEO JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Pawan Traders - Main Branch (Puramufti Prayagraj)",
+              "url": "https://www.pawantraders.in/branches",
+              "telephone": "+919935618513",
+              "image": "https://www.pawantraders.in/assets/images/logo.png",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "GT Road, Puramufti",
+                "addressLocality": "Prayagraj",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "212208",
+                "addressCountry": "IN"
+              },
+              "geo": { "@type": "GeoCoordinates", "latitude": 25.476049, "longitude": 81.705128 },
+              "openingHours": "Mo-Su 08:00-21:00",
+              "priceRange": "₹₹"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "Pawan Traders - Second Branch (Charwa Kaushambi)",
+              "url": "https://www.pawantraders.in/branches",
+              "telephone": "+919305839018",
+              "image": "https://www.pawantraders.in/assets/images/logo.png",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Charwa Town Area, In Front of Petrol Pump",
+                "addressLocality": "Kaushambi",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "212203",
+                "addressCountry": "IN"
+              },
+              "geo": { "@type": "GeoCoordinates", "latitude": 25.431289, "longitude": 81.569421 },
+              "openingHours": "Mo-Su 08:30-20:30",
+              "priceRange": "₹₹"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pawantraders.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Our Branches", "item": "https://www.pawantraders.in/branches" }
+              ]
+            }
+          ]
+        }) }}
+      />
     </div>
   );
 }
