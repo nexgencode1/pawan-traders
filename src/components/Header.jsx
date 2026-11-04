@@ -7,6 +7,7 @@ import { INITIAL_DATA } from "@/data/pawanData";
 
 export default function Header({ onOpenEnquiry }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { settings } = INITIAL_DATA;
 
@@ -15,6 +16,15 @@ export default function Header({ onOpenEnquiry }) {
   const [announcementText, setAnnouncementText] = useState(
     settings.announcement || "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513"
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     async function fetchSettings() {
@@ -39,7 +49,7 @@ export default function Header({ onOpenEnquiry }) {
     { label: "About Us", href: "/about" },
     { label: "Product Catalogue", href: "/products" },
     { label: "Brands", href: "/brands" },
-    { label: "Solar Solutions", href: "/solar" },
+    { label: "Solar Solutions", href: "/solar", highlightIcon: "fa-solid fa-sun" },
     { label: "Gallery", href: "/gallery" },
     { label: "Our Branches", href: "/branches" },
     { label: "Contact Us", href: "/contact" },
@@ -105,16 +115,19 @@ export default function Header({ onOpenEnquiry }) {
         </div>
       )}
 
-      {/* Main Navigation Header - Clean & Sticky */}
+      {/* Main Navigation Header - Sticky with Backdrop Blur & Shadow */}
       <header
+        className={`site-header ${isScrolled ? "header-scrolled" : ""}`}
         style={{
           position: "sticky",
           top: 0,
           zIndex: 1000,
-          background: "rgba(255, 255, 255, 0.98)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid var(--gray-200)",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
+          background: isScrolled ? "rgba(255, 255, 255, 0.96)" : "rgba(255, 255, 255, 0.98)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderBottom: isScrolled ? "1px solid rgba(226, 232, 240, 0.9)" : "1px solid rgba(226, 232, 240, 0.6)",
+          boxShadow: isScrolled ? "0 10px 30px -10px rgba(15, 23, 42, 0.08)" : "0 2px 10px rgba(0, 0, 0, 0.03)",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
         <div
@@ -123,63 +136,44 @@ export default function Header({ onOpenEnquiry }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            height: "72px",
-            gap: "12px",
+            height: isScrolled ? "68px" : "78px",
+            gap: "14px",
+            transition: "height 0.3s ease",
           }}
         >
-          {/* Logo with Emblem & Brand Name */}
+          {/* Bigger Logo with Clean Standalone Branding */}
           <Link
             href="/"
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
               textDecoration: "none",
               flexShrink: 0,
+              padding: "4px 0",
             }}
-            title="Pawan Traders"
+            title="Pawan Traders - Home"
           >
             <img
               src="/assets/images/logo.png"
-              alt="Pawan Traders"
+              alt="Pawan Traders - Battery & Solar Energy Superstore"
               style={{
-                height: "48px",
+                height: isScrolled ? "54px" : "62px",
                 width: "auto",
                 objectFit: "contain",
+                transition: "height 0.3s ease",
+                filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.06))",
               }}
             />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: 900,
-                  color: "#0F172A",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                PAWAN <span style={{ color: "#F59E0B" }}>TRADERS</span>
-              </div>
-              <div
-                style={{
-                  fontSize: "0.68rem",
-                  fontWeight: 700,
-                  color: "#64748B",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Battery &amp; Solar Hub
-              </div>
-            </div>
+            {/* SEO and Screen Reader Text */}
+            <span className="sr-only">Pawan Traders Battery &amp; Solar Hub</span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav - Refined Modern Pill Style with Smooth Hover */}
           <nav
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "clamp(8px, 1.3vw, 20px)",
+              gap: "clamp(4px, 0.8vw, 12px)",
               flexWrap: "nowrap",
             }}
             className="desktop-nav"
@@ -190,17 +184,39 @@ export default function Header({ onOpenEnquiry }) {
                 <Link
                   key={item.href}
                   href={item.href}
+                  className={`nav-link-item ${isActive ? "active" : ""}`}
                   style={{
-                    fontSize: "clamp(0.84rem, 0.9vw, 0.94rem)",
-                    fontWeight: isActive ? 700 : 600,
-                    color: isActive ? "var(--primary)" : "var(--gray-700)",
-                    borderBottom: isActive ? "2px solid var(--primary)" : "2px solid transparent",
-                    padding: "6px 2px",
+                    fontSize: "clamp(0.85rem, 0.92vw, 0.95rem)",
+                    fontWeight: isActive ? 750 : 600,
+                    color: isActive ? "#1D4ED8" : "#334155",
+                    background: isActive ? "rgba(29, 78, 216, 0.08)" : "transparent",
+                    padding: "8px 12px",
+                    borderRadius: "10px",
                     whiteSpace: "nowrap",
-                    transition: "color 0.15s ease, border-color 0.15s ease",
+                    position: "relative",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 >
-                  {item.label}
+                  {item.highlightIcon && (
+                    <i className={item.highlightIcon} style={{ color: "#F59E0B", fontSize: "0.85rem" }}></i>
+                  )}
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        bottom: "2px",
+                        left: "12px",
+                        right: "12px",
+                        height: "2.5px",
+                        background: "linear-gradient(90deg, #1D4ED8, #3B82F6)",
+                        borderRadius: "2px",
+                      }}
+                    />
+                  )}
                 </Link>
               );
             })}
@@ -217,6 +233,13 @@ export default function Header({ onOpenEnquiry }) {
                 gap: "8px",
                 whiteSpace: "nowrap",
                 cursor: "pointer",
+                borderRadius: "999px",
+                padding: "9px 18px",
+                background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)",
+                boxShadow: "0 4px 14px rgba(29, 78, 216, 0.28)",
+                fontWeight: 700,
+                fontSize: "0.88rem",
+                transition: "all 0.2s ease",
               }}
             >
               <i className="fa-solid fa-paper-plane"></i>
@@ -227,16 +250,17 @@ export default function Header({ onOpenEnquiry }) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="mobile-toggle-btn"
               style={{
-                background: "none",
-                border: "none",
-                fontSize: "1.45rem",
+                background: "rgba(15, 23, 42, 0.05)",
+                border: "1px solid rgba(15, 23, 42, 0.1)",
+                fontSize: "1.35rem",
                 color: "var(--gray-800)",
                 cursor: "pointer",
-                padding: "8px",
+                padding: "8px 10px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: "8px",
+                borderRadius: "10px",
+                transition: "all 0.2s ease",
               }}
               aria-label="Toggle Navigation"
             >
@@ -254,7 +278,7 @@ export default function Header({ onOpenEnquiry }) {
               padding: "16px 20px 24px",
               display: "flex",
               flexDirection: "column",
-              gap: "10px",
+              gap: "8px",
               boxShadow: "var(--shadow-xl)",
               maxHeight: "calc(100vh - 72px)",
               overflowY: "auto",
@@ -266,21 +290,25 @@ export default function Header({ onOpenEnquiry }) {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  fontSize: "1.02rem",
-                  fontWeight: 600,
-                  color: pathname === item.href ? "var(--primary)" : "var(--gray-800)",
-                  padding: "10px 12px",
-                  borderRadius: "8px",
-                  background: pathname === item.href ? "var(--primary-bg)" : "transparent",
+                  fontSize: "1rem",
+                  fontWeight: pathname === item.href ? 750 : 600,
+                  color: pathname === item.href ? "#1D4ED8" : "var(--gray-800)",
+                  padding: "11px 14px",
+                  borderRadius: "10px",
+                  background: pathname === item.href ? "rgba(29, 78, 216, 0.08)" : "transparent",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
+                  transition: "all 0.2s ease",
                 }}
               >
-                <span>{item.label}</span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                  {item.highlightIcon && <i className={item.highlightIcon} style={{ color: "#F59E0B" }}></i>}
+                  {item.label}
+                </span>
                 <i
                   className="fa-solid fa-chevron-right"
-                  style={{ fontSize: "0.75rem", opacity: 0.5 }}
+                  style={{ fontSize: "0.75rem", opacity: 0.4 }}
                 ></i>
               </Link>
             ))}
@@ -301,7 +329,7 @@ export default function Header({ onOpenEnquiry }) {
                   handleEnquiryClick();
                 }}
                 className="btn btn-primary"
-                style={{ width: "100%", justifyContent: "center" }}
+                style={{ width: "100%", justifyContent: "center", borderRadius: "999px" }}
               >
                 <i className="fa-solid fa-paper-plane"></i> Quick Enquiry
               </button>
@@ -310,7 +338,7 @@ export default function Header({ onOpenEnquiry }) {
                 <a
                   href={`tel:+91${settings?.callingNumber || "9935618513"}`}
                   className="btn btn-call btn-sm"
-                  style={{ justifyContent: "center" }}
+                  style={{ justifyContent: "center", borderRadius: "999px" }}
                 >
                   <i className="fa-solid fa-phone"></i> Call Now
                 </a>
@@ -319,7 +347,7 @@ export default function Header({ onOpenEnquiry }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-whatsapp btn-sm"
-                  style={{ justifyContent: "center" }}
+                  style={{ justifyContent: "center", borderRadius: "999px" }}
                 >
                   <i className="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
@@ -344,6 +372,14 @@ export default function Header({ onOpenEnquiry }) {
         }
         .marquee-track:hover {
           animation-play-state: paused;
+        }
+        .nav-link-item:hover {
+          color: #1D4ED8 !important;
+          background: rgba(29, 78, 216, 0.05) !important;
+        }
+        .header-enquiry-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 18px rgba(29, 78, 216, 0.35) !important;
         }
         @media (max-width: 1080px) {
           .desktop-nav {
