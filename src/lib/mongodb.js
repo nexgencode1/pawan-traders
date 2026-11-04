@@ -1,4 +1,12 @@
 import mongoose from "mongoose";
+import dns from "dns";
+
+// Configure fallback DNS servers for reliable MongoDB SRV lookup across ISP networks
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch (e) {
+  // Graceful fallback if dns.setServers is restricted in certain runtimes
+}
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -25,13 +33,13 @@ export async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 2000,
+      serverSelectionTimeoutMS: 5000,
     };
 
     cached.promise = mongoose
       .connect(MONGODB_URI, opts)
       .then((m) => {
-        console.log("✓ Connected to MongoDB successfully.");
+        console.log("✓ Connected to MongoDB successfully:", m.connection.name);
         return m;
       })
       .catch((err) => {
