@@ -6,13 +6,10 @@ function getSecret() {
 }
 
 function getValidCredentials() {
-  const envUser = (process.env.ADMIN_USERNAME || "admin").trim().toLowerCase();
-  const envPass = (process.env.ADMIN_PASSWORD || "admin123").trim();
+  const envUser = (process.env.ADMIN_USERNAME || "").trim();
+  const envPass = (process.env.ADMIN_PASSWORD || "").trim();
 
-  const validUsers = new Set([envUser, "admin", "pawantraders", "pawan"]);
-  const validPass = new Set([envPass, "admin123", "pawan@2026"]);
-
-  return { validUsers, validPass };
+  return { envUser, envPass };
 }
 
 // Create a tamper-proof signed session token: username:timestamp:signature
@@ -57,16 +54,28 @@ export async function GET(request) {
   return NextResponse.json({ authenticated: false }, { status: 401 });
 }
 
-// POST: Authenticate from .env
+// POST: Authenticate strictly from .env
 export async function POST(request) {
   try {
     const { username, password } = await request.json();
     const cleanUser = (username || "").trim().toLowerCase();
     const cleanPass = (password || "").trim();
 
-    const { validUsers, validPass } = getValidCredentials();
+    const { envUser, envPass } = getValidCredentials();
 
-    if (validUsers.has(cleanUser) && validPass.has(cleanPass)) {
+    // If credentials are not set in environment, block login completely for security
+    if (!envUser || !envPass) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Admin credentials are not configured in environment variables (ADMIN_USERNAME & ADMIN_PASSWORD).",
+        },
+        { status: 500 }
+      );
+    }
+
+    // Strict match against .env only
+    if (cleanUser === envUser.toLowerCase() && cleanPass === envPass) {
       const token = createSignedToken(cleanUser);
 
       const response = NextResponse.json({
@@ -90,7 +99,7 @@ export async function POST(request) {
     }
 
     return NextResponse.json(
-      { success: false, error: "Invalid username or password. Check .env credentials." },
+      { success: false, error: "Invalid username or password. Please verify your .env credentials." },
       { status: 401 }
     );
   } catch (error) {

@@ -74,6 +74,8 @@ export default function AdminPage() {
     featured: true,
     published: true,
     shortDescription: "",
+    seoKeywords: "",
+    seoDescription: "",
   });
 
   const [showGalleryModal, setShowGalleryModal] = useState(false);
@@ -546,7 +548,7 @@ export default function AdminPage() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="admin"
+                placeholder="Enter username"
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -907,6 +909,8 @@ export default function AdminPage() {
                       featured: true,
                       published: true,
                       shortDescription: "",
+                      seoKeywords: "",
+                      seoDescription: "",
                     });
                     setShowProductModal(true);
                   }}
@@ -1364,6 +1368,8 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                     featured: true,
                     published: true,
                     shortDescription: "",
+                    seoKeywords: "",
+                    seoDescription: "",
                   });
                   setShowProductModal(true);
                 }}
@@ -1435,6 +1441,8 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                                 featured: prod.featured || false,
                                 published: prod.published !== false,
                                 shortDescription: prod.shortDescription || "",
+                                seoKeywords: prod.seoKeywords || "",
+                                seoDescription: prod.seoDescription || "",
                               });
                               setShowProductModal(true);
                             }}
@@ -2049,6 +2057,39 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                   onChange={(e) => setProductFormData({ ...productFormData, priceText: e.target.value })}
                   style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
                 />
+              </div>
+
+              {/* SEO Fields */}
+              <div style={{ background: "rgba(30, 41, 59, 0.5)", border: "1px solid #334155", borderRadius: "10px", padding: "14px", marginBottom: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", color: "#38BDF8", fontSize: "0.85rem", fontWeight: 700 }}>
+                  <i className="fa-solid fa-magnifying-glass"></i> Google Search &amp; SEO Options (Optional)
+                </div>
+                <div className="form-group" style={{ marginBottom: "10px" }}>
+                  <label style={{ color: "#94A3B8", fontSize: "0.78rem" }}>
+                    Custom Search Keywords (Comma separated &mdash; e.g. Amaron battery Soraon, Exide Phaphamau, Battery wholesale Prayagraj. Leave blank to auto-generate):
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Auto-generated if left blank"
+                    value={productFormData.seoKeywords}
+                    onChange={(e) => setProductFormData({ ...productFormData, seoKeywords: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF", fontSize: "0.85rem" }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label style={{ color: "#94A3B8", fontSize: "0.78rem" }}>
+                    Custom Google Meta Description (Leave blank to auto-generate rich snippet):
+                  </label>
+                  <textarea
+                    rows="2"
+                    className="form-control"
+                    placeholder="Auto-generated if left blank"
+                    value={productFormData.seoDescription}
+                    onChange={(e) => setProductFormData({ ...productFormData, seoDescription: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF", fontSize: "0.85rem" }}
+                  />
+                </div>
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "18px" }}>

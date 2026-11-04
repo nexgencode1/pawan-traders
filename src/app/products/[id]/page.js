@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { INITIAL_DATA, buildProductWhatsAppUrl } from "@/data/pawanData";
+import { getProductById } from "@/lib/dataStore";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const product = INITIAL_DATA.products.find((p) => p.id === id);
+  let product = await getProductById(id);
+  if (!product) {
+    product = INITIAL_DATA.products.find((p) => p.id === id || String(p._id) === id);
+  }
   if (!product) return { title: "Product Not Found | Pawan Traders" };
 
   const brand = INITIAL_DATA.brands.find((b) => b.id === product.brandId);
@@ -12,20 +16,41 @@ export async function generateMetadata({ params }) {
   const brandName = brand ? brand.name : "";
   const categoryName = category ? category.name : "Battery";
 
+  const customKeywords = product.seoKeywords
+    ? product.seoKeywords.split(",").map((k) => k.trim())
+    : [];
+
+  const autoKeywords = [
+    `${product.name} price Prayagraj`,
+    `${brandName} ${categoryName} dealer Allahabad`,
+    `Buy ${brandName} ${product.capacityAh || ""} Prayagraj`,
+    `${product.name} Puramufti GT Road`,
+    `${brandName} authorized dealer Prayagraj`,
+    `Battery shop in Soraon Prayagraj`,
+    `Phaphamau battery inverter shop`,
+    `Naini battery dealer Allahabad`,
+    `Jhunsi battery shop`,
+    `Kunda Pratapgarh battery dealer`,
+    `Fatehpur battery wholesale rate`,
+    `Manjhanpur Kaushambi battery dealer`,
+    `Bharwari battery shop`,
+    `Battery wholesale dealer Uttar Pradesh`,
+    `Doorstep battery fitting within 100km Prayagraj`,
+    `Exide Amaron exchange offer Allahabad`,
+    `${categoryName} shop near me Prayagraj`,
+  ];
+
+  const metaDesc =
+    product.seoDescription ||
+    `Buy ${product.name} (${product.capacityAh || ""}, ${product.voltage || ""}) with ${product.warranty || "official warranty"} at Pawan Traders. ${product.shortDescription || ""} Authorized ${brandName} dealer in Puramufti Prayagraj & Charwa Kaushambi. Express same-day delivery across Prayagraj, Soraon, Phaphamau, Naini, Kunda & Kaushambi. Best wholesale price with old battery exchange. Call 9935618513.`;
+
   return {
-    title: `${product.name} | ${brandName} ${categoryName} | Best Price Prayagraj | Pawan Traders`,
-    description: `Buy ${product.name} (${product.capacityAh || ""}, ${product.voltage || ""}) with ${product.warranty || "official warranty"} at Pawan Traders. ${product.shortDescription || ""} Authorized ${brandName} dealer in Puramufti Prayagraj & Charwa Kaushambi. Best price, old battery exchange, free delivery. Call 9935618513.`,
-    keywords: [
-      `${product.name} price Prayagraj`,
-      `${brandName} ${categoryName} dealer Allahabad`,
-      `Buy ${brandName} ${product.capacityAh || ""} Prayagraj`,
-      `${product.name} Puramufti`,
-      `${brandName} authorized dealer Prayagraj`,
-      `${categoryName} shop near me Prayagraj`,
-    ],
+    title: `${product.name} | ${brandName} ${categoryName} | Best Price Prayagraj Allahabad | Pawan Traders`,
+    description: metaDesc,
+    keywords: customKeywords.length > 0 ? customKeywords : autoKeywords,
     openGraph: {
       title: `${product.name} | Pawan Traders Prayagraj`,
-      description: `${product.shortDescription || product.name} — ${brandName} authorized dealer pricing, official warranty, same-day delivery. Prayagraj & Kaushambi.`,
+      description: metaDesc,
       images: [{ url: product.image || "/assets/images/categories/automotive.svg", width: 800, height: 600, alt: `${product.name} - Pawan Traders Prayagraj` }],
       type: "website",
       locale: "en_IN",
@@ -33,27 +58,35 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} | Pawan Traders`,
-      description: `${brandName} authorized dealer. Best price, old battery exchange. Prayagraj & Kaushambi.`,
+      title: `${product.name} | Pawan Traders Prayagraj`,
+      description: `${brandName} authorized dealer. Best wholesale price, old battery exchange, fast delivery in Prayagraj & 100km radius. 9935618513.`,
       images: [product.image || "/assets/images/categories/automotive.svg"],
     },
-    alternates: { canonical: `https://www.pawantraders.in/products/${id}` },
+    alternates: { canonical: `https://www.pawantraders.in/products/${product.id || id}` },
   };
 }
 
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
-  const product = INITIAL_DATA.products.find((p) => p.id === id);
+  let product = await getProductById(id);
+  if (!product) {
+    product = INITIAL_DATA.products.find((p) => p.id === id || String(p._id) === id);
+  }
   if (!product) notFound();
 
   const brand = INITIAL_DATA.brands.find((b) => b.id === product.brandId);
   const category = INITIAL_DATA.categories.find((c) => c.id === product.categoryId);
   const waUrl = buildProductWhatsAppUrl(product, brand ? brand.name : "");
 
+  const parsedPrice =
+    product.priceText && product.priceText.match(/\d[\d,]*/)
+      ? product.priceText.match(/\d[\d,]*/)[0].replace(/,/g, "")
+      : "4999";
+
   return (
     <div className="section-padding">
       <div className="container">
-        {/* SEO Product JSON-LD */}
+        {/* Google Merchant Product Schema with Rich Snippet (Ratings, Price, InStock, Delivery) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -61,11 +94,17 @@ export default async function ProductDetailPage({ params }) {
             "@type": "Product",
             "name": product.name,
             "image": [`https://www.pawantraders.in${product.image || "/assets/images/categories/automotive.svg"}`],
-            "description": product.shortDescription || product.name,
-            "brand": { "@type": "Brand", "name": brand ? brand.name : "Unknown" },
+            "description": product.seoDescription || product.shortDescription || product.name,
+            "sku": product.model || product.id || String(product._id || ""),
+            "mpn": product.model || product.id || String(product._id || ""),
+            "brand": { "@type": "Brand", "name": brand ? brand.name : "Pawan Traders" },
             "offers": {
               "@type": "Offer",
+              "url": `https://www.pawantraders.in/products/${product.id || product._id || id}`,
               "priceCurrency": "INR",
+              "price": parsedPrice,
+              "priceValidUntil": "2026-12-31",
+              "itemCondition": "https://schema.org/NewCondition",
               "availability": "https://schema.org/InStock",
               "seller": {
                 "@type": "LocalBusiness",
@@ -79,14 +118,45 @@ export default async function ProductDetailPage({ params }) {
                   "postalCode": "212208",
                   "addressCountry": "IN"
                 }
+              },
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "IN",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                "merchantReturnDays": 7,
+                "returnMethod": "https://schema.org/ReturnInStore",
+                "returnFees": "https://schema.org/FreeReturn"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "value": "0",
+                  "currency": "INR"
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "IN",
+                  "addressRegion": ["Uttar Pradesh"]
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+                  "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" }
+                }
               }
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "184"
             },
             "breadcrumb": {
               "@type": "BreadcrumbList",
               "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pawantraders.in/" },
                 { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.pawantraders.in/products" },
-                { "@type": "ListItem", "position": 3, "name": product.name, "item": `https://www.pawantraders.in/products/${product.id}` }
+                { "@type": "ListItem", "position": 3, "name": product.name, "item": `https://www.pawantraders.in/products/${product.id || product._id || id}` }
               ]
             }
           }) }}

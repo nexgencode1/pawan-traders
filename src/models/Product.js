@@ -59,6 +59,14 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    seoKeywords: {
+      type: String,
+      default: "",
+    },
+    seoDescription: {
+      type: String,
+      default: "",
+    },
     specs: {
       type: Map,
       of: String,

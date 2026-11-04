@@ -678,7 +678,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== SEO: Hidden Local Keyword Content (Visible to Crawlers) ==================== */}
+      {/* ==================== SEO: Hidden Local & 100km Regional Keyword Content (Visible to Crawlers) ==================== */}
       <section
         aria-hidden="true"
         style={{
@@ -690,23 +690,39 @@ export default function HomePage() {
           pointerEvents: "none",
         }}
       >
-        <h2>Best Battery Shop in Prayagraj Allahabad – Pawan Traders Puramufti</h2>
+        <h2>Best Battery Shop in Prayagraj Allahabad &amp; 100 KM Radius – Pawan Traders Puramufti &amp; Charwa</h2>
         <p>
-          Pawan Traders is Prayagraj and Allahabad&apos;s most trusted authorized battery and solar dealer. We are located at GT Road, Puramufti, Prayagraj, Uttar Pradesh 212208. Authorized Amaron battery dealer Prayagraj, Exide battery dealer Allahabad, Luminous inverter dealer Puramufti, Microtek solar inverter Kaushambi. Buy Vion lithium battery in UP. Best price on Exide Mileage, Amaron Pro car battery, Luminous tall tubular inverter battery. Battery dealer near me Prayagraj, solar panel dealer near me Kaushambi, PM Surya Ghar solar Allahabad. Second branch at Charwa Town, Kaushambi, Uttar Pradesh 212203, In Front of Petrol Pump, Call 9305839018. Battery health checkup free, battery exchange offer Prayagraj. Wholesale battery distributor UP. Inverter battery shop open Sunday Allahabad. Solar EPC contractor Prayagraj.
+          Pawan Traders is the premier authorized battery, inverter, and solar energy distributor covering Prayagraj (Allahabad), Kaushambi, and all neighboring districts within a 100 km radius.
+          Main branch: GT Road, Puramufti, Prayagraj, UP 212208 (Phone: 9935618513). Second branch: Charwa Town, In Front of Petrol Pump, Kaushambi, UP 212203 (Phone: 9305839018).
+          Authorized distributor for Amaron, Exide, Luminous, Microtek, Vion Lithium, UTL Solar, Tata Green, Livfast, and Smarten. Same-day express doorstep delivery and computerized battery health testing across Prayagraj, Soraon, Phaphamau, Naini, Jhunsi, Kunda Pratapgarh, Bharwari, Manjhanpur, and Fatehpur.
         </p>
+
+        <h3>Local Suburbs &amp; 100 KM Coverage Areas:</h3>
         <ul>
-          <li>Amaron battery dealer Prayagraj Allahabad Puramufti</li>
-          <li>Exide battery dealer Prayagraj Kaushambi</li>
-          <li>Luminous inverter battery dealer Puramufti Prayagraj</li>
-          <li>Microtek solar inverter Allahabad</li>
-          <li>Vion lithium battery distributor Uttar Pradesh</li>
-          <li>PM Surya Ghar solar installer Prayagraj</li>
-          <li>Car battery shop near me Prayagraj</li>
-          <li>Tubular battery dealer Kaushambi</li>
-          <li>UPS SMF battery dealer Prayagraj</li>
-          <li>Solar panel installation near me Prayagraj</li>
-          <li>Battery exchange offer Allahabad</li>
-          <li>Wholesale battery dealer GT Road Puramufti</li>
+          <li><strong>Prayagraj Local:</strong> Puramufti, Soraon, Phaphamau, Naini, Jhunsi, Civil Lines, Katra, Dhoomanganj, Mauaima, Shankargarh, Karchana, Handia, Meja, Holagarh, Jasra</li>
+          <li><strong>Kaushambi District:</strong> Charwa, Manjhanpur, Sirathu, Bharwari, Chail, Muratganj, Karari, Sarai Akil, Ajhuwa, Saini, Mooratganj</li>
+          <li><strong>Within 100 KM Corridor:</strong> Pratapgarh (Kunda, Lalganj Ajhara, Bela Pratapgarh, Raniganj), Fatehpur (Khaga, Bindki, Fatehpur City), Bhadohi (Gopiganj), Mirzapur, Chitrakoot Karwi</li>
+          <li><strong>Bahar ki Leads / State Wholesale:</strong> Wholesale battery supplier Uttar Pradesh, bulk commercial solar EPC contractor UP, PM Surya Ghar Muft Bijli Yojana ₹78,000 direct bank subsidy distributor, lithium LiFePO4 battery wholesale UP</li>
+        </ul>
+
+        <h3>High Search Volume Local Keywords:</h3>
+        <ul>
+          <li>Battery shop in Soraon Prayagraj</li>
+          <li>Phaphamau battery and inverter dealer</li>
+          <li>Naini battery shop Allahabad</li>
+          <li>Jhunsi inverter battery dealer</li>
+          <li>Kunda Pratapgarh battery shop</li>
+          <li>Fatehpur battery wholesale rate GT Road</li>
+          <li>Manjhanpur Kaushambi solar panel installer</li>
+          <li>Bharwari Kaushambi battery dealer</li>
+          <li>Amaron car battery dealer Prayagraj Allahabad</li>
+          <li>Exide inverter battery dealer Puramufti</li>
+          <li>Luminous tubular inverter battery price Prayagraj</li>
+          <li>Microtek hybrid solar inverter Kaushambi</li>
+          <li>Vion lithium wall mount battery distributor UP</li>
+          <li>PM Surya Ghar 3kW 5kW solar rooftop subsidy Allahabad</li>
+          <li>Car battery replacement near me Prayagraj 24x7</li>
+          <li>Old battery exchange wholesale offer Allahabad</li>
         </ul>
       </section>
 

@@ -476,6 +476,27 @@ export async function getProducts(filter = {}) {
   return memoryProducts;
 }
 
+export async function getProductById(id) {
+  if (!id) return null;
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      const isObjectId = /^[0-9a-fA-F]{24}$/.test(id);
+      let prod = null;
+      if (isObjectId) {
+        prod = await Product.findById(id).lean();
+      }
+      if (!prod) {
+        prod = await Product.findOne({ $or: [{ _id: id }, { id: id }, { model: id }] }).lean();
+      }
+      if (prod) return prod;
+    } catch (e) {
+      console.warn("Error finding product by id:", e.message);
+    }
+  }
+  return memoryProducts.find((p) => String(p._id) === String(id) || p.id === id || p.model === id) || null;
+}
+
 export async function createProduct(data) {
   const db = await connectToDatabase();
   if (db) {

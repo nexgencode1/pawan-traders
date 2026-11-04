@@ -51,6 +51,8 @@ export async function POST(request) {
       published: body.published !== undefined ? Boolean(body.published) : true,
       badge: body.badge || "",
       shortDescription: body.shortDescription || "",
+      seoKeywords: body.seoKeywords || "",
+      seoDescription: body.seoDescription || "",
       specs: body.specs || {},
       order: Number(body.order) || 0,
     });
