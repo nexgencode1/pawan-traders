@@ -4,7 +4,10 @@ import Product from "@/models/Product";
 import GalleryItem from "@/models/GalleryItem";
 import ContactSubmission from "@/models/ContactSubmission";
 import SiteSetting from "@/models/SiteSetting";
+import TeamMember from "@/models/TeamMember";
 import { INITIAL_DATA } from "@/data/pawanData";
+
+let memoryTeamMembers = [];
 
 let memorySettings = {
   announcementText: "⚡ Special Festive Offer: Flat 10% Off on Solar Hybrid Inverters & Free Battery Health Checkup at both Branches! Call 9935618513 / 9305839018",
@@ -711,4 +714,96 @@ export async function updateSettings(data) {
   }
   return memorySettings;
 }
+
+// ================= TEAM MEMBERS (ABOUT PAGE) =================
+export async function getTeamMembers(activeOnly = true) {
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      const query = activeOnly ? { active: true } : {};
+      const members = await TeamMember.find(query).sort({ order: 1, createdAt: 1 }).lean();
+      if (members) return members;
+    } catch (e) {
+      console.warn("Error fetching team members from Mongo:", e.message);
+    }
+  }
+  if (activeOnly) {
+    return memoryTeamMembers.filter((m) => m.active !== false);
+  }
+  return memoryTeamMembers;
+}
+
+export async function getTeamMemberById(id) {
+  if (!id) return null;
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      const isObjectId = /^[0-9a-fA-F]{24}$/.test(id);
+      if (isObjectId) {
+        const member = await TeamMember.findById(id).lean();
+        if (member) return member;
+      }
+      const memberByString = await TeamMember.findOne({ _id: id }).lean();
+      if (memberByString) return memberByString;
+    } catch (e) {}
+  }
+  return memoryTeamMembers.find((m) => String(m._id) === String(id) || m.id === id) || null;
+}
+
+export async function createTeamMember(data) {
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      const member = await TeamMember.create(data);
+      return member.toObject();
+    } catch (e) {
+      console.warn("Error creating team member in Mongo:", e.message);
+    }
+  }
+  const fallback = {
+    _id: "team-" + Date.now(),
+    ...data,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+  memoryTeamMembers.push(fallback);
+  return fallback;
+}
+
+export async function updateTeamMember(id, data) {
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      const updated = await TeamMember.findByIdAndUpdate(id, data, { new: true }).lean();
+      if (updated) return updated;
+    } catch (e) {
+      console.warn("Error updating team member in Mongo:", e.message);
+    }
+  }
+  const idx = memoryTeamMembers.findIndex((m) => String(m._id) === String(id) || m.id === id);
+  if (idx !== -1) {
+    memoryTeamMembers[idx] = {
+      ...memoryTeamMembers[idx],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return memoryTeamMembers[idx];
+  }
+  return null;
+}
+
+export async function deleteTeamMember(id) {
+  const db = await connectToDatabase();
+  if (db) {
+    try {
+      await TeamMember.findByIdAndDelete(id);
+      return true;
+    } catch (e) {
+      console.warn("Error deleting team member from Mongo:", e.message);
+    }
+  }
+  memoryTeamMembers = memoryTeamMembers.filter((m) => String(m._id) !== String(id) && m.id !== id);
+  return true;
+}
+
 

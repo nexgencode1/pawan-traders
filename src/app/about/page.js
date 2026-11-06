@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { INITIAL_DATA } from "@/data/pawanData";
 import { getCanonicalUrl } from "@/lib/siteConfig";
+import { getTeamMembers } from "@/lib/dataStore";
 
 export const metadata = {
   title: "About Pawan Traders | 15+ Years Battery & Solar Dealer Prayagraj | Director Mr. Pawan Kumar Kushwaha",
@@ -32,8 +33,9 @@ export const metadata = {
   alternates: { canonical: getCanonicalUrl("/about") },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
   const { settings, branches } = INITIAL_DATA;
+  const teamMembers = await getTeamMembers(true);
 
   return (
     <div>
@@ -259,6 +261,110 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+
+          {/* Dynamic Additional Team Members from Admin Panel (Alternating Left-Right Cards) */}
+          {teamMembers && teamMembers.map((member, idx) => {
+            const isImageLeft = idx % 2 === 1; // idx 0: Text Left, Image Right; idx 1: Image Left, Text Right
+            const themeColor = isImageLeft ? "var(--solar-hover)" : "var(--primary)";
+
+            return (
+              <div
+                key={member._id || member.id || idx}
+                className="executive-spotlight-row"
+                style={{ paddingTop: "40px", borderTop: "1px solid var(--gray-200)" }}
+              >
+                {isImageLeft ? (
+                  <>
+                    <div className="executive-spotlight-image-card">
+                      <img
+                        src={member.image || "/assets/images/logo.png"}
+                        alt={`${member.name} - ${member.designation}`}
+                      />
+                      {member.quote && (
+                        <div className="executive-spotlight-quote-overlay">
+                          &ldquo;{member.quote}&rdquo;
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="executive-spotlight-content">
+                      <span className="executive-spotlight-eyebrow" style={{ color: themeColor }}>
+                        {member.eyebrow || `MEET OUR ${member.designation?.toUpperCase() || "TEAM MEMBER"}`}
+                      </span>
+                      <h2 className="executive-spotlight-name">
+                        {member.name}
+                      </h2>
+                      {member.phone && (
+                        <a
+                          href={`tel:+91${member.phone}`}
+                          className="executive-spotlight-phone"
+                          style={{ color: themeColor }}
+                        >
+                          <i className="fa-solid fa-phone"></i>
+                          <span>+91 {member.phone}</span>
+                        </a>
+                      )}
+                      <p className="executive-spotlight-bio">
+                        {member.bio || member.shortBio}
+                      </p>
+                      <div className="executive-spotlight-signature">
+                        <span className="executive-spotlight-sign-name" style={{ color: themeColor }}>
+                          {member.name}
+                        </span>
+                        <span className="executive-spotlight-sign-role">
+                          {member.designation?.toUpperCase()}, PAWAN TRADERS
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="executive-spotlight-content">
+                      <span className="executive-spotlight-eyebrow" style={{ color: themeColor }}>
+                        {member.eyebrow || `MEET OUR ${member.designation?.toUpperCase() || "TEAM MEMBER"}`}
+                      </span>
+                      <h2 className="executive-spotlight-name">
+                        {member.name}
+                      </h2>
+                      {member.phone && (
+                        <a
+                          href={`tel:+91${member.phone}`}
+                          className="executive-spotlight-phone"
+                          style={{ color: themeColor }}
+                        >
+                          <i className="fa-solid fa-phone"></i>
+                          <span>+91 {member.phone}</span>
+                        </a>
+                      )}
+                      <p className="executive-spotlight-bio">
+                        {member.bio || member.shortBio}
+                      </p>
+                      <div className="executive-spotlight-signature">
+                        <span className="executive-spotlight-sign-name" style={{ color: themeColor }}>
+                          {member.name}
+                        </span>
+                        <span className="executive-spotlight-sign-role">
+                          {member.designation?.toUpperCase()}, PAWAN TRADERS
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="executive-spotlight-image-card">
+                      <img
+                        src={member.image || "/assets/images/logo.png"}
+                        alt={`${member.name} - ${member.designation}`}
+                      />
+                      {member.quote && (
+                        <div className="executive-spotlight-quote-overlay">
+                          &ldquo;{member.quote}&rdquo;
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 

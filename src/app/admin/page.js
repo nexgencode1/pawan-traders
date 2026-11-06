@@ -87,6 +87,23 @@ export default function AdminPage() {
     cloudinaryPublicId: "",
   });
 
+  // Team Members State (About Page)
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [showTeamModal, setShowTeamModal] = useState(false);
+  const [teamFormData, setTeamFormData] = useState({
+    id: null,
+    name: "",
+    designation: "",
+    eyebrow: "",
+    phone: "",
+    image: "",
+    cloudinaryPublicId: "",
+    quote: "",
+    bio: "",
+    order: 0,
+    active: true,
+  });
+
   // Uploading state
   const [uploading, setUploading] = useState(false);
   const [uploadProgressText, setUploadProgressText] = useState("");
@@ -204,6 +221,15 @@ export default function AdminPage() {
         const setData = await setRes.json();
         if (setData.success && setData.settings) {
           setSiteSettings(setData.settings);
+        }
+      } catch (e) {}
+
+      // 7. Team Members (About Page)
+      try {
+        const teamRes = await fetch("/api/team?all=true");
+        const teamData = await teamRes.json();
+        if (teamData.success) {
+          setTeamMembers(teamData.teamMembers || []);
         }
       } catch (e) {}
     } catch (err) {
@@ -482,6 +508,91 @@ export default function AdminPage() {
     document.body.removeChild(link);
   };
 
+  // ================= TEAM MEMBERS ACTIONS (ABOUT PAGE) =================
+  const handleOpenAddTeamModal = () => {
+    setTeamFormData({
+      id: null,
+      name: "",
+      designation: "",
+      eyebrow: "",
+      phone: "",
+      image: "",
+      cloudinaryPublicId: "",
+      quote: "",
+      bio: "",
+      order: teamMembers.length + 1,
+      active: true,
+    });
+    setShowTeamModal(true);
+  };
+
+  const handleEditTeamMember = (member) => {
+    setTeamFormData({
+      id: member._id || member.id,
+      name: member.name || "",
+      designation: member.designation || "",
+      eyebrow: member.eyebrow || "",
+      phone: member.phone || "",
+      image: member.image || "",
+      cloudinaryPublicId: member.cloudinaryPublicId || "",
+      quote: member.quote || "",
+      bio: member.bio || member.shortBio || "",
+      order: member.order !== undefined ? member.order : 0,
+      active: member.active !== false,
+    });
+    setShowTeamModal(true);
+  };
+
+  const handleSaveTeamMember = async (e) => {
+    e.preventDefault();
+    if (!teamFormData.name || !teamFormData.designation || !teamFormData.image) {
+      alert("Please provide member name, designation, and upload or provide an image.");
+      return;
+    }
+
+    try {
+      const method = teamFormData.id ? "PUT" : "POST";
+      const payload = teamFormData.id
+        ? { ...teamFormData, id: teamFormData.id }
+        : teamFormData;
+
+      const res = await fetch("/api/team", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        showToastMsg(teamFormData.id ? "Team member updated!" : "New team member added to About page!");
+        setShowTeamModal(false);
+        refreshAllData();
+      } else {
+        alert("Failed: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      alert("Error saving team member: " + err.message);
+    }
+  };
+
+  const handleDeleteTeamMember = async (id, publicId) => {
+    if (!confirm("Are you sure you want to remove this team member from the About page?")) return;
+    try {
+      const res = await fetch(`/api/team?id=${id}&publicId=${publicId || ""}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success) {
+        showToastMsg("Team member removed from About page.");
+        refreshAllData();
+      } else {
+        alert("Failed: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      alert("Error deleting team member: " + err.message);
+    }
+  };
+
   // ================= LOGIN SCREEN =================
   if (!isAuthenticated) {
     return (
@@ -663,6 +774,7 @@ export default function AdminPage() {
               { id: "slider", label: "Hero Slider", icon: "fa-sliders", count: slides.length },
               { id: "products", label: "Products Catalog", icon: "fa-boxes-stacked", count: products.length },
               { id: "gallery", label: "Showcase Gallery", icon: "fa-images", count: galleryItems.length },
+              { id: "team", label: "Team Members", icon: "fa-users", count: teamMembers.length },
               { id: "enquiries", label: "Contact Enquiries", icon: "fa-envelope-open-text", count: enquiries.filter(e => e.status === "New").length, highlight: true },
             ].map((item) => {
               const isActive = activeTab === item.id;
@@ -791,6 +903,7 @@ export default function AdminPage() {
               {activeTab === "slider" && "Hero Section Slider Management"}
               {activeTab === "products" && "Product Catalog & Pricing Management"}
               {activeTab === "gallery" && "Real Installation & Showcase Gallery"}
+              {activeTab === "team" && "About Page Team Members Spotlight"}
               {activeTab === "enquiries" && "Customer Contact & Quotation Leads"}
             </h2>
             <small style={{ color: "#64748B" }}>Pawan Traders Admin Panel &bull; Puramufti Prayagraj &amp; Charwa Kaushambi</small>
@@ -843,6 +956,15 @@ export default function AdminPage() {
                 </div>
                 <div style={{ fontSize: "2rem", fontWeight: 800, color: "#FFFFFF", marginTop: "8px" }}>{galleryItems.length}</div>
                 <p style={{ fontSize: "0.75rem", color: "#64748B", marginTop: "4px" }}>Live Project &amp; Branch Showcases</p>
+              </div>
+
+              <div style={{ background: "#1E293B", borderRadius: "var(--radius-lg)", padding: "20px", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }} onClick={() => setActiveTab("team")}>
+                <div style={{ display: "flex", justifyContent: "space-between", color: "#94A3B8", fontSize: "0.85rem", fontWeight: 700 }}>
+                  <span>ABOUT TEAM</span>
+                  <i className="fa-solid fa-users" style={{ color: "#8B5CF6" }}></i>
+                </div>
+                <div style={{ fontSize: "2rem", fontWeight: 800, color: "#8B5CF6", marginTop: "8px" }}>{teamMembers.length}</div>
+                <p style={{ fontSize: "0.75rem", color: "#64748B", marginTop: "4px" }}>About Page Spotlight Members</p>
               </div>
 
               <div style={{ background: "#1E293B", borderRadius: "var(--radius-lg)", padding: "20px", border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -924,6 +1046,14 @@ export default function AdminPage() {
                   className="btn btn-eco"
                 >
                   <i className="fa-solid fa-camera"></i> Upload to Gallery
+                </button>
+
+                <button
+                  onClick={handleOpenAddTeamModal}
+                  className="btn btn-solar"
+                  style={{ background: "#8B5CF6", borderColor: "#8B5CF6" }}
+                >
+                  <i className="fa-solid fa-user-plus"></i> Add Team Member
                 </button>
 
                 <button
@@ -1674,6 +1804,228 @@ CLOUDINARY_API_SECRET=your_api_secret`}
             </div>
           </div>
         )}
+
+        {/* ================= TAB 6: TEAM MEMBERS (ABOUT PAGE) ================= */}
+        {activeTab === "team" && (
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexWrap: "wrap", gap: "12px" }}>
+              <div>
+                <h2 style={{ fontSize: "1.4rem", fontWeight: 800, color: "#FFFFFF" }}>
+                  <i className="fa-solid fa-users" style={{ color: "#8B5CF6", marginRight: "10px" }}></i>
+                  About Page Team Members
+                </h2>
+                <p style={{ color: "#94A3B8", fontSize: "0.85rem" }}>
+                  Manage team members, engineers, and specialists. Each member appears on the About page in alternating left-right executive spotlight cards.
+                </p>
+              </div>
+              <button
+                onClick={handleOpenAddTeamModal}
+                className="btn btn-solar"
+                style={{ background: "#8B5CF6", borderColor: "#8B5CF6" }}
+              >
+                <i className="fa-solid fa-user-plus"></i> Add Team Member
+              </button>
+            </div>
+
+            {/* Permanent Leadership Notice */}
+            <div style={{
+              background: "linear-gradient(135deg, rgba(15, 45, 107, 0.4) 0%, rgba(29, 78, 216, 0.2) 100%)",
+              border: "1px solid rgba(59, 130, 246, 0.3)",
+              borderRadius: "var(--radius-lg)",
+              padding: "16px 20px",
+              marginBottom: "24px",
+              display: "flex",
+              alignItems: "center",
+              gap: "14px",
+            }}>
+              <i className="fa-solid fa-shield-halved" style={{ color: "#38BDF8", fontSize: "1.4rem", flexShrink: 0 }}></i>
+              <div style={{ fontSize: "0.86rem", color: "#E0F2FE", lineHeight: 1.5 }}>
+                <strong style={{ color: "#FFFFFF" }}>Core Leadership Notice:</strong> Founder &amp; Director (Mr. Pawan Kumar Kushwaha) and General Manager (Mr. Kartik Kushwaha) are the permanent head executives (Rows 1 &amp; 2). All additional members added here appear directly below them on the About page in alternating spotlight cards (Text Left / Image Right &amp; Image Left / Text Right).
+              </div>
+            </div>
+
+            {/* Team Members List / Cards */}
+            {teamMembers.length === 0 ? (
+              <div style={{
+                background: "#1E293B",
+                borderRadius: "var(--radius-lg)",
+                padding: "48px 24px",
+                textAlign: "center",
+                border: "1px dashed rgba(255,255,255,0.15)",
+              }}>
+                <i className="fa-solid fa-users-viewfinder" style={{ fontSize: "2.8rem", color: "#64748B", marginBottom: "16px" }}></i>
+                <h3 style={{ color: "#FFFFFF", fontSize: "1.2rem", fontWeight: 700, marginBottom: "8px" }}>
+                  No Additional Team Members Added Yet
+                </h3>
+                <p style={{ color: "#94A3B8", fontSize: "0.88rem", maxWidth: "480px", margin: "0 auto 20px" }}>
+                  Add your senior engineers, technicians, and branch managers to showcase your team strength on the About page.
+                </p>
+                <button
+                  onClick={handleOpenAddTeamModal}
+                  className="btn btn-solar"
+                  style={{ background: "#8B5CF6", borderColor: "#8B5CF6" }}
+                >
+                  <i className="fa-solid fa-plus"></i> Add First Team Member
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
+                {teamMembers.map((member, idx) => {
+                  const isImageLeft = idx % 2 === 1;
+                  return (
+                    <div
+                      key={member._id || member.id || idx}
+                      style={{
+                        background: "#1E293B",
+                        borderRadius: "var(--radius-lg)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        overflow: "hidden",
+                        display: "flex",
+                        flexDirection: "column",
+                        boxShadow: "0 4px 14px rgba(0,0,0,0.2)",
+                      }}
+                    >
+                      {/* Photo preview header with quote overlay */}
+                      <div style={{ position: "relative", height: "220px", background: "#0F172A" }}>
+                        <img
+                          src={member.image || "/assets/images/logo.png"}
+                          alt={member.name}
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                        <div style={{
+                          position: "absolute",
+                          top: "10px",
+                          left: "10px",
+                          background: isImageLeft ? "#F59E0B" : "#1D4ED8",
+                          color: "#FFFFFF",
+                          fontSize: "0.72rem",
+                          fontWeight: 800,
+                          padding: "4px 10px",
+                          borderRadius: "999px",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.04em",
+                        }}>
+                          Row {idx + 3}: {isImageLeft ? "Image Left" : "Image Right"}
+                        </div>
+                        {member.active === false && (
+                          <div style={{
+                            position: "absolute",
+                            top: "10px",
+                            right: "10px",
+                            background: "rgba(239, 68, 68, 0.9)",
+                            color: "#FFFFFF",
+                            fontSize: "0.72rem",
+                            fontWeight: 800,
+                            padding: "4px 8px",
+                            borderRadius: "6px",
+                          }}>
+                            Hidden
+                          </div>
+                        )}
+                        {member.quote && (
+                          <div style={{
+                            position: "absolute",
+                            bottom: "10px",
+                            left: "10px",
+                            right: "10px",
+                            background: "rgba(15, 23, 42, 0.85)",
+                            backdropFilter: "blur(4px)",
+                            color: "#E2E8F0",
+                            fontSize: "0.76rem",
+                            fontStyle: "italic",
+                            padding: "8px 12px",
+                            borderRadius: "8px",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                          }}>
+                            &ldquo;{member.quote}&rdquo;
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Content details */}
+                      <div style={{ padding: "20px", display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "space-between" }}>
+                        <div>
+                          <span style={{
+                            fontSize: "0.74rem",
+                            fontWeight: 800,
+                            color: isImageLeft ? "#F59E0B" : "#38BDF8",
+                            letterSpacing: "0.06em",
+                            textTransform: "uppercase",
+                            display: "block",
+                            marginBottom: "4px",
+                          }}>
+                            {member.eyebrow || `MEET OUR ${member.designation?.toUpperCase() || "TEAM"}`}
+                          </span>
+                          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#FFFFFF", margin: "0 0 4px" }}>
+                            {member.name}
+                          </h3>
+                          <div style={{ fontSize: "0.85rem", color: "#FDE047", fontWeight: 700, marginBottom: "8px" }}>
+                            {member.designation}
+                          </div>
+
+                          {member.phone && (
+                            <div style={{ fontSize: "0.82rem", color: "#94A3B8", marginBottom: "10px", display: "flex", alignItems: "center", gap: "6px" }}>
+                              <i className="fa-solid fa-phone" style={{ color: "#38BDF8" }}></i>
+                              <span>+91 {member.phone}</span>
+                            </div>
+                          )}
+
+                          <p style={{
+                            fontSize: "0.84rem",
+                            color: "#94A3B8",
+                            lineHeight: 1.55,
+                            margin: "0 0 16px",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                          }}>
+                            {member.bio || member.shortBio || "No bio provided."}
+                          </p>
+                        </div>
+
+                        {/* Actions bar */}
+                        <div style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          paddingTop: "14px",
+                          borderTop: "1px solid rgba(255,255,255,0.08)",
+                        }}>
+                          <small style={{ color: "#64748B", fontSize: "0.78rem" }}>
+                            Display Order: #{member.order || 0}
+                          </small>
+                          <div style={{ display: "flex", gap: "8px" }}>
+                            <button
+                              onClick={() => handleEditTeamMember(member)}
+                              className="btn btn-outline btn-sm"
+                              style={{ color: "#FFFFFF", borderColor: "#475569", padding: "6px 12px", fontSize: "0.8rem" }}
+                            >
+                              <i className="fa-solid fa-pen-to-square"></i> Edit
+                            </button>
+                            <button
+                              onClick={() => handleDeleteTeamMember(member._id || member.id, member.cloudinaryPublicId)}
+                              className="btn btn-danger btn-sm"
+                              style={{
+                                background: "rgba(239, 68, 68, 0.15)",
+                                color: "#F87171",
+                                border: "1px solid rgba(239, 68, 68, 0.3)",
+                                padding: "6px 12px",
+                                fontSize: "0.8rem",
+                              }}
+                            >
+                              <i className="fa-solid fa-trash"></i> Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
         </div>
       </div>
 
@@ -2236,6 +2588,245 @@ CLOUDINARY_API_SECRET=your_api_secret`}
                 </button>
                 <button type="submit" className="btn btn-eco">
                   <i className="fa-solid fa-check"></i> Add to Gallery
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ================= MODAL: ADD / EDIT TEAM MEMBER (ABOUT PAGE) ================= */}
+      {showTeamModal && (
+        <div style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 9999,
+          background: "rgba(0,0,0,0.85)",
+          backdropFilter: "blur(8px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "20px"
+        }}>
+          <div style={{
+            background: "#1E293B",
+            borderRadius: "var(--radius-xl)",
+            maxWidth: "600px",
+            width: "100%",
+            maxHeight: "90vh",
+            overflowY: "auto",
+            border: "1px solid rgba(255,255,255,0.15)",
+            padding: "28px",
+            color: "#FFFFFF"
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+              <div>
+                <h3 style={{ fontSize: "1.3rem", fontWeight: 800, margin: 0 }}>
+                  {teamFormData.id ? "Edit Team Member" : "Add Team Member (About Page)"}
+                </h3>
+                <small style={{ color: "#94A3B8" }}>
+                  Appears in executive spotlight layout on the About page.
+                </small>
+              </div>
+              <button
+                onClick={() => setShowTeamModal(false)}
+                style={{ background: "transparent", border: "none", color: "#94A3B8", fontSize: "1.5rem", cursor: "pointer" }}
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveTeamMember}>
+              {/* Cloudinary Image Upload */}
+              <div style={{ marginBottom: "18px", background: "#0F172A", padding: "16px", borderRadius: "var(--radius-md)", border: "1px dashed rgba(255,255,255,0.2)" }}>
+                <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 700, color: "#8B5CF6", marginBottom: "8px" }}>
+                  <i className="fa-solid fa-cloud-arrow-up"></i> Member Photo / Image (Cloudinary) *
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const res = await handleFileUpload(file, "pawan-traders/team");
+                      if (res) {
+                        setTeamFormData((prev) => ({
+                          ...prev,
+                          image: res.url,
+                          cloudinaryPublicId: res.public_id,
+                        }));
+                      }
+                    }
+                  }}
+                  style={{ color: "#94A3B8", fontSize: "0.85rem" }}
+                />
+                {uploading && <p style={{ fontSize: "0.8rem", color: "#F59E0B", marginTop: "6px" }}>{uploadProgressText}</p>}
+
+                <div style={{ marginTop: "10px" }}>
+                  <label style={{ color: "#94A3B8", fontSize: "0.78rem" }}>Or Paste Direct Image URL:</label>
+                  <input
+                    type="url"
+                    className="form-control"
+                    placeholder="https://... or /assets/images/..."
+                    value={teamFormData.image}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, image: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF", fontSize: "0.85rem", marginTop: "4px" }}
+                    required
+                  />
+                </div>
+
+                {teamFormData.image && (
+                  <div style={{ marginTop: "12px", height: "140px", borderRadius: "8px", overflow: "hidden", background: "#000", position: "relative" }}>
+                    <img src={teamFormData.image} alt="Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {teamFormData.quote && (
+                      <div style={{
+                        position: "absolute",
+                        bottom: "8px",
+                        left: "8px",
+                        right: "8px",
+                        background: "rgba(0,0,0,0.8)",
+                        color: "#E2E8F0",
+                        fontSize: "0.72rem",
+                        fontStyle: "italic",
+                        padding: "6px 10px",
+                        borderRadius: "6px",
+                      }}>
+                        &ldquo;{teamFormData.quote}&rdquo;
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Full Name & Designation */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px", marginBottom: "14px" }}>
+                <div className="form-group">
+                  <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>Full Name *</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. Er. Sandeep Patel"
+                    value={teamFormData.name}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, name: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>Designation / Role *</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. Senior Solar Technical Engineer"
+                    value={teamFormData.designation}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, designation: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Eyebrow Tag & Phone */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px", marginBottom: "14px" }}>
+                <div className="form-group">
+                  <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>
+                    Eyebrow Header Tag (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. MEET OUR SOLAR SPECIALIST"
+                    value={teamFormData.eyebrow}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, eyebrow: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
+                  />
+                  <small style={{ color: "#64748B", fontSize: "0.72rem" }}>If blank, auto-formats as MEET OUR [DESIGNATION]</small>
+                </div>
+
+                <div className="form-group">
+                  <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>Direct Contact Phone (Optional)</label>
+                  <input
+                    type="tel"
+                    className="form-control"
+                    placeholder="e.g. 9935618513"
+                    value={teamFormData.phone}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, phone: e.target.value })}
+                    style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
+                  />
+                </div>
+              </div>
+
+              {/* Quote Overlay */}
+              <div className="form-group" style={{ marginBottom: "14px" }}>
+                <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>
+                  Quote Overlay on Photo (Optional)
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="e.g. Delivering high-precision solar installations with guaranteed customer satisfaction."
+                  value={teamFormData.quote}
+                  onChange={(e) => setTeamFormData({ ...teamFormData, quote: e.target.value })}
+                  style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
+                />
+              </div>
+
+              {/* Short Bio */}
+              <div className="form-group" style={{ marginBottom: "18px" }}>
+                <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>
+                  Professional Bio / Experience Summary *
+                </label>
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  placeholder="Describe their experience, responsibilities, technical expertise, or service area in Prayagraj & Kaushambi..."
+                  value={teamFormData.bio}
+                  onChange={(e) => setTeamFormData({ ...teamFormData, bio: e.target.value })}
+                  style={{ background: "#0F172A", border: "1px solid #334155", color: "#FFFFFF" }}
+                  required
+                ></textarea>
+              </div>
+
+              {/* Order and Active toggle */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "22px", background: "#0F172A", padding: "12px 16px", borderRadius: "var(--radius-md)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <label style={{ color: "#CBD5E1", fontSize: "0.82rem", fontWeight: 700 }}>Display Order:</label>
+                  <input
+                    type="number"
+                    min="0"
+                    style={{ width: "70px", background: "#1E293B", border: "1px solid #334155", color: "#FFFFFF", padding: "4px 8px", borderRadius: "6px" }}
+                    value={teamFormData.order}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, order: parseInt(e.target.value) || 0 })}
+                  />
+                </div>
+
+                <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "0.85rem", color: "#FFFFFF" }}>
+                  <input
+                    type="checkbox"
+                    checked={teamFormData.active}
+                    onChange={(e) => setTeamFormData({ ...teamFormData, active: e.target.checked })}
+                  />
+                  Active on About Page
+                </label>
+              </div>
+
+              {/* Modal footer buttons */}
+              <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "18px" }}>
+                <button
+                  type="button"
+                  onClick={() => setShowTeamModal(false)}
+                  className="btn btn-outline"
+                  style={{ color: "#CBD5E1", borderColor: "#475569" }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-solar"
+                  style={{ background: "#8B5CF6", borderColor: "#8B5CF6" }}
+                >
+                  <i className="fa-solid fa-check"></i> {teamFormData.id ? "Update Member" : "Save Team Member"}
                 </button>
               </div>
             </form>

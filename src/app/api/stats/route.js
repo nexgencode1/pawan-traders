@@ -6,15 +6,17 @@ import {
   getEnquiries,
   getHeroSlides,
   getGalleryItems,
+  getTeamMembers,
 } from "@/lib/dataStore";
 
 export async function GET() {
   try {
-    const [products, enquiries, slides, gallery] = await Promise.all([
+    const [products, enquiries, slides, gallery, teamMembers] = await Promise.all([
       getProducts(),
       getEnquiries(),
       getHeroSlides(false),
       getGalleryItems(),
+      getTeamMembers(false),
     ]);
 
     const newEnquiriesCount = enquiries.filter((e) => e.status === "New").length;
@@ -27,6 +29,7 @@ export async function GET() {
         newEnquiries: newEnquiriesCount,
         totalSlides: slides.length,
         totalGallery: gallery.length,
+        totalTeamMembers: teamMembers.length,
         isMongoConnected: isMongoConnected(),
         isCloudinaryConfigured: isCloudinaryConfigured,
       },
