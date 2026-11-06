@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { INITIAL_DATA, buildWhatsAppUrl } from "@/data/pawanData";
 import ProductCard from "@/components/ProductCard";
+import { getCanonicalUrl } from "@/lib/siteConfig";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }) {
       description: `${brand.tagline}. Buy ${brand.name} at Pawan Traders Puramufti, Prayagraj & Charwa, Kaushambi. Best price guaranteed.`,
       images: [brand.logo],
     },
-    alternates: { canonical: `https://www.pawantraders.in/brands/${slug}` },
+    alternates: { canonical: getCanonicalUrl(`/brands/${slug}`) },
   };
 }
 

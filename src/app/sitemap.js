@@ -1,8 +1,8 @@
 import { INITIAL_DATA } from "@/data/pawanData";
-
-const BASE_URL = "https://www.pawantraders.in";
+import { getSiteUrl } from "@/lib/siteConfig";
 
 export default function sitemap() {
+  const BASE_URL = getSiteUrl();
   const now = new Date().toISOString();
 
   // Static pages

@@ -1,3 +1,5 @@
+import { getCanonicalUrl } from "@/lib/siteConfig";
+
 export const metadata = {
   title: "Solar & Battery Installation Gallery | Pawan Traders Prayagraj | Real Customer Projects",
   description: "Browse 50+ real solar rooftop and battery installation photos by Pawan Traders in Prayagraj, Allahabad & Kaushambi. See completed PM Surya Ghar solar projects, inverter setups, and showroom photos. Authorized Amaron, Exide, Luminous dealer.",
@@ -25,7 +27,7 @@ export const metadata = {
     description: "Real solar rooftop & battery installation photos. Prayagraj, Allahabad, Kaushambi. 250+ projects completed.",
     images: ["/assets/images/gallery/gallery-01.jpg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/gallery" },
+  alternates: { canonical: getCanonicalUrl("/gallery") },
 };
 
 export default function GalleryLayout({ children }) {

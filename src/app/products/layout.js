@@ -1,3 +1,5 @@
+import { getCanonicalUrl } from "@/lib/siteConfig";
+
 export const metadata = {
   title: "Battery, Inverter & Solar Products Catalogue | Pawan Traders Prayagraj | Best Price",
   description: "Shop Pawan Traders complete product catalogue: Amaron & Exide car batteries, Luminous & Microtek tubular inverter batteries, Vion lithium batteries, rooftop solar panels & systems. Best price with old battery exchange. Prayagraj, Allahabad, Kaushambi. Call 9935618513.",
@@ -28,7 +30,7 @@ export const metadata = {
     description: "Amaron, Exide, Luminous, Microtek, Vion Lithium batteries & solar at best prices. Old battery exchange. 9935618513.",
     images: ["/assets/images/categories/automotive.svg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/products" },
+  alternates: { canonical: getCanonicalUrl("/products") },
 };
 
 export default function ProductsLayout({ children }) {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { INITIAL_DATA, buildProductWhatsAppUrl } from "@/data/pawanData";
 import { getProductById } from "@/lib/dataStore";
+import { getCanonicalUrl } from "@/lib/siteConfig";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }) {
       description: `${brandName} authorized dealer. Best wholesale price, old battery exchange, fast delivery in Prayagraj & 100km radius. 9935618513.`,
       images: [product.image || "/assets/images/categories/automotive.svg"],
     },
-    alternates: { canonical: `https://www.pawantraders.in/products/${product.id || id}` },
+    alternates: { canonical: getCanonicalUrl(`/products/${product.id || id}`) },
   };
 }
 

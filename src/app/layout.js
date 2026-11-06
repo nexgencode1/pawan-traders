@@ -1,5 +1,6 @@
 import "./globals.css";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
+import { getSiteUrl, getCanonicalUrl } from "@/lib/siteConfig";
 
 export const viewport = {
   width: "device-width",
@@ -11,8 +12,10 @@ export const viewport = {
   ],
 };
 
+const siteUrl = getSiteUrl();
+
 export const metadata = {
-  metadataBase: new URL("https://pawan-traders-next.onrender.com"),
+  metadataBase: new URL(siteUrl),
   title: "Pawan Traders | Best Battery Shop & Solar Inverter Dealer in Prayagraj (Allahabad)",
   description:
     "Pawan Traders is Prayagraj & Allahabad's authorized distributor for Amaron, Exide, Luminous, Microtek batteries, Vion Lithium & PM Surya Ghar Rooftop Solar. Free delivery & fitting in Puramufti, Prayagraj & Charwa, Kaushambi. Call 9935618513.",
@@ -59,11 +62,12 @@ export const metadata = {
       "Authorized Amaron, Exide, Luminous & Rooftop Solar contractor in Puramufti Prayagraj & Charwa Kaushambi.",
     images: ["/assets/images/categories/solar.svg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/" },
+  alternates: { canonical: getCanonicalUrl("/") },
   icons: {
     icon: [
       { url: "/favicon.ico" },
       { url: "/favicon.png", type: "image/png" },
+      { url: "/assets/images/favicon.svg", type: "image/svg+xml" },
     ],
     shortcut: "/favicon.ico",
     apple: "/favicon.png",
@@ -73,11 +77,12 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const currentBase = getSiteUrl();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HomeGoodsStore",
     "name": "Pawan Traders - Battery & Solar Energy Solutions",
-    "image": "https://pawan-traders-next.onrender.com/assets/images/logo.png",
+    "image": `${currentBase}/assets/images/logo.png`,
     "telephone": "+919935618513",
     "priceRange": "₹₹",
     "areaServed": ["Prayagraj", "Allahabad", "Puramufti", "Kaushambi", "Charwa"],
@@ -107,10 +112,11 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/favicon.png" />
         <script
           type="application/ld+json"

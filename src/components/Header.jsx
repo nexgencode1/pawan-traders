@@ -141,12 +141,13 @@ export default function Header({ onOpenEnquiry }) {
             transition: "height 0.3s ease",
           }}
         >
-          {/* Bigger Logo with Clean Standalone Branding */}
+          {/* Logo with Emblem & Brand Name */}
           <Link
             href="/"
             style={{
               display: "flex",
               alignItems: "center",
+              gap: "10px",
               textDecoration: "none",
               flexShrink: 0,
               padding: "4px 0",
@@ -157,13 +158,37 @@ export default function Header({ onOpenEnquiry }) {
               src="/assets/images/logo.png"
               alt="Pawan Traders - Battery & Solar Energy Superstore"
               style={{
-                height: isScrolled ? "54px" : "62px",
+                height: isScrolled ? "46px" : "54px",
                 width: "auto",
                 objectFit: "contain",
                 transition: "height 0.3s ease",
                 filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.06))",
               }}
             />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div
+                style={{
+                  fontSize: "clamp(1.05rem, 1.4vw, 1.35rem)",
+                  fontWeight: 900,
+                  color: "#0F172A",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                PAWAN <span style={{ color: "#F59E0B" }}>TRADERS</span>
+              </div>
+              <div
+                style={{
+                  fontSize: "clamp(0.6rem, 0.72vw, 0.7rem)",
+                  fontWeight: 700,
+                  color: "#64748B",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Battery &amp; Solar Hub
+              </div>
+            </div>
             {/* SEO and Screen Reader Text */}
             <span className="sr-only">Pawan Traders Battery &amp; Solar Hub</span>
           </Link>

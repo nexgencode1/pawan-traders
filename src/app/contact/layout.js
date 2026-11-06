@@ -1,3 +1,5 @@
+import { getCanonicalUrl } from "@/lib/siteConfig";
+
 export const metadata = {
   title: "Contact Pawan Traders | Battery & Solar Enquiry Prayagraj Kaushambi | Call 9935618513",
   description: "Contact Pawan Traders for battery, inverter & solar enquiry. Main Branch: GT Road Puramufti, Prayagraj — 9935618513. Second Branch: Charwa Kaushambi — 9305839018. WhatsApp: 8299362360. Send enquiry online for instant callback.",
@@ -26,7 +28,7 @@ export const metadata = {
     description: "Battery, inverter & solar enquiries. Call 9935618513 (Puramufti) or 9305839018 (Charwa Kaushambi).",
     images: ["/assets/images/logo.png"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/contact" },
+  alternates: { canonical: getCanonicalUrl("/contact") },
 };
 
 export default function ContactLayout({ children }) {

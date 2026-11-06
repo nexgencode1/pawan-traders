@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { INITIAL_DATA } from "@/data/pawanData";
+import { getCanonicalUrl } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "Authorized Battery & Solar Brands | Amaron Exide Luminous Microtek Vion | Pawan Traders Prayagraj",
@@ -30,7 +31,7 @@ export const metadata = {
     description: "Amaron, Exide, Luminous, Microtek, Vion, UTL Solar & more. Genuine products. Puramufti Prayagraj & Charwa Kaushambi.",
     images: ["/assets/images/brands/amaron.svg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/brands" },
+  alternates: { canonical: getCanonicalUrl("/brands") },
 };
 
 export default function BrandsDirectoryPage() {

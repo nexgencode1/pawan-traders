@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { INITIAL_DATA } from "@/data/pawanData";
+import { getCanonicalUrl } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "About Pawan Traders | 15+ Years Battery & Solar Dealer Prayagraj | Director Mr. Pawan Kumar Kushwaha",
@@ -28,7 +29,7 @@ export const metadata = {
     description: "Authorized battery & solar dealer in Puramufti Prayagraj since 2008. Exide, Amaron, Luminous, Vion Lithium & PM Surya Ghar solar.",
     images: ["/director.jpeg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/about" },
+  alternates: { canonical: getCanonicalUrl("/about") },
 };
 
 export default function AboutPage() {

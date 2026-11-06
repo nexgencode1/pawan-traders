@@ -1,6 +1,7 @@
 import { INITIAL_DATA } from "@/data/pawanData";
 import SolarCalculator from "@/components/SolarCalculator";
 import ProductCard from "@/components/ProductCard";
+import { getCanonicalUrl } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "Solar Panel & Rooftop EPC Prayagraj | PM Surya Ghar Yojana | ₹78,000 Subsidy | Pawan Traders",
@@ -35,7 +36,7 @@ export const metadata = {
     description: "On-Grid, Off-Grid & Hybrid solar in Prayagraj & Kaushambi. Up to ₹78,000 subsidy. Luminous, UTL Solar, Microtek. Free site survey.",
     images: ["/assets/images/categories/solar.svg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/solar" },
+  alternates: { canonical: getCanonicalUrl("/solar") },
 };
 
 export default function SolarPage() {

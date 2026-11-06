@@ -1,5 +1,6 @@
 import { INITIAL_DATA } from "@/data/pawanData";
 import BranchMap from "@/components/BranchMap";
+import { getCanonicalUrl } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "Our Branches | Pawan Traders Puramufti Prayagraj & Charwa Kaushambi | Battery Shop Near Me",
@@ -29,7 +30,7 @@ export const metadata = {
     description: "2 showrooms. GT Road Puramufti Prayagraj (9935618513) & Charwa Town Kaushambi (9305839018). Open all 7 days.",
     images: ["/assets/images/gallery/gallery-01.jpg"],
   },
-  alternates: { canonical: "https://www.pawantraders.in/branches" },
+  alternates: { canonical: getCanonicalUrl("/branches") },
 };
 
 export default function BranchesPage() {
