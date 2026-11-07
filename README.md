@@ -35,6 +35,162 @@ npm start
 
 ---
 
+## 🌐 Quick Deployment Guide for Hostinger VPS (Ubuntu / Debian)
+
+Follow these quick steps to deploy and run Pawan Traders on your Hostinger VPS with 24/7 uptime using PM2 and Nginx.
+
+### Step 1: Connect to Your Hostinger VPS via SSH
+Open your terminal (PowerShell, Command Prompt, or macOS/Linux Terminal) and connect:
+```bash
+ssh root@YOUR_SERVER_IP
+```
+
+### Step 2: Install Node.js (v20+ LTS), Git & PM2
+If you haven't installed Node.js yet, install Node.js 20 LTS:
+```bash
+# Update system packages
+sudo apt update && sudo apt upgrade -y
+
+# Install Node.js 20 via NodeSource
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs git nginx
+
+# Verify installation
+node -v
+npm -v
+
+# Install PM2 globally for process management
+sudo npm install -g pm2
+```
+
+### Step 3: Clone the Repository
+```bash
+# Navigate to web directory
+cd /var/www
+
+# Clone repository
+git clone https://github.com/ShahbazAhmad08/pawan-traders-next.git
+
+# Enter project directory
+cd pawan-traders-next
+```
+
+### Step 4: Configure Production Environment Variables
+Create your production `.env.local` file:
+```bash
+cp .env.example .env.local
+nano .env.local
+```
+
+Paste and save your credentials:
+```env
+# 1. MongoDB Database Connection
+MONGODB_URI=mongodb+srv://sa798027:ks9inW6pDV7JOy7m@cluster0.bgatlhp.mongodb.net/pawan-traders?retryWrites=true&w=majority
+
+# 2. Cloudinary Credentials (Image Uploads)
+CLOUDINARY_CLOUD_NAME=gcgnebv5
+CLOUDINARY_API_KEY=936242873279426
+CLOUDINARY_API_SECRET=RMlxc0rqbuMnSu7rX0yeSZPFleA
+CLOUDINARY_URL=cloudinary://936242873279426:RMlxc0rqbuMnSu7rX0yeSZPFleA@gcgnebv5
+
+# 3. Staff Admin Panel Password
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your_strong_admin_password_here
+
+# 4. SMTP Email Notification Service (Optional)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=pawantraders70@gmail.com
+SMTP_PASS=
+SMTP_FROM="Pawan Traders Lead Alert" <pawantraders70@gmail.com>
+ADMIN_NOTIFICATION_EMAIL=pawantraders70@gmail.com
+
+# 5. Site Domain & Base URL for Canonical SEO & Sitemap
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+*(Press `Ctrl + O` then `Enter` to save, and `Ctrl + X` to exit nano editor).*
+
+### Step 5: Install Dependencies & Build
+```bash
+npm install
+npm run build
+```
+*(This creates an optimized standalone production build ready for high-performance serving).*
+
+### Step 6: Start the Application with PM2
+We have included a pre-configured `ecosystem.config.js` in the repository root:
+```bash
+# Start the application using PM2
+pm2 start ecosystem.config.js
+
+# Save PM2 process list so it auto-restarts on server reboot
+pm2 save
+pm2 startup
+```
+*(Run the generated command displayed by `pm2 startup` if prompted).*
+
+### Step 7: Configure Nginx Reverse Proxy
+To point your custom domain (or server IP) to the Next.js app running on port 3000:
+```bash
+sudo nano /etc/nginx/sites-available/pawan-traders
+```
+
+Paste the following Nginx server block:
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com www.your-domain.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+Enable the configuration and reload Nginx:
+```bash
+sudo ln -s /etc/nginx/sites-available/pawan-traders /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+### Step 8: Install Free SSL Certificate (HTTPS)
+Use Certbot to generate and auto-renew free Let's Encrypt SSL:
+```bash
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+```
+
+### 🛠️ Useful Day-to-Day Maintenance Commands
+
+```bash
+# Check running application status
+pm2 status
+
+# View live application logs
+pm2 logs pawan-traders
+
+# Restart application
+pm2 restart pawan-traders
+
+# Pull latest updates from GitHub in the future:
+cd /var/www/pawan-traders-next
+git pull origin main
+npm install
+npm run build
+pm2 reload pawan-traders
+```
+
+---
+
 ## 🏢 Website Routes (App Router)
 
 - `/` &mdash; **Homepage:** Hero showcase, Quick Finder, 5 Category Cards, Brand Partners Marquee, In-stock featured products, Solar calculator, Why Choose Pawan Traders, Both Branch locators, Quick enquiry form, floating WhatsApp & Call buttons.
